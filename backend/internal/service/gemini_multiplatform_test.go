@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/ctxkey"
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
 	"github.com/stretchr/testify/require"
 )
 

@@ -5,12 +5,12 @@ import (
 	"strings"
 	"time"
 
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
 )
 
 const (
-	DefaultDataManagementAgentSocketPath = "/tmp/hermes-datamanagement.sock"
-	LegacyBackupAgentSocketPath          = "/tmp/hermes-backup.sock"
+	DefaultDataManagementAgentSocketPath = "/tmp/kyllenios-core-datamanagement.sock"
+	LegacyBackupAgentSocketPath          = "/tmp/kyllenios-core-backup.sock"
 
 	DataManagementDeprecatedReason         = "DATA_MANAGEMENT_DEPRECATED"
 	DataManagementAgentSocketMissingReason = "DATA_MANAGEMENT_AGENT_SOCKET_MISSING"

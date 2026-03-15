@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/pkg/geminicli"
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/geminicli"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
 )
 
 // =====================

@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	dbent "github.com/ca0fgh/Hermes/ent"
-	"github.com/ca0fgh/Hermes/ent/redeemcode"
-	"github.com/ca0fgh/Hermes/ent/user"
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
-	"github.com/ca0fgh/Hermes/internal/service"
+	dbent "github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/kyllenios-core/ent/redeemcode"
+	"github.com/ca0fgh/kyllenios-core/ent/user"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 type redeemCodeRepository struct {

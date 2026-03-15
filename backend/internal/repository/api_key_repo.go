@@ -5,14 +5,14 @@ import (
 	"database/sql"
 	"time"
 
-	dbent "github.com/ca0fgh/Hermes/ent"
-	"github.com/ca0fgh/Hermes/ent/apikey"
-	"github.com/ca0fgh/Hermes/ent/group"
-	"github.com/ca0fgh/Hermes/ent/schema/mixins"
-	"github.com/ca0fgh/Hermes/ent/user"
-	"github.com/ca0fgh/Hermes/internal/service"
+	dbent "github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/kyllenios-core/ent/apikey"
+	"github.com/ca0fgh/kyllenios-core/ent/group"
+	"github.com/ca0fgh/kyllenios-core/ent/schema/mixins"
+	"github.com/ca0fgh/kyllenios-core/ent/user"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
 )
 
 type apiKeyRepository struct {

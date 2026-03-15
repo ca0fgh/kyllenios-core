@@ -3,10 +3,10 @@ package repository
 import (
 	"context"
 
-	"github.com/ca0fgh/Hermes/ent"
-	"github.com/ca0fgh/Hermes/ent/errorpassthroughrule"
-	"github.com/ca0fgh/Hermes/internal/model"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/kyllenios-core/ent/errorpassthroughrule"
+	"github.com/ca0fgh/kyllenios-core/internal/model"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 type errorPassthroughRepository struct {

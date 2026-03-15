@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 func TestBuildOpsErrorLogsWhere_QueryUsesQualifiedColumns(t *testing.T) {

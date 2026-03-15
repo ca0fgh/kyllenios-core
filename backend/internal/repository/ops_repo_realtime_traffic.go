@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 func (r *opsRepository) GetRealtimeTrafficSummary(ctx context.Context, filter *service.OpsDashboardFilter) (*service.OpsRealtimeTrafficSummary, error) {

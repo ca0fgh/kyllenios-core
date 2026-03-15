@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/Hermes/ent/group"
-	"github.com/ca0fgh/Hermes/ent/redeemcode"
-	"github.com/ca0fgh/Hermes/ent/user"
+	"github.com/ca0fgh/kyllenios-core/ent/group"
+	"github.com/ca0fgh/kyllenios-core/ent/redeemcode"
+	"github.com/ca0fgh/kyllenios-core/ent/user"
 )
 
 // RedeemCode is the model entity for the RedeemCode schema.

@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/Hermes/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

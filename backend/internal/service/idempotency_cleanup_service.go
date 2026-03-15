@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 )
 
 // IdempotencyCleanupService 定期清理已过期的幂等记录，避免表无限增长。

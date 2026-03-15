@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 // AESEncryptor implements SecretEncryptor using AES-256-GCM

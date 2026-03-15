@@ -8,8 +8,8 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/ca0fgh/Hermes/internal/domain"
-	"github.com/ca0fgh/Hermes/internal/pkg/antigravity"
+	"github.com/ca0fgh/kyllenios-core/internal/domain"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/antigravity"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )

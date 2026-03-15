@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 	gocache "github.com/patrickmn/go-cache"
 	"golang.org/x/sync/singleflight"
 )

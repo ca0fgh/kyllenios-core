@@ -4,11 +4,11 @@ import (
 	"context"
 	"database/sql"
 
-	dbent "github.com/ca0fgh/Hermes/ent"
-	"github.com/ca0fgh/Hermes/ent/proxy"
-	"github.com/ca0fgh/Hermes/internal/service"
+	dbent "github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/kyllenios-core/ent/proxy"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
 )
 
 type sqlQuerier interface {

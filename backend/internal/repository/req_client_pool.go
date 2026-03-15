@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/proxyurl"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/proxyurl"
 
 	"github.com/imroc/req/v3"
 )

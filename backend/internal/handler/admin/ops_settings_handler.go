@@ -3,9 +3,9 @@ package admin
 import (
 	"net/http"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/response"
-	"github.com/ca0fgh/Hermes/internal/server/middleware"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
+	"github.com/ca0fgh/kyllenios-core/internal/server/middleware"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 	"github.com/gin-gonic/gin"
 )
 

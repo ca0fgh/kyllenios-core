@@ -11,7 +11,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	openaiwsv2 "github.com/ca0fgh/Hermes/internal/service/openai_ws_v2"
+	openaiwsv2 "github.com/ca0fgh/kyllenios-core/internal/service/openai_ws_v2"
 	coderws "github.com/coder/websocket"
 	"github.com/coder/websocket/wsjson"
 )

@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"time"
 
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
-	"github.com/ca0fgh/Hermes/internal/pkg/httpclient"
-	"github.com/ca0fgh/Hermes/internal/service"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/httpclient"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 const defaultClaudeUsageURL = "https://api.anthropic.com/api/oauth/usage"

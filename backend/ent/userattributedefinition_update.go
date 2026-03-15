@@ -12,9 +12,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/dialect/sql/sqljson"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/predicate"
-	"github.com/ca0fgh/Hermes/ent/userattributedefinition"
-	"github.com/ca0fgh/Hermes/ent/userattributevalue"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/userattributedefinition"
+	"github.com/ca0fgh/kyllenios-core/ent/userattributevalue"
 )
 
 // UserAttributeDefinitionUpdate is the builder for updating UserAttributeDefinition entities.

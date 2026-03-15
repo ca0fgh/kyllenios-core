@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/predicate"
-	"github.com/ca0fgh/Hermes/ent/promocode"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/promocode"
 )
 
 // PromoCodeDelete is the builder for deleting a PromoCode entity.

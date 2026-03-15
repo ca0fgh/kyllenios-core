@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/Hermes/ent/announcement"
-	"github.com/ca0fgh/Hermes/ent/announcementread"
-	"github.com/ca0fgh/Hermes/ent/user"
+	"github.com/ca0fgh/kyllenios-core/ent/announcement"
+	"github.com/ca0fgh/kyllenios-core/ent/announcementread"
+	"github.com/ca0fgh/kyllenios-core/ent/user"
 )
 
 // AnnouncementRead is the model entity for the AnnouncementRead schema.

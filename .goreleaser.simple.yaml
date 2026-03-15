@@ -1,17 +1,17 @@
 # 简化版 GoReleaser 配置 - 仅发布 x86_64 GHCR 镜像
 version: 2
 
-project_name: hermes
+project_name: kyllenios-core
 
 before:
   hooks:
     - go mod tidy -C backend
 
 builds:
-  - id: hermes
+  - id: kyllenios-core
     dir: backend
     main: ./cmd/server
-    binary: hermes
+    binary: kyllenios-core
     flags:
       - -tags=embed
     env:
@@ -42,9 +42,9 @@ dockers:
     goos: linux
     goarch: amd64
     image_templates:
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes:{{ .Version }}-amd64"
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes:{{ .Version }}"
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes:latest"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-amd64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:latest"
     dockerfile: Dockerfile.goreleaser
     use: buildx
     build_flag_templates:
@@ -62,7 +62,7 @@ release:
     name: "{{ .Env.GITHUB_REPO_NAME }}"
   draft: false
   prerelease: auto
-  name_template: "Hermes {{.Version}} (Simple)"
+  name_template: "kyllenios-core {{.Version}} (Simple)"
   # 跳过上传二进制包
   skip_upload: true
   header: |
@@ -78,7 +78,7 @@ release:
 
     **Docker (x86_64 only):**
     ```bash
-    docker pull ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes:{{ .Version }}
+    docker pull ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}
     ```
 
     ## 📚 Documentation

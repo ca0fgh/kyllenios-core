@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
-	dbent "github.com/ca0fgh/Hermes/ent"
-	"github.com/ca0fgh/Hermes/ent/usersubscription"
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
-	"github.com/ca0fgh/Hermes/internal/service"
+	dbent "github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/kyllenios-core/ent/usersubscription"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 type userSubscriptionRepository struct {

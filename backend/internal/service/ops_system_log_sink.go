@@ -11,8 +11,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
-	"github.com/ca0fgh/Hermes/internal/util/logredact"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/util/logredact"
 )
 
 type OpsSystemLogSinkHealth struct {

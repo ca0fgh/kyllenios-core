@@ -1,6 +1,6 @@
 package service
 
-import "github.com/ca0fgh/Hermes/internal/config"
+import "github.com/ca0fgh/kyllenios-core/internal/config"
 
 // OpenAIUpstreamTransport 表示 OpenAI 上游传输协议。
 type OpenAIUpstreamTransport string

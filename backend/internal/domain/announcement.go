@@ -4,7 +4,7 @@ import (
 	"strings"
 	"time"
 
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
 )
 
 const (

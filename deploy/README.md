@@ -1,6 +1,6 @@
-# Hermes Deployment Files
+# kyllenios-core Deployment Files
 
-This directory contains files for deploying Hermes on Linux servers.
+This directory contains files for deploying kyllenios-core on Linux servers.
 
 ## Deployment Methods
 
@@ -20,8 +20,8 @@ This directory contains files for deploying Hermes on Linux servers.
 | `DOCKER.md` | Docker Hub documentation |
 | `install.sh` | One-click binary installation script |
 | `install-datamanagementd.sh` | datamanagementd 一键安装脚本 |
-| `hermes.service` | Systemd service unit file |
-| `hermes-datamanagementd.service` | datamanagementd systemd service unit file |
+| `kyllenios-core.service` | Systemd service unit file |
+| `kyllenios-core-datamanagementd.service` | datamanagementd systemd service unit file |
 | `DATAMANAGEMENTD_CN.md` | datamanagementd 部署与联动说明（中文） |
 | `config.example.yaml` | Example configuration file |
 
@@ -35,10 +35,10 @@ Use the automated preparation script for the easiest setup:
 
 ```bash
 # Download and run the preparation script
-curl -sSL https://raw.githubusercontent.com/ca0fgh/Hermes/main/deploy/docker-deploy.sh | bash
+curl -sSL https://raw.githubusercontent.com/ca0fgh/kyllenios-core/main/deploy/docker-deploy.sh | bash
 
 # Or download first, then run
-curl -sSL https://raw.githubusercontent.com/ca0fgh/Hermes/main/deploy/docker-deploy.sh -o docker-deploy.sh
+curl -sSL https://raw.githubusercontent.com/ca0fgh/kyllenios-core/main/deploy/docker-deploy.sh -o docker-deploy.sh
 chmod +x docker-deploy.sh
 ./docker-deploy.sh
 ```
@@ -56,10 +56,10 @@ chmod +x docker-deploy.sh
 docker-compose -f docker-compose.local.yml up -d
 
 # View logs
-docker-compose -f docker-compose.local.yml logs -f hermes
+docker-compose -f docker-compose.local.yml logs -f kyllenios-core
 
 # If admin password was auto-generated, find it in logs:
-docker-compose -f docker-compose.local.yml logs hermes | grep "admin password"
+docker-compose -f docker-compose.local.yml logs kyllenios-core | grep "admin password"
 
 # Access Web UI
 # http://localhost:8080
@@ -71,8 +71,8 @@ If you prefer manual control:
 
 ```bash
 # Clone repository
-git clone https://github.com/ca0fgh/Hermes.git
-cd hermes/deploy
+git clone https://github.com/ca0fgh/kyllenios-core.git
+cd kyllenios-core/deploy
 
 # Configure environment
 cp .env.example .env
@@ -91,7 +91,7 @@ mkdir -p data postgres_data redis_data
 docker-compose -f docker-compose.local.yml up -d
 
 # View logs (check for auto-generated admin password)
-docker-compose -f docker-compose.local.yml logs -f hermes
+docker-compose -f docker-compose.local.yml logs -f kyllenios-core
 
 # Access Web UI
 # http://localhost:8080
@@ -121,7 +121,7 @@ When using Docker Compose with `AUTO_SETUP=true`:
 
 3. If `ADMIN_PASSWORD` is not set, check logs for the generated password:
    ```bash
-   docker-compose logs hermes | grep "admin password"
+   docker-compose logs kyllenios-core | grep "admin password"
    ```
 
 ### Database Migration Notes (PostgreSQL)
@@ -152,7 +152,7 @@ SELECT
 
 如需启用管理后台“数据管理”功能，请额外部署宿主机 `datamanagementd`：
 
-- 主进程固定探测 `/tmp/hermes-datamanagement.sock`
+- 主进程固定探测 `/tmp/kyllenios-core-datamanagement.sock`
 - Docker 场景下需把宿主机 Socket 挂载到容器内同路径
 - 详细步骤见：`deploy/DATAMANAGEMENTD_CN.md`
 
@@ -168,10 +168,10 @@ docker-compose -f docker-compose.local.yml up -d
 docker-compose -f docker-compose.local.yml down
 
 # View logs
-docker-compose -f docker-compose.local.yml logs -f hermes
+docker-compose -f docker-compose.local.yml logs -f kyllenios-core
 
-# Restart Hermes only
-docker-compose -f docker-compose.local.yml restart hermes
+# Restart kyllenios-core only
+docker-compose -f docker-compose.local.yml restart kyllenios-core
 
 # Update to latest version
 docker-compose -f docker-compose.local.yml pull
@@ -192,10 +192,10 @@ docker-compose up -d
 docker-compose down
 
 # View logs
-docker-compose logs -f hermes
+docker-compose logs -f kyllenios-core
 
-# Restart Hermes only
-docker-compose restart hermes
+# Restart kyllenios-core only
+docker-compose restart kyllenios-core
 
 # Update to latest version
 docker-compose pull
@@ -213,7 +213,7 @@ docker-compose down -v
 | `JWT_SECRET` | **Recommended** | *(auto-generated)* | JWT secret (fixed for persistent sessions) |
 | `TOTP_ENCRYPTION_KEY` | **Recommended** | *(auto-generated)* | TOTP encryption key (fixed for persistent 2FA) |
 | `SERVER_PORT` | No | `8080` | Server port |
-| `ADMIN_EMAIL` | No | `admin@hermes.local` | Admin email |
+| `ADMIN_EMAIL` | No | `admin@kyllenios-core.local` | Admin email |
 | `ADMIN_PASSWORD` | No | *(auto-generated)* | Admin password |
 | `TZ` | No | `Asia/Shanghai` | Timezone |
 | `GEMINI_OAUTH_CLIENT_ID` | No | *(builtin)* | Google OAuth client ID (Gemini OAuth). Leave empty to use the built-in Gemini CLI client. |
@@ -234,13 +234,13 @@ When using `docker-compose.local.yml`, all data is stored in local directories, 
 cd /path/to/deployment
 docker-compose -f docker-compose.local.yml down
 cd ..
-tar czf hermes-complete.tar.gz deployment/
+tar czf kyllenios-core-complete.tar.gz deployment/
 
 # Transfer to new server
-scp hermes-complete.tar.gz user@new-server:/path/to/destination/
+scp kyllenios-core-complete.tar.gz user@new-server:/path/to/destination/
 
 # On new server: Extract and start
-tar xzf hermes-complete.tar.gz
+tar xzf kyllenios-core-complete.tar.gz
 cd deployment/
 docker-compose -f docker-compose.local.yml up -d
 ```
@@ -251,7 +251,7 @@ Your entire deployment (configuration + data) is migrated!
 
 ## Gemini OAuth Configuration
 
-Hermes supports three methods to connect to Gemini:
+kyllenios-core supports three methods to connect to Gemini:
 
 ### Method 1: Code Assist OAuth (Recommended for GCP Users)
 
@@ -296,7 +296,7 @@ Requires your own OAuth client credentials.
    - Go to "APIs & Services" → "Credentials"
    - Click "Create Credentials" → "OAuth client ID"
    - Application type: **Web application** (or **Desktop app**)
-   - Name: e.g., "Hermes Gemini"
+   - Name: e.g., "kyllenios-core Gemini"
    - Authorized redirect URIs: Add `http://localhost:1455/auth/callback`
 6. Copy the **Client ID** and **Client Secret**
 7. **⚠️ Publish to Production (IMPORTANT):**
@@ -353,19 +353,19 @@ For production servers using systemd.
 ### One-Line Installation
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/ca0fgh/Hermes/main/deploy/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ca0fgh/kyllenios-core/main/deploy/install.sh | sudo bash
 ```
 
 ### Manual Installation
 
-1. Download the latest release from [GitHub Releases](https://github.com/ca0fgh/Hermes/releases)
-2. Extract and copy the binary to `/opt/hermes/`
-3. Copy `hermes.service` to `/etc/systemd/system/`
+1. Download the latest release from [GitHub Releases](https://github.com/ca0fgh/kyllenios-core/releases)
+2. Extract and copy the binary to `/opt/kyllenios-core/`
+3. Copy `kyllenios-core.service` to `/etc/systemd/system/`
 4. Run:
    ```bash
    sudo systemctl daemon-reload
-   sudo systemctl enable hermes
-   sudo systemctl start hermes
+   sudo systemctl enable kyllenios-core
+   sudo systemctl start kyllenios-core
    ```
 5. Open the Setup Wizard in your browser to complete configuration
 
@@ -386,22 +386,22 @@ sudo ./install.sh uninstall
 
 ```bash
 # Start the service
-sudo systemctl start hermes
+sudo systemctl start kyllenios-core
 
 # Stop the service
-sudo systemctl stop hermes
+sudo systemctl stop kyllenios-core
 
 # Restart the service
-sudo systemctl restart hermes
+sudo systemctl restart kyllenios-core
 
 # Check status
-sudo systemctl status hermes
+sudo systemctl status kyllenios-core
 
 # View logs
-sudo journalctl -u hermes -f
+sudo journalctl -u kyllenios-core -f
 
 # Enable auto-start on boot
-sudo systemctl enable hermes
+sudo systemctl enable kyllenios-core
 ```
 
 ### Configuration
@@ -414,7 +414,7 @@ To change after installation:
 
 1. Edit the systemd service:
    ```bash
-   sudo systemctl edit hermes
+   sudo systemctl edit kyllenios-core
    ```
 
 2. Add or modify:
@@ -427,7 +427,7 @@ To change after installation:
 3. Reload and restart:
    ```bash
    sudo systemctl daemon-reload
-   sudo systemctl restart hermes
+   sudo systemctl restart kyllenios-core
    ```
 
 #### Gemini OAuth Configuration
@@ -436,7 +436,7 @@ If you need to use AI Studio OAuth for Gemini accounts, add the OAuth client cre
 
 1. Edit the service file:
    ```bash
-   sudo nano /etc/systemd/system/hermes.service
+   sudo nano /etc/systemd/system/kyllenios-core.service
    ```
 
 2. Add your OAuth credentials in the `[Service]` section (after the existing `Environment=` lines):
@@ -453,7 +453,7 @@ If you need to use AI Studio OAuth for Gemini accounts, add the OAuth client cre
 3. Reload and restart:
    ```bash
    sudo systemctl daemon-reload
-   sudo systemctl restart hermes
+   sudo systemctl restart kyllenios-core
    ```
 
 > **Note:** Code Assist OAuth does not require any configuration - it uses the built-in Gemini CLI client.
@@ -461,7 +461,7 @@ If you need to use AI Studio OAuth for Gemini accounts, add the OAuth client cre
 
 #### Application Configuration
 
-The main config file is at `/etc/hermes/config.yaml` (created by Setup Wizard).
+The main config file is at `/etc/kyllenios-core/config.yaml` (created by Setup Wizard).
 
 ### Prerequisites
 
@@ -473,12 +473,12 @@ The main config file is at `/etc/hermes/config.yaml` (created by Setup Wizard).
 ### Directory Structure
 
 ```
-/opt/hermes/
-├── hermes              # Main binary
-├── hermes.backup       # Backup (after upgrade)
+/opt/kyllenios-core/
+├── kyllenios-core              # Main binary
+├── kyllenios-core.backup       # Backup (after upgrade)
 └── data/                # Runtime data
 
-/etc/hermes/
+/etc/kyllenios-core/
 └── config.yaml          # Configuration file
 ```
 
@@ -495,7 +495,7 @@ For **local directory version**:
 docker-compose -f docker-compose.local.yml ps
 
 # View detailed logs
-docker-compose -f docker-compose.local.yml logs --tail=100 hermes
+docker-compose -f docker-compose.local.yml logs --tail=100 kyllenios-core
 
 # Check database connection
 docker-compose -f docker-compose.local.yml exec postgres pg_isready
@@ -517,7 +517,7 @@ For **named volumes version**:
 docker-compose ps
 
 # View detailed logs
-docker-compose logs --tail=100 hermes
+docker-compose logs --tail=100 kyllenios-core
 
 # Check database connection
 docker-compose exec postgres pg_isready
@@ -533,13 +533,13 @@ docker-compose restart
 
 ```bash
 # Check service status
-sudo systemctl status hermes
+sudo systemctl status kyllenios-core
 
 # View recent logs
-sudo journalctl -u hermes -n 50
+sudo journalctl -u kyllenios-core -n 50
 
 # Check config file
-sudo cat /etc/hermes/config.yaml
+sudo cat /etc/kyllenios-core/config.yaml
 
 # Check PostgreSQL
 sudo systemctl status postgresql
@@ -559,9 +559,9 @@ sudo systemctl status redis
 
 ## TLS Fingerprint Configuration
 
-Hermes supports TLS fingerprint simulation to make requests appear as if they come from the official Claude CLI (Node.js client).
+kyllenios-core supports TLS fingerprint simulation to make requests appear as if they come from the official Claude CLI (Node.js client).
 
-> **💡 Tip:** Visit **[tls.hermes.org](https://tls.hermes.org/)** to get TLS fingerprint information for different devices and browsers.
+> **💡 Tip:** Visit **[tls.kyllenios-core.org](https://tls.kyllenios-core.org/)** to get TLS fingerprint information for different devices and browsers.
 
 ### Default Behavior
 

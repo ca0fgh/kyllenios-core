@@ -9,12 +9,12 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/Hermes/ent/account"
-	"github.com/ca0fgh/Hermes/ent/apikey"
-	"github.com/ca0fgh/Hermes/ent/group"
-	"github.com/ca0fgh/Hermes/ent/usagelog"
-	"github.com/ca0fgh/Hermes/ent/user"
-	"github.com/ca0fgh/Hermes/ent/usersubscription"
+	"github.com/ca0fgh/kyllenios-core/ent/account"
+	"github.com/ca0fgh/kyllenios-core/ent/apikey"
+	"github.com/ca0fgh/kyllenios-core/ent/group"
+	"github.com/ca0fgh/kyllenios-core/ent/usagelog"
+	"github.com/ca0fgh/kyllenios-core/ent/user"
+	"github.com/ca0fgh/kyllenios-core/ent/usersubscription"
 )
 
 // UsageLog is the model entity for the UsageLog schema.

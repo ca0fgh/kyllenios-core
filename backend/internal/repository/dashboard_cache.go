@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 	"github.com/redis/go-redis/v9"
 )
 
@@ -18,7 +18,7 @@ type dashboardCache struct {
 }
 
 func NewDashboardCache(rdb *redis.Client, cfg *config.Config) service.DashboardStatsCache {
-	prefix := "hermes:"
+	prefix := "kyllenios-core:"
 	if cfg != nil {
 		prefix = strings.TrimSpace(cfg.Dashboard.KeyPrefix)
 	}

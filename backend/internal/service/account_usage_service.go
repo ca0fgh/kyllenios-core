@@ -13,11 +13,11 @@ import (
 	"sync"
 	"time"
 
-	httppool "github.com/ca0fgh/Hermes/internal/pkg/httpclient"
-	openaipkg "github.com/ca0fgh/Hermes/internal/pkg/openai"
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
-	"github.com/ca0fgh/Hermes/internal/pkg/timezone"
-	"github.com/ca0fgh/Hermes/internal/pkg/usagestats"
+	httppool "github.com/ca0fgh/kyllenios-core/internal/pkg/httpclient"
+	openaipkg "github.com/ca0fgh/kyllenios-core/internal/pkg/openai"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/timezone"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/usagestats"
 	"golang.org/x/sync/errgroup"
 	"golang.org/x/sync/singleflight"
 )

@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/ca0fgh/Hermes/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
 )
 
 // defaultAllowed 定义允许透传的响应头白名单

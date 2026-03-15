@@ -6,7 +6,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,7 +33,7 @@ func adminAuth(
 		// WebSocket upgrade requests cannot set Authorization headers in browsers.
 		// For admin WebSocket endpoints (e.g. Ops realtime), allow passing the JWT via
 		// Sec-WebSocket-Protocol (subprotocol list) using a prefixed token item:
-		//   Sec-WebSocket-Protocol: hermes-admin, jwt.<token>
+		//   Sec-WebSocket-Protocol: kyllenios-core-admin, jwt.<token>
 		if isWebSocketUpgradeRequest(c) {
 			if token := extractJWTFromWebSocketSubprotocol(c); token != "" {
 				if !validateJWTForAdmin(c, token, authService, userService) {

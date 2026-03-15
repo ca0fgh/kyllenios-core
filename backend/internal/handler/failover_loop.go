@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 	"go.uber.org/zap"
 )
 

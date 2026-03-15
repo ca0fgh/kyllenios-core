@@ -11,10 +11,10 @@ import (
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/ca0fgh/Hermes/ent/account"
-	"github.com/ca0fgh/Hermes/ent/accountgroup"
-	"github.com/ca0fgh/Hermes/ent/group"
-	"github.com/ca0fgh/Hermes/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/account"
+	"github.com/ca0fgh/kyllenios-core/ent/accountgroup"
+	"github.com/ca0fgh/kyllenios-core/ent/group"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
 )
 
 // AccountGroupQuery is the builder for querying AccountGroup entities.

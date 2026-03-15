@@ -372,10 +372,10 @@ const appStore = useAppStore()
 
 // ==================== Site Settings (same as HomeView) ====================
 
-const siteName = computed(() => appStore.cachedPublicSettings?.site_name || appStore.siteName || 'Hermes')
+const siteName = computed(() => appStore.cachedPublicSettings?.site_name || appStore.siteName || 'kyllenios-core')
 const siteLogo = computed(() => appStore.cachedPublicSettings?.site_logo || appStore.siteLogo || '')
 const docUrl = computed(() => appStore.cachedPublicSettings?.doc_url || appStore.docUrl || '')
-const githubUrl = 'https://github.com/ca0fgh/Hermes'
+const githubUrl = 'https://github.com/ca0fgh/kyllenios-core'
 
 // ==================== Theme (same as HomeView) ====================
 

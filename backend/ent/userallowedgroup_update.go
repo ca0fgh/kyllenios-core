@@ -10,10 +10,10 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/group"
-	"github.com/ca0fgh/Hermes/ent/predicate"
-	"github.com/ca0fgh/Hermes/ent/user"
-	"github.com/ca0fgh/Hermes/ent/userallowedgroup"
+	"github.com/ca0fgh/kyllenios-core/ent/group"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/user"
+	"github.com/ca0fgh/kyllenios-core/ent/userallowedgroup"
 )
 
 // UserAllowedGroupUpdate is the builder for updating UserAllowedGroup entities.

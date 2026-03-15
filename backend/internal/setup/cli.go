@@ -51,7 +51,7 @@ func RunCLI() error {
 
 	fmt.Println()
 	fmt.Println("╔═══════════════════════════════════════════╗")
-	fmt.Println("║       Hermes Installation Wizard         ║")
+	fmt.Println("║       kyllenios-core Installation Wizard         ║")
 	fmt.Println("╚═══════════════════════════════════════════╝")
 	fmt.Println()
 
@@ -96,7 +96,7 @@ func RunCLI() error {
 	cfg.Database.Password = promptPassword("PostgreSQL Password")
 
 	for {
-		cfg.Database.DBName = promptString(reader, "Database Name", "hermes")
+		cfg.Database.DBName = promptString(reader, "Database Name", "kyllenios-core")
 		if cliValidateDBName(cfg.Database.DBName) {
 			break
 		}
@@ -231,7 +231,7 @@ func RunCLI() error {
 	fmt.Println("╚═══════════════════════════════════════════╝")
 	fmt.Println()
 	fmt.Println("Start the server with:")
-	fmt.Println("  ./hermes")
+	fmt.Println("  ./kyllenios-core")
 	fmt.Println()
 	fmt.Printf("Admin panel: http://localhost:%d\n", cfg.Server.Port)
 	fmt.Println()

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
 )
 
 // GetWindowStats returns lightweight request/token counts for the provided window.

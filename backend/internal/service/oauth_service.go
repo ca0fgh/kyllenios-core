@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/oauth"
-	"github.com/ca0fgh/Hermes/internal/pkg/openai"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/oauth"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/openai"
 )
 
 // OpenAIOAuthClient interface for OpenAI OAuth operations

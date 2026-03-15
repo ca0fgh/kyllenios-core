@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ca0fgh/Hermes/internal/domain"
+	"github.com/ca0fgh/kyllenios-core/internal/domain"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )

@@ -123,7 +123,7 @@
                 </router-link>
 
                 <a
-                  href="https://github.com/ca0fgh/Hermes"
+                  href="https://github.com/ca0fgh/kyllenios-core"
                   target="_blank"
                   rel="noopener noreferrer"
                   @click="closeDropdown"

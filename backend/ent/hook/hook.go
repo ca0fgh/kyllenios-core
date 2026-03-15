@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/ca0fgh/Hermes/ent"
+	"github.com/ca0fgh/kyllenios-core/ent"
 )
 
 // The APIKeyFunc type is an adapter to allow the use of ordinary

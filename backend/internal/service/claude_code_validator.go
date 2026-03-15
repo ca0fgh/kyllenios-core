@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/ctxkey"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
 )
 
 // ClaudeCodeValidator 验证请求是否来自 Claude Code 客户端

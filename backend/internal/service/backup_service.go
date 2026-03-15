@@ -14,9 +14,9 @@ import (
 	"github.com/google/uuid"
 	"github.com/robfig/cron/v3"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 )
 
 const (

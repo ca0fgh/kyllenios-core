@@ -13,9 +13,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/announcement"
-	"github.com/ca0fgh/Hermes/ent/announcementread"
-	"github.com/ca0fgh/Hermes/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/announcement"
+	"github.com/ca0fgh/kyllenios-core/ent/announcementread"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
 )
 
 // AnnouncementQuery is the builder for querying Announcement entities.

@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/geminicli"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/geminicli"
 )
 
 // GeminiOAuthClient performs Google OAuth token exchange/refresh for Gemini integration.

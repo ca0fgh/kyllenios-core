@@ -1,16 +1,16 @@
-# Hermes Docker Image
+# kyllenios-core Docker Image
 
-Hermes is an AI API Gateway Platform for distributing and managing AI product subscription API quotas.
+kyllenios-core is an AI API Gateway Platform for distributing and managing AI product subscription API quotas.
 
 ## Quick Start
 
 ```bash
 docker run -d \
-  --name hermes \
+  --name kyllenios-core \
   -p 8080:8080 \
-  -e DATABASE_URL="postgres://user:pass@host:5432/hermes" \
+  -e DATABASE_URL="postgres://user:pass@host:5432/kyllenios-core" \
   -e REDIS_URL="redis://host:6379" \
-  ca0fgh/hermes:latest
+  ca0fgh/kyllenios-core:latest
 ```
 
 ## Docker Compose
@@ -19,12 +19,12 @@ docker run -d \
 version: '3.8'
 
 services:
-  hermes:
-    image: ca0fgh/hermes:latest
+  kyllenios-core:
+    image: ca0fgh/kyllenios-core:latest
     ports:
       - "8080:8080"
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/hermes?sslmode=disable
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/kyllenios-core?sslmode=disable
       - REDIS_URL=redis://redis:6379
     depends_on:
       - db
@@ -35,7 +35,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=hermes
+      - POSTGRES_DB=kyllenios-core
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -72,5 +72,5 @@ volumes:
 
 ## Links
 
-- [GitHub Repository](https://github.com/ca0fgh/Hermes)
-- [Documentation](https://github.com/ca0fgh/Hermes#readme)
+- [GitHub Repository](https://github.com/ca0fgh/kyllenios-core)
+- [Documentation](https://github.com/ca0fgh/kyllenios-core#readme)

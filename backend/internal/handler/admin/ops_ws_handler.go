@@ -15,8 +15,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 )
@@ -47,9 +47,9 @@ var upgrader = websocket.Upgrader{
 		return isAllowedOpsWSOrigin(r)
 	},
 	// Subprotocol negotiation:
-	// - The frontend passes ["hermes-admin", "jwt.<token>"].
-	// - We always select "hermes-admin" so the token is never echoed back in the handshake response.
-	Subprotocols: []string{"hermes-admin"},
+	// - The frontend passes ["kyllenios-core-admin", "jwt.<token>"].
+	// - We always select "kyllenios-core-admin" so the token is never echoed back in the handshake response.
+	Subprotocols: []string{"kyllenios-core-admin"},
 }
 
 const (

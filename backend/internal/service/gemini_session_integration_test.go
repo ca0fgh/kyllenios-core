@@ -3,7 +3,7 @@ package service
 import (
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/antigravity"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/antigravity"
 )
 
 // TestGeminiSessionContinuousConversation 测试连续会话的摘要链匹配

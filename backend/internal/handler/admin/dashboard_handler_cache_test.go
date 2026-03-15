@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/usagestats"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/usagestats"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )

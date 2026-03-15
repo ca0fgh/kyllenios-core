@@ -15,7 +15,7 @@ SCRIPT_PATH = Path(__file__).resolve()
 REPO_ROOT = SCRIPT_PATH.parent
 FRONTEND_DIR = REPO_ROOT / "frontend"
 BACKEND_DIR = REPO_ROOT / "backend"
-DEFAULT_APP_DIR = REPO_ROOT / ".hermes-runtime"
+DEFAULT_APP_DIR = REPO_ROOT / ".kyllenios-core-runtime"
 
 
 def print_step(message: str) -> None:
@@ -199,7 +199,7 @@ def build_backend(go_bin: str, binary_path: Path) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Rebuild and restart the local Hermes runtime binary.")
+    parser = argparse.ArgumentParser(description="Rebuild and restart the local kyllenios-core runtime binary.")
     parser.add_argument(
         "--restart-only",
         action="store_true",
@@ -207,7 +207,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--app-dir",
-        help="runtime state directory for the built binary, config.yaml, and logs (default: .hermes-runtime)",
+        help="runtime state directory for the built binary, config.yaml, and logs (default: .kyllenios-core-runtime)",
     )
     parser.add_argument("--go-bin", help="path to the Go executable")
     parser.add_argument("--pnpm-bin", help="path to the pnpm executable")
@@ -217,8 +217,8 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     app_dir = resolve_app_dir(args.app_dir)
-    binary_path = app_dir / "hermes"
-    log_path = app_dir / "data" / "hermes.stdout.log"
+    binary_path = app_dir / "kyllenios-core"
+    log_path = app_dir / "data" / "kyllenios-core.stdout.log"
     config_path = app_dir / "config.yaml"
 
     if not app_dir.exists():

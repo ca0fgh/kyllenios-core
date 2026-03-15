@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/ca0fgh/Hermes/internal/pkg/geminicli"
+import "github.com/ca0fgh/kyllenios-core/internal/pkg/geminicli"
 
 // NewGeminiDriveClient creates a concrete DriveClient for Google Drive API operations.
 // Returned as geminicli.DriveClient interface for DI (Strategy A).

@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
 )
 
 // httpClientSink 用于防止编译器优化掉基准测试中的赋值操作

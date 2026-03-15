@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/antigravity"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/antigravity"
 )
 
 // ---------------------------------------------------------------------------

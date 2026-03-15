@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 type stubAdminService struct {

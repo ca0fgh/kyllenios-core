@@ -8,10 +8,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
-	"github.com/ca0fgh/Hermes/internal/server/middleware"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/server/middleware"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -88,7 +88,7 @@ func newRuntimeOpsService(t *testing.T) *service.OpsService {
 	if err := logger.Init(logger.InitOptions{
 		Level:       "info",
 		Format:      "json",
-		ServiceName: "hermes",
+		ServiceName: "kyllenios-core",
 		Environment: "test",
 		Output: logger.OutputOptions{
 			ToStdout: false,

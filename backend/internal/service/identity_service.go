@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 )
 
 // 预编译正则表达式（避免每次调用重新编译）

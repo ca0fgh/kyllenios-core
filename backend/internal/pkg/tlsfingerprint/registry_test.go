@@ -3,7 +3,7 @@ package tlsfingerprint
 import (
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
 )
 
 func TestNewRegistry(t *testing.T) {

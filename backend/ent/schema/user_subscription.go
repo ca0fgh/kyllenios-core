@@ -3,8 +3,8 @@ package schema
 import (
 	"time"
 
-	"github.com/ca0fgh/Hermes/ent/schema/mixins"
-	"github.com/ca0fgh/Hermes/internal/domain"
+	"github.com/ca0fgh/kyllenios-core/ent/schema/mixins"
+	"github.com/ca0fgh/kyllenios-core/internal/domain"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"

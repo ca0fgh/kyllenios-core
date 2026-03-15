@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/predicate"
-	"github.com/ca0fgh/Hermes/ent/securitysecret"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/securitysecret"
 )
 
 // SecuritySecretDelete is the builder for deleting a SecuritySecret entity.

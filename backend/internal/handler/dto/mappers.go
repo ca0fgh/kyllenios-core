@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 func UserFromServiceShallow(u *service.User) *User {

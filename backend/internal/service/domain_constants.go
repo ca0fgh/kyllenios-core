@@ -1,6 +1,6 @@
 package service
 
-import "github.com/ca0fgh/Hermes/internal/domain"
+import "github.com/ca0fgh/kyllenios-core/internal/domain"
 
 // Status constants
 const (

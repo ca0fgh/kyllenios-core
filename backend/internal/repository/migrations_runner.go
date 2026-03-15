@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/Hermes/migrations"
+	"github.com/ca0fgh/kyllenios-core/migrations"
 )
 
 // schemaMigrationsTableDDL 定义迁移记录表的 DDL。

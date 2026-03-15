@@ -15,13 +15,13 @@ import (
 	"syscall"
 	"time"
 
-	_ "github.com/ca0fgh/Hermes/ent/runtime"
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/handler"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
-	"github.com/ca0fgh/Hermes/internal/server/middleware"
-	"github.com/ca0fgh/Hermes/internal/setup"
-	"github.com/ca0fgh/Hermes/internal/web"
+	_ "github.com/ca0fgh/kyllenios-core/ent/runtime"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/handler"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/server/middleware"
+	"github.com/ca0fgh/kyllenios-core/internal/setup"
+	"github.com/ca0fgh/kyllenios-core/internal/web"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/net/http2"
@@ -64,7 +64,7 @@ func main() {
 	flag.Parse()
 
 	if *showVersion {
-		log.Printf("Hermes %s (commit: %s, built: %s)\n", Version, Commit, Date)
+		log.Printf("kyllenios-core %s (commit: %s, built: %s)\n", Version, Commit, Date)
 		return
 	}
 
@@ -114,7 +114,7 @@ func runSetupServer() {
 	// This allows users to run setup on a different address if needed
 	addr := config.GetServerAddress()
 	log.Printf("Setup wizard available at http://%s", addr)
-	log.Println("Complete the setup wizard to configure Hermes")
+	log.Println("Complete the setup wizard to configure kyllenios-core")
 
 	server := &http.Server{
 		Addr:              addr,

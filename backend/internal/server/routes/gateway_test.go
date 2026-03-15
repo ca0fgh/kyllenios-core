@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/handler"
-	servermiddleware "github.com/ca0fgh/Hermes/internal/server/middleware"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/handler"
+	servermiddleware "github.com/ca0fgh/kyllenios-core/internal/server/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )

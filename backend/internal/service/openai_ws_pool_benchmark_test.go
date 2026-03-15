@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
 )
 
 func BenchmarkOpenAIWSPoolAcquire(b *testing.B) {

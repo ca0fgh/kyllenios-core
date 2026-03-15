@@ -1,6 +1,6 @@
 -- Migrate upstream accounts to apikey type
 -- Background: upstream type is no longer needed. Antigravity platform APIKey accounts
--- with base_url pointing to an upstream hermes instance can reuse the standard
+-- with base_url pointing to an upstream kyllenios-core instance can reuse the standard
 -- APIKey forwarding path. GetBaseURL()/GetGeminiBaseURL() automatically appends
 -- /antigravity for Antigravity platform APIKey accounts.
 

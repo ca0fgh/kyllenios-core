@@ -1,27 +1,27 @@
 [Unit]
-Description=Hermes - AI API Gateway Platform
-Documentation=https://github.com/ca0fgh/Hermes
+Description=kyllenios-core - AI API Gateway Platform
+Documentation=https://github.com/ca0fgh/kyllenios-core
 After=network.target postgresql.service redis.service
 Wants=postgresql.service redis.service
 
 [Service]
 Type=simple
-User=hermes
-Group=hermes
-WorkingDirectory=/opt/hermes
-ExecStart=/opt/hermes/hermes
+User=kyllenios-core
+Group=kyllenios-core
+WorkingDirectory=/opt/kyllenios-core
+ExecStart=/opt/kyllenios-core/kyllenios-core
 Restart=always
 RestartSec=5
 StandardOutput=journal
 StandardError=journal
-SyslogIdentifier=hermes
+SyslogIdentifier=kyllenios-core
 
 # Security hardening
 NoNewPrivileges=true
 ProtectSystem=strict
 ProtectHome=true
 PrivateTmp=true
-ReadWritePaths=/opt/hermes
+ReadWritePaths=/opt/kyllenios-core
 
 # Environment - Server configuration
 # Modify these values to change listen address and port

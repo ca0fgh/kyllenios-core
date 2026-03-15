@@ -7,8 +7,8 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/ca0fgh/Hermes/ent/predicate"
-	"github.com/ca0fgh/Hermes/ent/userallowedgroup"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/userallowedgroup"
 )
 
 // UserAllowedGroupDelete is the builder for deleting a UserAllowedGroup entity.

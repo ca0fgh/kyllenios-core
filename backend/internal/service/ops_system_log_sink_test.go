@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 )
 
 func TestOpsSystemLogSink_ShouldIndex(t *testing.T) {

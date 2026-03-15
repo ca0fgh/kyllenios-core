@@ -9,12 +9,12 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/ca0fgh/Hermes/ent"
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
-	"github.com/ca0fgh/Hermes/internal/pkg/httpclient"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
-	"github.com/ca0fgh/Hermes/internal/util/soraerror"
+	dbent "github.com/ca0fgh/kyllenios-core/ent"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/httpclient"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/util/soraerror"
 )
 
 // AdminService interface defines admin management operations

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/antigravity"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/antigravity"
 	"github.com/stretchr/testify/require"
 )
 

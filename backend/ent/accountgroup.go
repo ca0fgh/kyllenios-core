@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/Hermes/ent/account"
-	"github.com/ca0fgh/Hermes/ent/accountgroup"
-	"github.com/ca0fgh/Hermes/ent/group"
+	"github.com/ca0fgh/kyllenios-core/ent/account"
+	"github.com/ca0fgh/kyllenios-core/ent/accountgroup"
+	"github.com/ca0fgh/kyllenios-core/ent/group"
 )
 
 // AccountGroup is the model entity for the AccountGroup schema.

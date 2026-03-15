@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/Hermes/ent/setting"
+	"github.com/ca0fgh/kyllenios-core/ent/setting"
 )
 
 // Setting is the model entity for the Setting schema.

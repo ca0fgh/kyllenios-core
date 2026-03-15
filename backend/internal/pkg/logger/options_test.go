@@ -18,9 +18,9 @@ func TestResolveLogFilePath_Default(t *testing.T) {
 }
 
 func TestResolveLogFilePath_WithDataDir(t *testing.T) {
-	t.Setenv("DATA_DIR", "/tmp/hermes-data")
+	t.Setenv("DATA_DIR", "/tmp/kyllenios-core-data")
 	got := resolveLogFilePath("")
-	want := filepath.Join("/tmp/hermes-data", "logs", "hermes.log")
+	want := filepath.Join("/tmp/kyllenios-core-data", "logs", "kyllenios-core.log")
 	if got != want {
 		t.Fatalf("resolveLogFilePath() = %q, want %q", got, want)
 	}
@@ -86,7 +86,7 @@ func TestBuildFileCore_InvalidPathFallback(t *testing.T) {
 	t.Setenv("DATA_DIR", "")
 	opts := bootstrapOptions()
 	opts.Output.ToFile = true
-	opts.Output.FilePath = filepath.Join(os.DevNull, "logs", "hermes.log")
+	opts.Output.FilePath = filepath.Join(os.DevNull, "logs", "kyllenios-core.log")
 	encoderCfg := zapcore.EncoderConfig{
 		TimeKey:     "time",
 		LevelKey:    "level",

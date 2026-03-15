@@ -12,14 +12,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/pkg/geminicli"
-	"github.com/ca0fgh/Hermes/internal/pkg/httpclient"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/geminicli"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/httpclient"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 )
 
 const (
-	// Canonical tier IDs used by Hermes (2026-aligned).
+	// Canonical tier IDs used by kyllenios-core (2026-aligned).
 	GeminiTierGoogleOneFree    = "google_one_free"
 	GeminiTierGoogleAIPro      = "google_ai_pro"
 	GeminiTierGoogleAIUltra    = "google_ai_ultra"

@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/ctxkey"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
 	"github.com/stretchr/testify/require"
 )
 

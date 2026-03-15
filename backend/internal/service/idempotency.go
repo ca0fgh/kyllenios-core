@@ -12,8 +12,8 @@ import (
 	"sync"
 	"time"
 
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
-	"github.com/ca0fgh/Hermes/internal/util/logredact"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	"github.com/ca0fgh/kyllenios-core/internal/util/logredact"
 )
 
 const (

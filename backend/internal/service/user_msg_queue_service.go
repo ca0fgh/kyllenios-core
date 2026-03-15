@@ -10,8 +10,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 )
 
 // UserMsgQueueCache 用户消息串行队列 Redis 缓存接口

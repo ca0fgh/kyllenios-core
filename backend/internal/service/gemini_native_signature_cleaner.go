@@ -3,7 +3,7 @@ package service
 import (
 	"encoding/json"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/antigravity"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/antigravity"
 )
 
 // CleanGeminiNativeThoughtSignatures 从 Gemini 原生 API 请求中替换 thoughtSignature 字段为 dummy 签名，

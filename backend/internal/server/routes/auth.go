@@ -3,10 +3,10 @@ package routes
 import (
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/handler"
-	"github.com/ca0fgh/Hermes/internal/middleware"
-	servermiddleware "github.com/ca0fgh/Hermes/internal/server/middleware"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/handler"
+	"github.com/ca0fgh/kyllenios-core/internal/middleware"
+	servermiddleware "github.com/ca0fgh/kyllenios-core/internal/server/middleware"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"

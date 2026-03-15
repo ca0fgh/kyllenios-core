@@ -9,8 +9,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
-	"github.com/ca0fgh/Hermes/internal/service"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )

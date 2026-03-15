@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/userattributedefinition"
-	"github.com/ca0fgh/Hermes/ent/userattributevalue"
+	"github.com/ca0fgh/kyllenios-core/ent/userattributedefinition"
+	"github.com/ca0fgh/kyllenios-core/ent/userattributevalue"
 )
 
 // UserAttributeDefinitionCreate is the builder for creating a UserAttributeDefinition entity.

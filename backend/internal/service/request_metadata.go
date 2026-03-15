@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync/atomic"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/ctxkey"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
 )
 
 type requestMetadataContextKey struct{}

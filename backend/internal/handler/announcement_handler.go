@@ -4,10 +4,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ca0fgh/Hermes/internal/handler/dto"
-	"github.com/ca0fgh/Hermes/internal/pkg/response"
-	middleware2 "github.com/ca0fgh/Hermes/internal/server/middleware"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/handler/dto"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
+	middleware2 "github.com/ca0fgh/kyllenios-core/internal/server/middleware"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

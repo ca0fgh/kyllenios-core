@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/oauth"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/oauth"
 	"github.com/imroc/req/v3"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"

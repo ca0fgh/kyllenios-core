@@ -7,8 +7,8 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/ca0fgh/Hermes/ent/accountgroup"
-	"github.com/ca0fgh/Hermes/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/accountgroup"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
 )
 
 // AccountGroupDelete is the builder for deleting a AccountGroup entity.

@@ -15,8 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/proxyurl"
-	"github.com/ca0fgh/Hermes/internal/pkg/proxyutil"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/proxyurl"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/proxyutil"
 )
 
 // ForbiddenError 表示上游返回 403 Forbidden

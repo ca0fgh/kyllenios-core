@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/handler"
-	servermiddleware "github.com/ca0fgh/Hermes/internal/server/middleware"
+	"github.com/ca0fgh/kyllenios-core/internal/handler"
+	servermiddleware "github.com/ca0fgh/kyllenios-core/internal/server/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/require"

@@ -13,11 +13,11 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/apikey"
-	"github.com/ca0fgh/Hermes/ent/group"
-	"github.com/ca0fgh/Hermes/ent/predicate"
-	"github.com/ca0fgh/Hermes/ent/usagelog"
-	"github.com/ca0fgh/Hermes/ent/user"
+	"github.com/ca0fgh/kyllenios-core/ent/apikey"
+	"github.com/ca0fgh/kyllenios-core/ent/group"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/usagelog"
+	"github.com/ca0fgh/kyllenios-core/ent/user"
 )
 
 // APIKeyQuery is the builder for querying APIKey entities.

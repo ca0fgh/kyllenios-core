@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
 )
 
 func (s *OpsService) GetOpenAITokenStats(ctx context.Context, filter *OpsOpenAITokenStatsFilter) (*OpsOpenAITokenStatsResponse, error) {

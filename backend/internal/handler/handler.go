@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/ca0fgh/Hermes/internal/handler/admin"
+	"github.com/ca0fgh/kyllenios-core/internal/handler/admin"
 )
 
 // AdminHandlers contains all admin-related HTTP handlers

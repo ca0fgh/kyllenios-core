@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	dbent "github.com/ca0fgh/Hermes/ent"
-	"github.com/ca0fgh/Hermes/ent/setting"
-	dbuser "github.com/ca0fgh/Hermes/ent/user"
-	"github.com/ca0fgh/Hermes/internal/service"
+	dbent "github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/kyllenios-core/ent/setting"
+	dbuser "github.com/ca0fgh/kyllenios-core/ent/user"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 const (

@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/announcement"
-	"github.com/ca0fgh/Hermes/ent/announcementread"
-	"github.com/ca0fgh/Hermes/ent/user"
+	"github.com/ca0fgh/kyllenios-core/ent/announcement"
+	"github.com/ca0fgh/kyllenios-core/ent/announcementread"
+	"github.com/ca0fgh/kyllenios-core/ent/user"
 )
 
 // AnnouncementReadCreate is the builder for creating a AnnouncementRead entity.

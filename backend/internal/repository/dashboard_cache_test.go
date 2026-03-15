@@ -3,7 +3,7 @@ package repository
 import (
 	"testing"
 
-	"github.com/ca0fgh/Hermes/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
 	"github.com/stretchr/testify/require"
 )
 

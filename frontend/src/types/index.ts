@@ -1,5 +1,5 @@
 /**
- * Core Type Definitions for Hermes Frontend
+ * Core Type Definitions for kyllenios-core Frontend
  */
 
 // ==================== Common Types ====================

@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/idempotencyrecord"
-	"github.com/ca0fgh/Hermes/ent/predicate"
+	"github.com/ca0fgh/kyllenios-core/ent/idempotencyrecord"
+	"github.com/ca0fgh/kyllenios-core/ent/predicate"
 )
 
 // IdempotencyRecordUpdate is the builder for updating IdempotencyRecord entities.

@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/Hermes/ent"
-	"github.com/ca0fgh/Hermes/ent/securitysecret"
-	"github.com/ca0fgh/Hermes/internal/config"
+	"github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/kyllenios-core/ent/securitysecret"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
 )
 
 const (

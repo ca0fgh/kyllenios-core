@@ -11,7 +11,7 @@ docs/claude-relay-service/
 *.dylib
 backend/bin/
 backend/server
-backend/hermes
+backend/kyllenios-core
 backend/main
 
 # Go 测试二进制
@@ -85,7 +85,7 @@ temp/
 .cache/
 .dev/
 .serena/
-.hermes-runtime/
+.kyllenios-core-runtime/
 
 # ===================
 # 构建产物

@@ -1,0 +1,22 @@
+[Unit]
+Description=kyllenios-core Data Management Daemon
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=kyllenios-core
+Group=kyllenios-core
+WorkingDirectory=/opt/kyllenios-core
+ExecStart=/opt/kyllenios-core/datamanagementd \
+  -socket-path /tmp/kyllenios-core-datamanagement.sock \
+  -sqlite-path /var/lib/kyllenios-core/datamanagement/datamanagementd.db \
+  -version 1.0.0
+Restart=always
+RestartSec=5s
+LimitNOFILE=100000
+NoNewPrivileges=true
+PrivateTmp=false
+
+[Install]
+WantedBy=multi-user.target

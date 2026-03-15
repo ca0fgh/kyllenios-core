@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )
@@ -73,7 +73,7 @@ func captureHandlerStructuredLog(t *testing.T) (*handlerInMemoryLogSink, func())
 	err := logger.Init(logger.InitOptions{
 		Level:       "debug",
 		Format:      "json",
-		ServiceName: "hermes",
+		ServiceName: "kyllenios-core",
 		Environment: "test",
 		Output: logger.OutputOptions{
 			ToStdout: true,

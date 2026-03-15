@@ -1,5 +1,5 @@
 # =============================================================================
-# Hermes Docker Compose - Local Directory Version
+# kyllenios-core Docker Compose - Local Directory Version
 # =============================================================================
 # This configuration uses local directories for data storage instead of named
 # volumes, making it easy to migrate the entire deployment by simply copying
@@ -9,23 +9,23 @@
 #   1. Copy .env.example to .env and configure
 #   2. mkdir -p data postgres_data redis_data
 #   3. docker-compose -f docker-compose.local.yml up -d
-#   4. Check logs: docker-compose -f docker-compose.local.yml logs -f hermes
+#   4. Check logs: docker-compose -f docker-compose.local.yml logs -f kyllenios-core
 #   5. Access: http://localhost:8080
 #
 # Migration to New Server:
 #   1. docker-compose -f docker-compose.local.yml down
-#   2. tar czf hermes-deploy.tar.gz deploy/
+#   2. tar czf kyllenios-core-deploy.tar.gz deploy/
 #   3. Transfer to new server and extract
 #   4. docker-compose -f docker-compose.local.yml up -d
 # =============================================================================
 
 services:
   # ===========================================================================
-  # Hermes Application
+  # kyllenios-core Application
   # ===========================================================================
-  hermes:
-    image: ca0fgh/hermes:latest
-    container_name: hermes
+  kyllenios-core:
+    image: ca0fgh/kyllenios-core:latest
+    container_name: kyllenios-core
     restart: unless-stopped
     ulimits:
       nofile:
@@ -58,9 +58,9 @@ services:
       # =======================================================================
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
-      - DATABASE_USER=${POSTGRES_USER:-hermes}
+      - DATABASE_USER=${POSTGRES_USER:-kyllenios-core}
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
-      - DATABASE_DBNAME=${POSTGRES_DB:-hermes}
+      - DATABASE_DBNAME=${POSTGRES_DB:-kyllenios-core}
       - DATABASE_SSLMODE=disable
       - DATABASE_MAX_OPEN_CONNS=${DATABASE_MAX_OPEN_CONNS:-50}
       - DATABASE_MAX_IDLE_CONNS=${DATABASE_MAX_IDLE_CONNS:-10}
@@ -81,7 +81,7 @@ services:
       # =======================================================================
       # Admin Account (auto-created on first run)
       # =======================================================================
-      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@hermes.local}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@kyllenios-core.local}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
 
       # =======================================================================
@@ -152,7 +152,7 @@ services:
       redis:
         condition: service_healthy
     networks:
-      - hermes-network
+      - kyllenios-core-network
     healthcheck:
       test: ["CMD", "wget", "-q", "-T", "5", "-O", "/dev/null", "http://localhost:8080/health"]
       interval: 30s
@@ -165,7 +165,7 @@ services:
   # ===========================================================================
   postgres:
     image: postgres:18-alpine
-    container_name: hermes-postgres
+    container_name: kyllenios-core-postgres
     restart: unless-stopped
     ulimits:
       nofile:
@@ -175,15 +175,15 @@ services:
       # Local directory mapping for easy migration
       - ./postgres_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=${POSTGRES_USER:-hermes}
+      - POSTGRES_USER=${POSTGRES_USER:-kyllenios-core}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
-      - POSTGRES_DB=${POSTGRES_DB:-hermes}
+      - POSTGRES_DB=${POSTGRES_DB:-kyllenios-core}
       - PGDATA=/var/lib/postgresql/data
       - TZ=${TZ:-Asia/Shanghai}
     networks:
-      - hermes-network
+      - kyllenios-core-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hermes} -d ${POSTGRES_DB:-hermes}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kyllenios-core} -d ${POSTGRES_DB:-kyllenios-core}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -196,7 +196,7 @@ services:
   # ===========================================================================
   redis:
     image: redis:8-alpine
-    container_name: hermes-redis
+    container_name: kyllenios-core-redis
     restart: unless-stopped
     ulimits:
       nofile:
@@ -217,7 +217,7 @@ services:
       # REDISCLI_AUTH is used by redis-cli for authentication (safer than -a flag)
       - REDISCLI_AUTH=${REDIS_PASSWORD:-}
     networks:
-      - hermes-network
+      - kyllenios-core-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -229,5 +229,5 @@ services:
 # Networks
 # =============================================================================
 networks:
-  hermes-network:
+  kyllenios-core-network:
     driver: bridge

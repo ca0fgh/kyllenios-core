@@ -8,7 +8,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 // ============================================================

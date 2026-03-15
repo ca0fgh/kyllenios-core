@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/Hermes/ent/account"
-	"github.com/ca0fgh/Hermes/ent/accountgroup"
-	"github.com/ca0fgh/Hermes/ent/group"
+	"github.com/ca0fgh/kyllenios-core/ent/account"
+	"github.com/ca0fgh/kyllenios-core/ent/accountgroup"
+	"github.com/ca0fgh/kyllenios-core/ent/group"
 )
 
 // AccountGroupCreate is the builder for creating a AccountGroup entity.

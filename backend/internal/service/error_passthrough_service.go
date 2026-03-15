@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/model"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/model"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 )
 
 // ErrorPassthroughRepository 定义错误透传规则的数据访问接口

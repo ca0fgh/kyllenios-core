@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/ctxkey"
-	"github.com/ca0fgh/Hermes/internal/pkg/logger"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"go.uber.org/zap"

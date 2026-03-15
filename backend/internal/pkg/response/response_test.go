@@ -9,7 +9,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	errors2 "github.com/ca0fgh/Hermes/internal/pkg/errors"
+	errors2 "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )

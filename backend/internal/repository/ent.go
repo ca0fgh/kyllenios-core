@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ca0fgh/Hermes/ent"
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/pkg/timezone"
-	"github.com/ca0fgh/Hermes/migrations"
+	"github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/timezone"
+	"github.com/ca0fgh/kyllenios-core/migrations"
 
 	"entgo.io/ent/dialect"
 	entsql "entgo.io/ent/dialect/sql"

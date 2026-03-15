@@ -1,5 +1,5 @@
 # =============================================================================
-# Hermes Multi-Stage Dockerfile
+# kyllenios-core Multi-Stage Dockerfile
 # =============================================================================
 # Stage 1: Build frontend
 # Stage 2: Build Go backend with embedded frontend
@@ -70,7 +70,7 @@ RUN VERSION_VALUE="${VERSION}" && \
     -tags embed \
     -ldflags="-s -w -X main.Version=${VERSION_VALUE} -X main.Commit=${COMMIT} -X main.Date=${DATE_VALUE} -X main.BuildType=release" \
     -trimpath \
-    -o /app/hermes \
+    -o /app/kyllenios-core \
     ./cmd/server
 
 # -----------------------------------------------------------------------------
@@ -85,8 +85,8 @@ FROM ${ALPINE_IMAGE}
 
 # Labels
 LABEL maintainer="Wei-Shaw <github.com/Wei-Shaw>"
-LABEL description="Hermes - AI API Gateway Platform"
-LABEL org.opencontainers.image.source="https://github.com/ca0fgh/Hermes"
+LABEL description="kyllenios-core - AI API Gateway Platform"
+LABEL org.opencontainers.image.source="https://github.com/ca0fgh/kyllenios-core"
 
 # Install runtime dependencies
 RUN apk add --no-cache \
@@ -107,21 +107,21 @@ COPY --from=pg-client /usr/local/bin/psql /usr/local/bin/psql
 COPY --from=pg-client /usr/local/lib/libpq.so.5* /usr/local/lib/
 
 # Create non-root user
-RUN addgroup -g 1000 hermes && \
-    adduser -u 1000 -G hermes -s /bin/sh -D hermes
+RUN addgroup -g 1000 kyllenios-core && \
+    adduser -u 1000 -G kyllenios-core -s /bin/sh -D kyllenios-core
 
 # Set working directory
 WORKDIR /app
 
 # Copy binary/resources with ownership to avoid extra full-layer chown copy
-COPY --from=backend-builder --chown=hermes:hermes /app/hermes /app/hermes
-COPY --from=backend-builder --chown=hermes:hermes /app/backend/resources /app/resources
+COPY --from=backend-builder --chown=kyllenios-core:kyllenios-core /app/kyllenios-core /app/kyllenios-core
+COPY --from=backend-builder --chown=kyllenios-core:kyllenios-core /app/backend/resources /app/resources
 
 # Create data directory
-RUN mkdir -p /app/data && chown hermes:hermes /app/data
+RUN mkdir -p /app/data && chown kyllenios-core:kyllenios-core /app/data
 
 # Switch to non-root user
-USER hermes
+USER kyllenios-core
 
 # Expose port (can be overridden by SERVER_PORT env var)
 EXPOSE 8080
@@ -131,4 +131,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
     CMD wget -q -T 5 -O /dev/null http://localhost:${SERVER_PORT:-8080}/health || exit 1
 
 # Run the application
-ENTRYPOINT ["/app/hermes"]
+ENTRYPOINT ["/app/kyllenios-core"]

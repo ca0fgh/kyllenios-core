@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Hermes Installation Script
-# Hermes 安装脚本
-# Usage: curl -sSL https://raw.githubusercontent.com/ca0fgh/Hermes/main/deploy/install.sh | bash
+# kyllenios-core Installation Script
+# kyllenios-core 安装脚本
+# Usage: curl -sSL https://raw.githubusercontent.com/ca0fgh/kyllenios-core/main/deploy/install.sh | bash
 #
 
 set -e
@@ -16,11 +16,11 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Configuration
-GITHUB_REPO="ca0fgh/Hermes"
-INSTALL_DIR="/opt/hermes"
-SERVICE_NAME="hermes"
-SERVICE_USER="hermes"
-CONFIG_DIR="/etc/hermes"
+GITHUB_REPO="ca0fgh/kyllenios-core"
+INSTALL_DIR="/opt/kyllenios-core"
+SERVICE_NAME="kyllenios-core"
+SERVICE_USER="kyllenios-core"
+CONFIG_DIR="/etc/kyllenios-core"
 
 # Server configuration (will be set by user)
 SERVER_HOST="0.0.0.0"
@@ -48,7 +48,7 @@ declare -A MSG_ZH=(
     ["enter_choice"]="请输入选择 (默认: 1)"
 
     # Installation
-    ["install_title"]="Hermes 安装脚本"
+    ["install_title"]="kyllenios-core 安装脚本"
     ["run_as_root"]="请使用 root 权限运行 (使用 sudo)"
     ["detected_platform"]="检测到平台"
     ["unsupported_arch"]="不支持的架构"
@@ -76,11 +76,11 @@ declare -A MSG_ZH=(
     ["ready_for_setup"]="准备就绪，可以启动设置向导"
 
     # Completion
-    ["install_complete"]="Hermes 安装完成！"
+    ["install_complete"]="kyllenios-core 安装完成！"
     ["install_dir"]="安装目录"
     ["next_steps"]="后续步骤"
     ["step1_check_services"]="确保 PostgreSQL 和 Redis 正在运行："
-    ["step2_start_service"]="启动 Hermes 服务："
+    ["step2_start_service"]="启动 kyllenios-core 服务："
     ["step3_enable_autostart"]="设置开机自启："
     ["step4_open_wizard"]="在浏览器中打开设置向导："
     ["wizard_guide"]="设置向导将引导您完成："
@@ -94,7 +94,7 @@ declare -A MSG_ZH=(
     ["cmd_stop"]="停止服务"
 
     # Upgrade
-    ["upgrading"]="正在升级 Hermes..."
+    ["upgrading"]="正在升级 kyllenios-core..."
     ["current_version"]="当前版本"
     ["stopping_service"]="正在停止服务..."
     ["backup_created"]="备份已创建"
@@ -110,11 +110,11 @@ declare -A MSG_ZH=(
     ["validating_version"]="正在验证版本..."
     ["available_versions"]="可用版本列表"
     ["fetching_versions"]="正在获取可用版本..."
-    ["not_installed"]="Hermes 尚未安装，请先执行全新安装"
+    ["not_installed"]="kyllenios-core 尚未安装，请先执行全新安装"
     ["fresh_install_hint"]="用法"
 
     # Uninstall
-    ["uninstall_confirm"]="这将从系统中移除 Hermes。"
+    ["uninstall_confirm"]="这将从系统中移除 kyllenios-core。"
     ["are_you_sure"]="确定要继续吗？(y/N)"
     ["uninstall_cancelled"]="卸载已取消"
     ["removing_files"]="正在移除文件..."
@@ -126,21 +126,21 @@ declare -A MSG_ZH=(
     ["install_lock_removed"]="安装锁文件已移除，重新安装时将进入设置向导"
     ["purge_prompt"]="是否同时删除配置目录？这将清除所有配置和数据 [y/N]: "
     ["removing_config_dir"]="正在移除配置目录..."
-    ["uninstall_complete"]="Hermes 已卸载"
+    ["uninstall_complete"]="kyllenios-core 已卸载"
 
     # Help
     ["usage"]="用法"
     ["cmd_none"]="(无参数)"
-    ["cmd_install"]="安装 Hermes"
+    ["cmd_install"]="安装 kyllenios-core"
     ["cmd_upgrade"]="升级到最新版本"
-    ["cmd_uninstall"]="卸载 Hermes"
+    ["cmd_uninstall"]="卸载 kyllenios-core"
     ["cmd_install_version"]="安装/回退到指定版本"
     ["cmd_list_versions"]="列出可用版本"
     ["opt_version"]="指定要安装的版本号 (例如: v1.0.0)"
 
     # Server configuration
     ["server_config_title"]="服务器配置"
-    ["server_config_desc"]="配置 Hermes 服务监听地址"
+    ["server_config_desc"]="配置 kyllenios-core 服务监听地址"
     ["server_host_prompt"]="服务器监听地址"
     ["server_host_hint"]="0.0.0.0 表示监听所有网卡，127.0.0.1 仅本地访问"
     ["server_port_prompt"]="服务器端口"
@@ -173,7 +173,7 @@ declare -A MSG_EN=(
     ["enter_choice"]="Enter your choice (default: 1)"
 
     # Installation
-    ["install_title"]="Hermes Installation Script"
+    ["install_title"]="kyllenios-core Installation Script"
     ["run_as_root"]="Please run as root (use sudo)"
     ["detected_platform"]="Detected platform"
     ["unsupported_arch"]="Unsupported architecture"
@@ -201,11 +201,11 @@ declare -A MSG_EN=(
     ["ready_for_setup"]="Ready for Setup Wizard"
 
     # Completion
-    ["install_complete"]="Hermes installation completed!"
+    ["install_complete"]="kyllenios-core installation completed!"
     ["install_dir"]="Installation directory"
     ["next_steps"]="NEXT STEPS"
     ["step1_check_services"]="Make sure PostgreSQL and Redis are running:"
-    ["step2_start_service"]="Start Hermes service:"
+    ["step2_start_service"]="Start kyllenios-core service:"
     ["step3_enable_autostart"]="Enable auto-start on boot:"
     ["step4_open_wizard"]="Open the Setup Wizard in your browser:"
     ["wizard_guide"]="The Setup Wizard will guide you through:"
@@ -219,7 +219,7 @@ declare -A MSG_EN=(
     ["cmd_stop"]="Stop"
 
     # Upgrade
-    ["upgrading"]="Upgrading Hermes..."
+    ["upgrading"]="Upgrading kyllenios-core..."
     ["current_version"]="Current version"
     ["stopping_service"]="Stopping service..."
     ["backup_created"]="Backup created"
@@ -235,11 +235,11 @@ declare -A MSG_EN=(
     ["validating_version"]="Validating version..."
     ["available_versions"]="Available versions"
     ["fetching_versions"]="Fetching available versions..."
-    ["not_installed"]="Hermes is not installed. Please run a fresh install first"
+    ["not_installed"]="kyllenios-core is not installed. Please run a fresh install first"
     ["fresh_install_hint"]="Usage"
 
     # Uninstall
-    ["uninstall_confirm"]="This will remove Hermes from your system."
+    ["uninstall_confirm"]="This will remove kyllenios-core from your system."
     ["are_you_sure"]="Are you sure? (y/N)"
     ["uninstall_cancelled"]="Uninstall cancelled"
     ["removing_files"]="Removing files..."
@@ -251,21 +251,21 @@ declare -A MSG_EN=(
     ["install_lock_removed"]="Install lock removed. Setup wizard will appear on next install."
     ["purge_prompt"]="Also remove config directory? This will delete all config and data [y/N]: "
     ["removing_config_dir"]="Removing config directory..."
-    ["uninstall_complete"]="Hermes has been uninstalled"
+    ["uninstall_complete"]="kyllenios-core has been uninstalled"
 
     # Help
     ["usage"]="Usage"
     ["cmd_none"]="(none)"
-    ["cmd_install"]="Install Hermes"
+    ["cmd_install"]="Install kyllenios-core"
     ["cmd_upgrade"]="Upgrade to the latest version"
-    ["cmd_uninstall"]="Remove Hermes"
+    ["cmd_uninstall"]="Remove kyllenios-core"
     ["cmd_install_version"]="Install/rollback to a specific version"
     ["cmd_list_versions"]="List available versions"
     ["opt_version"]="Specify version to install (e.g., v1.0.0)"
 
     # Server configuration
     ["server_config_title"]="Server Configuration"
-    ["server_config_desc"]="Configure Hermes server listen address"
+    ["server_config_desc"]="Configure kyllenios-core server listen address"
     ["server_host_prompt"]="Server listen address"
     ["server_host_hint"]="0.0.0.0 listens on all interfaces, 127.0.0.1 for local only"
     ["server_port_prompt"]="Server port"
@@ -542,9 +542,9 @@ validate_version() {
 
 # Get current installed version
 get_current_version() {
-    if [ -f "$INSTALL_DIR/hermes" ]; then
+    if [ -f "$INSTALL_DIR/kyllenios-core" ]; then
         # Use grep -E for better compatibility (works on macOS and Linux)
-        "$INSTALL_DIR/hermes" --version 2>/dev/null | grep -oE 'v?[0-9]+\.[0-9]+\.[0-9]+' | head -1 || echo "unknown"
+        "$INSTALL_DIR/kyllenios-core" --version 2>/dev/null | grep -oE 'v?[0-9]+\.[0-9]+\.[0-9]+' | head -1 || echo "unknown"
     else
         echo "not_installed"
     fi
@@ -594,15 +594,15 @@ download_and_extract() {
     mkdir -p "$INSTALL_DIR"
 
     # Copy binary
-    cp "$TEMP_DIR/hermes" "$INSTALL_DIR/hermes"
-    chmod +x "$INSTALL_DIR/hermes"
+    cp "$TEMP_DIR/kyllenios-core" "$INSTALL_DIR/kyllenios-core"
+    chmod +x "$INSTALL_DIR/kyllenios-core"
 
     # Copy deploy files if they exist in the archive
     if [ -d "$TEMP_DIR/deploy" ]; then
         cp -r "$TEMP_DIR/deploy/"* "$INSTALL_DIR/" 2>/dev/null || true
     fi
 
-    print_success "$(msg 'binary_installed') $INSTALL_DIR/hermes"
+    print_success "$(msg 'binary_installed') $INSTALL_DIR/kyllenios-core"
 }
 
 # Create system user
@@ -652,31 +652,31 @@ install_service() {
     print_info "$(msg 'installing_service')"
 
     # Create service file with configured host and port
-    cat > /etc/systemd/system/hermes.service << EOF
+    cat > /etc/systemd/system/kyllenios-core.service << EOF
 [Unit]
-Description=Hermes - AI API Gateway Platform
-Documentation=https://github.com/ca0fgh/Hermes
+Description=kyllenios-core - AI API Gateway Platform
+Documentation=https://github.com/ca0fgh/kyllenios-core
 After=network.target postgresql.service redis.service
 Wants=postgresql.service redis.service
 
 [Service]
 Type=simple
-User=hermes
-Group=hermes
-WorkingDirectory=/opt/hermes
-ExecStart=/opt/hermes/hermes
+User=kyllenios-core
+Group=kyllenios-core
+WorkingDirectory=/opt/kyllenios-core
+ExecStart=/opt/kyllenios-core/kyllenios-core
 Restart=always
 RestartSec=5
 StandardOutput=journal
 StandardError=journal
-SyslogIdentifier=hermes
+SyslogIdentifier=kyllenios-core
 
 # Security hardening
 NoNewPrivileges=true
 ProtectSystem=strict
 ProtectHome=true
 PrivateTmp=true
-ReadWritePaths=/opt/hermes
+ReadWritePaths=/opt/kyllenios-core
 
 # Environment - Server configuration
 Environment=GIN_MODE=release
@@ -725,12 +725,12 @@ get_public_ip() {
 start_service() {
     print_info "$(msg 'starting_service')"
 
-    if systemctl start hermes; then
+    if systemctl start kyllenios-core; then
         print_success "$(msg 'service_started')"
         return 0
     else
         print_error "$(msg 'service_start_failed')"
-        print_info "sudo journalctl -u hermes -n 50"
+        print_info "sudo journalctl -u kyllenios-core -n 50"
         return 1
     fi
 }
@@ -739,7 +739,7 @@ start_service() {
 enable_autostart() {
     print_info "$(msg 'enabling_autostart')"
 
-    if systemctl enable hermes 2>/dev/null; then
+    if systemctl enable kyllenios-core 2>/dev/null; then
         print_success "$(msg 'autostart_enabled')"
         return 0
     else
@@ -780,18 +780,18 @@ print_completion() {
     echo "  $(msg 'useful_commands')"
     echo "=============================================="
     echo ""
-    echo "  $(msg 'cmd_status'):   sudo systemctl status hermes"
-    echo "  $(msg 'cmd_logs'):     sudo journalctl -u hermes -f"
-    echo "  $(msg 'cmd_restart'):  sudo systemctl restart hermes"
-    echo "  $(msg 'cmd_stop'):     sudo systemctl stop hermes"
+    echo "  $(msg 'cmd_status'):   sudo systemctl status kyllenios-core"
+    echo "  $(msg 'cmd_logs'):     sudo journalctl -u kyllenios-core -f"
+    echo "  $(msg 'cmd_restart'):  sudo systemctl restart kyllenios-core"
+    echo "  $(msg 'cmd_stop'):     sudo systemctl stop kyllenios-core"
     echo ""
     echo "=============================================="
 }
 
 # Upgrade function
 upgrade() {
-    # Check if Hermes is installed
-    if [ ! -f "$INSTALL_DIR/hermes" ]; then
+    # Check if kyllenios-core is installed
+    if [ ! -f "$INSTALL_DIR/kyllenios-core" ]; then
         print_error "$(msg 'not_installed')"
         print_info "$(msg 'fresh_install_hint'): $0 install"
         exit 1
@@ -800,40 +800,40 @@ upgrade() {
     print_info "$(msg 'upgrading')"
 
     # Get current version
-    CURRENT_VERSION=$("$INSTALL_DIR/hermes" --version 2>/dev/null | grep -oE 'v?[0-9]+\.[0-9]+\.[0-9]+' || echo "unknown")
+    CURRENT_VERSION=$("$INSTALL_DIR/kyllenios-core" --version 2>/dev/null | grep -oE 'v?[0-9]+\.[0-9]+\.[0-9]+' || echo "unknown")
     print_info "$(msg 'current_version'): $CURRENT_VERSION"
 
     # Stop service
-    if systemctl is-active --quiet hermes; then
+    if systemctl is-active --quiet kyllenios-core; then
         print_info "$(msg 'stopping_service')"
-        systemctl stop hermes
+        systemctl stop kyllenios-core
     fi
 
     # Backup current binary
-    cp "$INSTALL_DIR/hermes" "$INSTALL_DIR/hermes.backup"
-    print_info "$(msg 'backup_created'): $INSTALL_DIR/hermes.backup"
+    cp "$INSTALL_DIR/kyllenios-core" "$INSTALL_DIR/kyllenios-core.backup"
+    print_info "$(msg 'backup_created'): $INSTALL_DIR/kyllenios-core.backup"
 
     # Download and install new version
     get_latest_version
     download_and_extract
 
     # Set permissions
-    chown "$SERVICE_USER:$SERVICE_USER" "$INSTALL_DIR/hermes"
+    chown "$SERVICE_USER:$SERVICE_USER" "$INSTALL_DIR/kyllenios-core"
 
     # Start service
     print_info "$(msg 'starting_service')"
-    systemctl start hermes
+    systemctl start kyllenios-core
 
     print_success "$(msg 'upgrade_complete')"
 }
 
 # Install specific version (for upgrade or rollback)
-# Requires: Hermes must already be installed
+# Requires: kyllenios-core must already be installed
 install_version() {
     local target_version="$1"
 
-    # Check if Hermes is installed
-    if [ ! -f "$INSTALL_DIR/hermes" ]; then
+    # Check if kyllenios-core is installed
+    if [ ! -f "$INSTALL_DIR/kyllenios-core" ]; then
         print_error "$(msg 'not_installed')"
         print_info "$(msg 'fresh_install_hint'): $0 install -v $target_version"
         exit 1
@@ -856,20 +856,20 @@ install_version() {
     fi
 
     # Stop service if running
-    if systemctl is-active --quiet hermes; then
+    if systemctl is-active --quiet kyllenios-core; then
         print_info "$(msg 'stopping_service')"
-        systemctl stop hermes
+        systemctl stop kyllenios-core
     fi
 
     # Backup current binary (for potential recovery)
-    if [ -f "$INSTALL_DIR/hermes" ]; then
+    if [ -f "$INSTALL_DIR/kyllenios-core" ]; then
         local backup_name
         if [ "$current_version" != "unknown" ] && [ "$current_version" != "not_installed" ]; then
-            backup_name="hermes.backup.${current_version}"
+            backup_name="kyllenios-core.backup.${current_version}"
         else
-            backup_name="hermes.backup.$(date +%Y%m%d%H%M%S)"
+            backup_name="kyllenios-core.backup.$(date +%Y%m%d%H%M%S)"
         fi
-        cp "$INSTALL_DIR/hermes" "$INSTALL_DIR/$backup_name"
+        cp "$INSTALL_DIR/kyllenios-core" "$INSTALL_DIR/$backup_name"
         print_info "$(msg 'backup_created'): $INSTALL_DIR/$backup_name"
     fi
 
@@ -880,15 +880,15 @@ install_version() {
     download_and_extract
 
     # Set permissions
-    chown "$SERVICE_USER:$SERVICE_USER" "$INSTALL_DIR/hermes"
+    chown "$SERVICE_USER:$SERVICE_USER" "$INSTALL_DIR/kyllenios-core"
 
     # Start service
     print_info "$(msg 'starting_service')"
-    if systemctl start hermes; then
+    if systemctl start kyllenios-core; then
         print_success "$(msg 'service_started')"
     else
         print_error "$(msg 'service_start_failed')"
-        print_info "sudo journalctl -u hermes -n 50"
+        print_info "sudo journalctl -u kyllenios-core -n 50"
     fi
 
     # Print completion message
@@ -923,11 +923,11 @@ uninstall() {
     fi
 
     print_info "$(msg 'stopping_service')"
-    systemctl stop hermes 2>/dev/null || true
-    systemctl disable hermes 2>/dev/null || true
+    systemctl stop kyllenios-core 2>/dev/null || true
+    systemctl disable kyllenios-core 2>/dev/null || true
 
     print_info "$(msg 'removing_files')"
-    rm -f /etc/systemd/system/hermes.service
+    rm -f /etc/systemd/system/kyllenios-core.service
     systemctl daemon-reload
 
     print_info "$(msg 'removing_install_dir')"
@@ -1039,7 +1039,7 @@ main() {
             check_dependencies
             if [ -n "$target_version" ]; then
                 # Install specific version (fresh install or rollback)
-                if [ -f "$INSTALL_DIR/hermes" ]; then
+                if [ -f "$INSTALL_DIR/kyllenios-core" ]; then
                     # Already installed, treat as version change
                     install_version "$target_version"
                 else
@@ -1135,7 +1135,7 @@ main() {
 
     if [ -n "$target_version" ]; then
         # Install specific version
-        if [ -f "$INSTALL_DIR/hermes" ]; then
+        if [ -f "$INSTALL_DIR/kyllenios-core" ]; then
             install_version "$target_version"
         else
             configure_server

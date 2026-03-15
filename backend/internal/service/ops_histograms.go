@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	infraerrors "github.com/ca0fgh/Hermes/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
 )
 
 func (s *OpsService) GetLatencyHistogram(ctx context.Context, filter *OpsDashboardFilter) (*OpsLatencyHistogramResponse, error) {

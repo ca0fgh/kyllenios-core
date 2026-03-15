@@ -1,7 +1,7 @@
 # =============================================================================
-# Hermes Docker Compose - Standalone Configuration
+# kyllenios-core Docker Compose - Standalone Configuration
 # =============================================================================
-# This configuration runs only the Hermes application.
+# This configuration runs only the kyllenios-core application.
 # PostgreSQL and Redis must be provided externally.
 #
 # Usage:
@@ -11,9 +11,9 @@
 # =============================================================================
 
 services:
-  hermes:
-    image: ca0fgh/hermes:latest
-    container_name: hermes
+  kyllenios-core:
+    image: ca0fgh/kyllenios-core:latest
+    container_name: kyllenios-core
     restart: unless-stopped
     ulimits:
       nofile:
@@ -44,9 +44,9 @@ services:
       # =======================================================================
       - DATABASE_HOST=${DATABASE_HOST:?DATABASE_HOST is required}
       - DATABASE_PORT=${DATABASE_PORT:-5432}
-      - DATABASE_USER=${DATABASE_USER:-hermes}
+      - DATABASE_USER=${DATABASE_USER:-kyllenios-core}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD:?DATABASE_PASSWORD is required}
-      - DATABASE_DBNAME=${DATABASE_DBNAME:-hermes}
+      - DATABASE_DBNAME=${DATABASE_DBNAME:-kyllenios-core}
       - DATABASE_SSLMODE=${DATABASE_SSLMODE:-disable}
       - DATABASE_MAX_OPEN_CONNS=${DATABASE_MAX_OPEN_CONNS:-50}
       - DATABASE_MAX_IDLE_CONNS=${DATABASE_MAX_IDLE_CONNS:-10}
@@ -67,7 +67,7 @@ services:
       # =======================================================================
       # Admin Account (auto-created on first run)
       # =======================================================================
-      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@hermes.local}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@kyllenios-core.local}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
 
       # =======================================================================

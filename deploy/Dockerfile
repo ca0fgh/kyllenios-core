@@ -1,5 +1,5 @@
 # =============================================================================
-# Hermes Multi-Stage Dockerfile
+# kyllenios-core Multi-Stage Dockerfile
 # =============================================================================
 # Stage 1: Build frontend
 # Stage 2: Build Go backend with embedded frontend
@@ -64,7 +64,7 @@ COPY --from=frontend-builder /app/backend/internal/web/dist ./internal/web/dist
 RUN CGO_ENABLED=0 GOOS=linux go build \
     -tags embed \
     -ldflags="-s -w -X main.Commit=${COMMIT} -X main.Date=${DATE:-$(date -u +%Y-%m-%dT%H:%M:%SZ)} -X main.BuildType=release" \
-    -o /app/hermes \
+    -o /app/kyllenios-core \
     ./cmd/server
 
 # -----------------------------------------------------------------------------
@@ -74,8 +74,8 @@ FROM ${ALPINE_IMAGE}
 
 # Labels
 LABEL maintainer="Wei-Shaw <github.com/Wei-Shaw>"
-LABEL description="Hermes - AI API Gateway Platform"
-LABEL org.opencontainers.image.source="https://github.com/ca0fgh/Hermes"
+LABEL description="kyllenios-core - AI API Gateway Platform"
+LABEL org.opencontainers.image.source="https://github.com/ca0fgh/kyllenios-core"
 
 # Install runtime dependencies
 RUN apk add --no-cache \
@@ -85,20 +85,20 @@ RUN apk add --no-cache \
     && rm -rf /var/cache/apk/*
 
 # Create non-root user
-RUN addgroup -g 1000 hermes && \
-    adduser -u 1000 -G hermes -s /bin/sh -D hermes
+RUN addgroup -g 1000 kyllenios-core && \
+    adduser -u 1000 -G kyllenios-core -s /bin/sh -D kyllenios-core
 
 # Set working directory
 WORKDIR /app
 
 # Copy binary from builder
-COPY --from=backend-builder /app/hermes /app/hermes
+COPY --from=backend-builder /app/kyllenios-core /app/kyllenios-core
 
 # Create data directory
-RUN mkdir -p /app/data && chown -R hermes:hermes /app
+RUN mkdir -p /app/data && chown -R kyllenios-core:kyllenios-core /app
 
 # Switch to non-root user
-USER hermes
+USER kyllenios-core
 
 # Expose port (can be overridden by SERVER_PORT env var)
 EXPOSE 8080
@@ -108,4 +108,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
     CMD wget -q -T 5 -O /dev/null http://localhost:${SERVER_PORT:-8080}/health || exit 1
 
 # Run the application
-ENTRYPOINT ["/app/hermes"]
+ENTRYPOINT ["/app/kyllenios-core"]

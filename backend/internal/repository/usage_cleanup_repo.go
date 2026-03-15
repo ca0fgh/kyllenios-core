@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/ca0fgh/Hermes/ent"
-	dbusagecleanuptask "github.com/ca0fgh/Hermes/ent/usagecleanuptask"
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
-	"github.com/ca0fgh/Hermes/internal/service"
+	dbent "github.com/ca0fgh/kyllenios-core/ent"
+	dbusagecleanuptask "github.com/ca0fgh/kyllenios-core/ent/usagecleanuptask"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 type usageCleanupRepository struct {

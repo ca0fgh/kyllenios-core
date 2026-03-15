@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/ca0fgh/Hermes/internal/pkg/pagination"
+	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
 )
 
 const (

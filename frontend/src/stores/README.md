@@ -1,6 +1,6 @@
 # Pinia Stores Documentation
 
-This directory contains all Pinia stores for the Hermes frontend application.
+This directory contains all Pinia stores for the kyllenios-core frontend application.
 
 ## Stores Overview
 

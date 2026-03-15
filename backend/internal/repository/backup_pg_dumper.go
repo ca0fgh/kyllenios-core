@@ -6,8 +6,8 @@ import (
 	"io"
 	"os/exec"
 
-	"github.com/ca0fgh/Hermes/internal/config"
-	"github.com/ca0fgh/Hermes/internal/service"
+	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/kyllenios-core/internal/service"
 )
 
 // PgDumper implements service.DBDumper using pg_dump/psql

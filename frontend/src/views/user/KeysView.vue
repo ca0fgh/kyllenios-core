@@ -1712,7 +1712,7 @@ const executeCcsImport = (row: ApiKey, clientType: 'claude' | 'gemini') => {
       };
     }
   })`
-  const providerName = (publicSettings.value?.site_name || 'Hermes').trim() || 'Hermes'
+  const providerName = (publicSettings.value?.site_name || 'kyllenios-core').trim() || 'kyllenios-core'
 
   const params = new URLSearchParams({
     resource: 'provider',

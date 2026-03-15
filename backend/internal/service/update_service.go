@@ -22,7 +22,7 @@ import (
 const (
 	updateCacheKey = "update_check_cache"
 	updateCacheTTL = 1200 // 20 minutes
-	githubRepo     = "ca0fgh/Hermes"
+	githubRepo     = "ca0fgh/kyllenios-core"
 
 	// Security: allowed download domains for updates
 	allowedDownloadHost = "github.com"
@@ -191,7 +191,7 @@ func (s *UpdateService) PerformUpdate(ctx context.Context) error {
 
 	// Create temp directory in the SAME directory as executable
 	// This ensures os.Rename is atomic (same filesystem)
-	tempDir, err := os.MkdirTemp(exeDir, ".hermes-update-*")
+	tempDir, err := os.MkdirTemp(exeDir, ".kyllenios-core-update-*")
 	if err != nil {
 		return fmt.Errorf("failed to create temp dir: %w", err)
 	}
@@ -211,7 +211,7 @@ func (s *UpdateService) PerformUpdate(ctx context.Context) error {
 	}
 
 	// Extract binary from archive
-	newBinaryPath := filepath.Join(tempDir, "hermes")
+	newBinaryPath := filepath.Join(tempDir, "kyllenios-core")
 	if err := s.extractBinary(archivePath, newBinaryPath); err != nil {
 		return fmt.Errorf("extraction failed: %w", err)
 	}
@@ -425,7 +425,7 @@ func (s *UpdateService) extractBinary(archivePath, destPath string) error {
 			}
 
 			// Only extract the specific binary we need
-			if baseName == "hermes" || baseName == "hermes.exe" {
+			if baseName == "kyllenios-core" || baseName == "kyllenios-core.exe" {
 				// Additional security: limit file size (max 500MB)
 				const maxBinarySize = 500 * 1024 * 1024
 				if hdr.Size > maxBinarySize {

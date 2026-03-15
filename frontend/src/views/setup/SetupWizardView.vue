@@ -131,7 +131,7 @@
                 v-model="formData.database.dbname"
                 type="text"
                 class="input"
-                placeholder="hermes"
+                placeholder="kyllenios-core"
               />
             </div>
             <div>
@@ -535,7 +535,7 @@ const formData = reactive<InstallRequest>({
     port: 5432,
     user: 'postgres',
     password: '',
-    dbname: 'hermes',
+    dbname: 'kyllenios-core',
     sslmode: 'disable'
   },
   redis: {
