@@ -17,6 +17,8 @@ jobs:
           go-version-file: backend/go.mod
           check-latest: false
           cache: true
+      - name: Restart script tests
+        run: python3 -m unittest tools/restart_test.py
       - name: Verify Go version
         run: |
           go version | grep -q 'go1.26.1'

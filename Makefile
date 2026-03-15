@@ -1,4 +1,4 @@
-.PHONY: build build-backend build-frontend build-datamanagementd test test-backend test-frontend test-datamanagementd secret-scan
+.PHONY: build build-backend build-frontend build-datamanagementd test test-backend test-frontend test-restart-script test-datamanagementd secret-scan
 
 # 一键编译前后端
 build: build-backend build-frontend
@@ -15,8 +15,8 @@ build-frontend:
 build-datamanagementd:
 	@cd datamanagement && go build -o datamanagementd ./cmd/datamanagementd
 
-# 运行测试（后端 + 前端）
-test: test-backend test-frontend
+# 运行测试（后端 + 前端 + 启动脚本）
+test: test-backend test-frontend test-restart-script
 
 test-backend:
 	@$(MAKE) -C backend test
@@ -24,6 +24,9 @@ test-backend:
 test-frontend:
 	@pnpm --dir frontend run lint:check
 	@pnpm --dir frontend run typecheck
+
+test-restart-script:
+	@python3 -m unittest tools/restart_test.py
 
 test-datamanagementd:
 	@cd datamanagement && go test ./...
