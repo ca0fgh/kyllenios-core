@@ -4,7 +4,7 @@ type LocaleCode = 'en' | 'zh'
 
 type LocaleMessages = Record<string, any>
 
-const LOCALE_KEY = 'hermes_locale'
+const LOCALE_KEY = 'kyllenios_core_locale'
 const DEFAULT_LOCALE: LocaleCode = 'en'
 
 const localeLoaders: Record<LocaleCode, () => Promise<{ default: LocaleMessages }>> = {

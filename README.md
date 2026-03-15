@@ -47,7 +47,7 @@ Community projects that extend or integrate with kyllenios-core:
 
 | Project | Description | Features |
 |---------|-------------|----------|
-| [Sub2ApiPay](https://github.com/touwaeriol/hermespay) | Self-service payment system | Self-service top-up and subscription purchase; supports YiPay protocol, WeChat Pay, Alipay, Stripe; embeddable via iframe |
+| kyllenios-corePay | Self-service payment system | Self-service top-up and subscription purchase; supports YiPay protocol, WeChat Pay, Alipay, Stripe; embeddable via iframe |
 | [kyllenios-core-mobile](https://github.com/ckken/kyllenios-core-mobile) | Mobile admin console | Cross-platform app (iOS/Android/Web) for user management, account management, monitoring dashboard, and multi-backend switching; built with Expo + React Native |
 
 ## Tech Stack

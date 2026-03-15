@@ -27,7 +27,7 @@ services:
       - "${BIND_HOST:-0.0.0.0}:${SERVER_PORT:-8080}:8080"
     volumes:
       # Data persistence (config.yaml will be auto-generated here)
-      - hermes_data:/app/data
+      - kyllenios_core_data:/app/data
       # Optional: Mount custom config.yaml (uncomment and create the file first)
       # Copy config.example.yaml to config.yaml, modify it, then uncomment:
       # - ./config.yaml:/app/data/config.yaml:ro
@@ -222,7 +222,7 @@ services:
 # Volumes
 # =============================================================================
 volumes:
-  hermes_data:
+  kyllenios_core_data:
     driver: local
   postgres_data:
     driver: local
