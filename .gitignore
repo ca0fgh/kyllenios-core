@@ -85,7 +85,7 @@ temp/
 .cache/
 .dev/
 .serena/
-runtime/
+.hermes-runtime/
 
 # ===================
 # 构建产物
