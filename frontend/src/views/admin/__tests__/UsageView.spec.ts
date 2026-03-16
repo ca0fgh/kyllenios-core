@@ -1,5 +1,6 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { flushPromises, mount } from '@vue/test-utils'
+import { createMemoryHistory, createRouter, type Router } from 'vue-router'
 
 import UsageView from '../UsageView.vue'
 
@@ -91,6 +92,19 @@ const GroupDistributionChartStub = {
   `,
 }
 
+function createTestRouter(): Router {
+  return createRouter({
+    history: createMemoryHistory(),
+    routes: [
+      {
+        path: '/admin/usage',
+        name: 'AdminUsage',
+        component: UsageView,
+      },
+    ],
+  })
+}
+
 describe('admin UsageView distribution metric toggles', () => {
   beforeEach(() => {
     vi.useFakeTimers()
@@ -126,8 +140,13 @@ describe('admin UsageView distribution metric toggles', () => {
   })
 
   it('keeps model and group metric toggles independent without refetching chart data', async () => {
+    const router = createTestRouter()
+    await router.push('/admin/usage')
+    await router.isReady()
+
     const wrapper = mount(UsageView, {
       global: {
+        plugins: [router],
         stubs: {
           AppLayout: AppLayoutStub,
           UsageStatsCards: true,
