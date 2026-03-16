@@ -248,30 +248,32 @@ func incrementUsageBillingAccountQuota(ctx context.Context, tx *sql.Tx, accountI
 			|| CASE WHEN COALESCE((extra->>'quota_daily_limit')::numeric, 0) > 0 THEN
 				jsonb_build_object(
 					'quota_daily_used',
-					CASE WHEN COALESCE((extra->>'quota_daily_start')::timestamptz, '1970-01-01'::timestamptz)
-						+ '24 hours'::interval <= NOW()
+					CASE WHEN `+dailyResetNeededExpr+`
 					THEN $1
 					ELSE COALESCE((extra->>'quota_daily_used')::numeric, 0) + $1 END,
 					'quota_daily_start',
-					CASE WHEN COALESCE((extra->>'quota_daily_start')::timestamptz, '1970-01-01'::timestamptz)
-						+ '24 hours'::interval <= NOW()
-					THEN `+nowUTC+`
+					CASE WHEN `+dailyResetNeededExpr+`
+					THEN CASE WHEN COALESCE(extra->>'quota_daily_reset_mode', 'rolling') = 'fixed' THEN `+currentDailyWindowStartStrExpr+` ELSE `+nowUTC+` END
 					ELSE COALESCE(extra->>'quota_daily_start', `+nowUTC+`) END
 				)
+				|| CASE WHEN `+dailyResetNeededExpr+` AND `+nextDailyResetAtExpr+` IS NOT NULL
+				   THEN jsonb_build_object('quota_daily_reset_at', `+nextDailyResetAtExpr+`)
+				   ELSE '{}'::jsonb END
 			ELSE '{}'::jsonb END
 			|| CASE WHEN COALESCE((extra->>'quota_weekly_limit')::numeric, 0) > 0 THEN
 				jsonb_build_object(
 					'quota_weekly_used',
-					CASE WHEN COALESCE((extra->>'quota_weekly_start')::timestamptz, '1970-01-01'::timestamptz)
-						+ '168 hours'::interval <= NOW()
+					CASE WHEN `+weeklyResetNeededExpr+`
 					THEN $1
 					ELSE COALESCE((extra->>'quota_weekly_used')::numeric, 0) + $1 END,
 					'quota_weekly_start',
-					CASE WHEN COALESCE((extra->>'quota_weekly_start')::timestamptz, '1970-01-01'::timestamptz)
-						+ '168 hours'::interval <= NOW()
-					THEN `+nowUTC+`
+					CASE WHEN `+weeklyResetNeededExpr+`
+					THEN CASE WHEN COALESCE(extra->>'quota_weekly_reset_mode', 'rolling') = 'fixed' THEN `+currentWeeklyWindowStartStrExpr+` ELSE `+nowUTC+` END
 					ELSE COALESCE(extra->>'quota_weekly_start', `+nowUTC+`) END
 				)
+				|| CASE WHEN `+weeklyResetNeededExpr+` AND `+nextWeeklyResetAtExpr+` IS NOT NULL
+				   THEN jsonb_build_object('quota_weekly_reset_at', `+nextWeeklyResetAtExpr+`)
+				   ELSE '{}'::jsonb END
 			ELSE '{}'::jsonb END
 		), updated_at = NOW()
 		WHERE id = $2 AND deleted_at IS NULL

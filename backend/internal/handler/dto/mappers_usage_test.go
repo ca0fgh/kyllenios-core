@@ -2,7 +2,6 @@ package dto
 
 import (
 	"testing"
-	"time"
 
 	"github.com/ca0fgh/kyllenios-core/internal/service"
 	"github.com/stretchr/testify/require"
@@ -107,33 +106,39 @@ func TestUsageLogFromService_IncludesServiceTierForUserAndAdmin(t *testing.T) {
 	require.InDelta(t, 1.5, *adminDTO.AccountRateMultiplier, 1e-12)
 }
 
-func TestAccountFromServiceShallow_UsesEffectiveFixedDailyQuotaWindow(t *testing.T) {
+func TestAccountFromServiceShallow_UsesStoredQuotaWindowValues(t *testing.T) {
 	t.Parallel()
 
-	now := time.Now().UTC().Truncate(time.Second)
-	resetHour := float64((now.Hour() + 23) % 24)
 	account := &service.Account{
 		Type: service.AccountTypeAPIKey,
 		Extra: map[string]any{
-			"quota_daily_limit":      120.0,
-			"quota_daily_used":       3.97,
-			"quota_daily_start":      now.Add(-2 * time.Hour).Format(time.RFC3339),
-			"quota_daily_reset_mode": "fixed",
-			"quota_daily_reset_hour": resetHour,
-			"quota_reset_timezone":   "UTC",
-			"quota_daily_reset_at":   now.Add(-1 * time.Minute).Format(time.RFC3339),
+			"quota_daily_limit":       120.0,
+			"quota_daily_used":        3.97,
+			"quota_daily_start":       "2026-03-16T00:00:00Z",
+			"quota_daily_reset_mode":  "fixed",
+			"quota_daily_reset_hour":  0.0,
+			"quota_reset_timezone":    "UTC",
+			"quota_daily_reset_at":    "2026-03-17T00:00:00Z",
+			"quota_weekly_limit":      840.0,
+			"quota_weekly_used":       12.34,
+			"quota_weekly_start":      "2026-03-16T00:00:00Z",
+			"quota_weekly_reset_mode": "fixed",
+			"quota_weekly_reset_day":  1.0,
+			"quota_weekly_reset_hour": 0.0,
+			"quota_weekly_reset_at":   "2026-03-23T00:00:00Z",
 		},
 	}
 
 	dtoAccount := AccountFromServiceShallow(account)
 	require.NotNil(t, dtoAccount)
 	require.NotNil(t, dtoAccount.QuotaDailyUsed)
-	require.InDelta(t, 0.0, *dtoAccount.QuotaDailyUsed, 1e-12)
+	require.InDelta(t, 3.97, *dtoAccount.QuotaDailyUsed, 1e-12)
 	require.NotNil(t, dtoAccount.QuotaDailyResetAt)
-
-	resetAt, err := time.Parse(time.RFC3339, *dtoAccount.QuotaDailyResetAt)
-	require.NoError(t, err)
-	require.True(t, resetAt.After(now), "quota_daily_reset_at should point to the next future reset boundary")
+	require.Equal(t, "2026-03-17T00:00:00Z", *dtoAccount.QuotaDailyResetAt)
+	require.NotNil(t, dtoAccount.QuotaWeeklyUsed)
+	require.InDelta(t, 12.34, *dtoAccount.QuotaWeeklyUsed, 1e-12)
+	require.NotNil(t, dtoAccount.QuotaWeeklyResetAt)
+	require.Equal(t, "2026-03-23T00:00:00Z", *dtoAccount.QuotaWeeklyResetAt)
 }
 
 func f64Ptr(value float64) *float64 {

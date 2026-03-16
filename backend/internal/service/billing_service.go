@@ -196,6 +196,99 @@ func (s *BillingService) initFallbackPricing() {
 		SupportsCacheBreakdown:     false,
 	}
 
+	// OpenAI GPT-4o / GPT-4.1 / o 系列（价格服务异常时的本地保底）
+	s.fallbackPrices["gpt-4o"] = &ModelPricing{
+		InputPricePerToken:             2.5e-6,
+		InputPricePerTokenPriority:     4.25e-6,
+		OutputPricePerToken:            10e-6,
+		OutputPricePerTokenPriority:    17e-6,
+		CacheReadPricePerToken:         1.25e-6,
+		CacheReadPricePerTokenPriority: 2.125e-6,
+		SupportsCacheBreakdown:         false,
+	}
+	s.fallbackPrices["gpt-4o-mini"] = &ModelPricing{
+		InputPricePerToken:             0.15e-6,
+		InputPricePerTokenPriority:     0.25e-6,
+		OutputPricePerToken:            0.6e-6,
+		OutputPricePerTokenPriority:    1e-6,
+		CacheReadPricePerToken:         0.075e-6,
+		CacheReadPricePerTokenPriority: 0.125e-6,
+		SupportsCacheBreakdown:         false,
+	}
+	s.fallbackPrices["gpt-4.1"] = &ModelPricing{
+		InputPricePerToken:             2e-6,
+		InputPricePerTokenPriority:     3.5e-6,
+		OutputPricePerToken:            8e-6,
+		OutputPricePerTokenPriority:    14e-6,
+		CacheReadPricePerToken:         0.5e-6,
+		CacheReadPricePerTokenPriority: 0.875e-6,
+		SupportsCacheBreakdown:         false,
+	}
+	s.fallbackPrices["gpt-4.1-mini"] = &ModelPricing{
+		InputPricePerToken:             0.4e-6,
+		InputPricePerTokenPriority:     0.7e-6,
+		OutputPricePerToken:            1.6e-6,
+		OutputPricePerTokenPriority:    2.8e-6,
+		CacheReadPricePerToken:         0.1e-6,
+		CacheReadPricePerTokenPriority: 0.175e-6,
+		SupportsCacheBreakdown:         false,
+	}
+	s.fallbackPrices["gpt-4.1-nano"] = &ModelPricing{
+		InputPricePerToken:             0.1e-6,
+		InputPricePerTokenPriority:     0.2e-6,
+		OutputPricePerToken:            0.4e-6,
+		OutputPricePerTokenPriority:    0.8e-6,
+		CacheReadPricePerToken:         0.025e-6,
+		CacheReadPricePerTokenPriority: 0.05e-6,
+		SupportsCacheBreakdown:         false,
+	}
+	s.fallbackPrices["o1-preview"] = &ModelPricing{
+		InputPricePerToken:     15e-6,
+		OutputPricePerToken:    60e-6,
+		CacheReadPricePerToken: 7.5e-6,
+		SupportsCacheBreakdown: false,
+	}
+	s.fallbackPrices["o1-mini"] = &ModelPricing{
+		InputPricePerToken:     1.1e-6,
+		OutputPricePerToken:    4.4e-6,
+		CacheReadPricePerToken: 0.55e-6,
+		SupportsCacheBreakdown: false,
+	}
+	s.fallbackPrices["o1-pro"] = &ModelPricing{
+		InputPricePerToken:     150e-6,
+		OutputPricePerToken:    600e-6,
+		SupportsCacheBreakdown: false,
+	}
+	s.fallbackPrices["o3"] = &ModelPricing{
+		InputPricePerToken:             2e-6,
+		InputPricePerTokenPriority:     3.5e-6,
+		OutputPricePerToken:            8e-6,
+		OutputPricePerTokenPriority:    14e-6,
+		CacheReadPricePerToken:         0.5e-6,
+		CacheReadPricePerTokenPriority: 0.875e-6,
+		SupportsCacheBreakdown:         false,
+	}
+	s.fallbackPrices["o3-mini"] = &ModelPricing{
+		InputPricePerToken:     1.1e-6,
+		OutputPricePerToken:    4.4e-6,
+		CacheReadPricePerToken: 0.55e-6,
+		SupportsCacheBreakdown: false,
+	}
+	s.fallbackPrices["o3-pro"] = &ModelPricing{
+		InputPricePerToken:     20e-6,
+		OutputPricePerToken:    80e-6,
+		SupportsCacheBreakdown: false,
+	}
+	s.fallbackPrices["o4-mini"] = &ModelPricing{
+		InputPricePerToken:             1.1e-6,
+		InputPricePerTokenPriority:     2e-6,
+		OutputPricePerToken:            4.4e-6,
+		OutputPricePerTokenPriority:    8e-6,
+		CacheReadPricePerToken:         0.275e-6,
+		CacheReadPricePerTokenPriority: 0.5e-6,
+		SupportsCacheBreakdown:         false,
+	}
+
 	// OpenAI GPT-5.1（本地兜底，防止动态定价不可用时拒绝计费）
 	s.fallbackPrices["gpt-5.1"] = &ModelPricing{
 		InputPricePerToken:             1.25e-6, // $1.25 per MTok
@@ -290,7 +383,7 @@ func (s *BillingService) getFallbackPricing(model string) *ModelPricing {
 		return s.fallbackPrices["gemini-3.1-pro"]
 	}
 
-	// OpenAI 仅匹配已知 GPT-5/Codex 族，避免未知 OpenAI 型号误计价。
+	// OpenAI 常用模型族兜底，避免价格服务异常时计费直接归零。
 	if strings.Contains(modelLower, "gpt-5") || strings.Contains(modelLower, "codex") {
 		normalized := normalizeCodexModel(modelLower)
 		switch normalized {
@@ -307,6 +400,42 @@ func (s *BillingService) getFallbackPricing(model string) *ModelPricing {
 		case "gpt-5.1":
 			return s.fallbackPrices["gpt-5.1"]
 		}
+	}
+	if strings.Contains(modelLower, "gpt-4o-mini") {
+		return s.fallbackPrices["gpt-4o-mini"]
+	}
+	if strings.Contains(modelLower, "gpt-4o") || strings.Contains(modelLower, "chatgpt-4o-latest") {
+		return s.fallbackPrices["gpt-4o"]
+	}
+	if strings.Contains(modelLower, "gpt-4.1-mini") {
+		return s.fallbackPrices["gpt-4.1-mini"]
+	}
+	if strings.Contains(modelLower, "gpt-4.1-nano") {
+		return s.fallbackPrices["gpt-4.1-nano"]
+	}
+	if strings.Contains(modelLower, "gpt-4.1") {
+		return s.fallbackPrices["gpt-4.1"]
+	}
+	if strings.Contains(modelLower, "o1-pro") {
+		return s.fallbackPrices["o1-pro"]
+	}
+	if strings.Contains(modelLower, "o1-mini") {
+		return s.fallbackPrices["o1-mini"]
+	}
+	if strings.Contains(modelLower, "o1-preview") || modelLower == "o1" {
+		return s.fallbackPrices["o1-preview"]
+	}
+	if strings.Contains(modelLower, "o3-pro") {
+		return s.fallbackPrices["o3-pro"]
+	}
+	if strings.Contains(modelLower, "o3-mini") {
+		return s.fallbackPrices["o3-mini"]
+	}
+	if strings.HasPrefix(modelLower, "o3") {
+		return s.fallbackPrices["o3"]
+	}
+	if strings.Contains(modelLower, "o4-mini") {
+		return s.fallbackPrices["o4-mini"]
 	}
 
 	return nil

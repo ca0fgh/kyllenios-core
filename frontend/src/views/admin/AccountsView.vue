@@ -322,6 +322,7 @@ import PlatformTypeBadge from '@/components/common/PlatformTypeBadge.vue'
 import Icon from '@/components/icons/Icon.vue'
 import ErrorPassthroughRulesModal from '@/components/admin/ErrorPassthroughRulesModal.vue'
 import { buildOpenAIUsageRefreshKey } from '@/utils/accountUsageRefresh'
+import { shouldReplaceAutoRefreshRow } from '@/utils/accountAutoRefresh'
 import { formatDateTime, formatRelativeTime } from '@/utils/format'
 import type { Account, AccountPlatform, AccountType, Proxy, AdminGroup, WindowStats, ClaudeModel } from '@/types'
 
@@ -678,21 +679,6 @@ const inAutoRefreshSilentWindow = () => {
   return Date.now() < autoRefreshSilentUntil.value
 }
 
-const shouldReplaceAutoRefreshRow = (current: Account, next: Account) => {
-  return (
-    current.updated_at !== next.updated_at ||
-    current.current_concurrency !== next.current_concurrency ||
-    current.current_window_cost !== next.current_window_cost ||
-    current.active_sessions !== next.active_sessions ||
-    current.schedulable !== next.schedulable ||
-    current.status !== next.status ||
-    current.rate_limit_reset_at !== next.rate_limit_reset_at ||
-    current.overload_until !== next.overload_until ||
-    current.temp_unschedulable_until !== next.temp_unschedulable_until ||
-    buildOpenAIUsageRefreshKey(current) !== buildOpenAIUsageRefreshKey(next)
-  )
-}
-
 const syncAccountRefs = (nextAccount: Account) => {
   if (edAcc.value?.id === nextAccount.id) edAcc.value = nextAccount
   if (reAuthAcc.value?.id === nextAccount.id) reAuthAcc.value = nextAccount
@@ -711,7 +697,10 @@ const mergeAccountsIncrementally = (nextRows: Account[]) => {
       changed = true
       return nextRow
     }
-    if (shouldReplaceAutoRefreshRow(currentRow, nextRow)) {
+    if (
+      shouldReplaceAutoRefreshRow(currentRow, nextRow) ||
+      buildOpenAIUsageRefreshKey(currentRow) !== buildOpenAIUsageRefreshKey(nextRow)
+    ) {
       changed = true
       syncAccountRefs(nextRow)
       return nextRow

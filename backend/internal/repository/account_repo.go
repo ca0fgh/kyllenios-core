@@ -1746,6 +1746,84 @@ const weeklyExpiredExpr = `(
 	END
 )`
 
+// currentDailyWindowStartTsExpr computes the start timestamp of the current fixed daily window.
+const currentDailyWindowStartTsExpr = `(
+	CASE WHEN NOW() >= (
+		(date_trunc('day', NOW() AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC'))
+		 + (COALESCE((extra->>'quota_daily_reset_hour')::int, 0) || ' hours')::interval)
+		AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC')
+	)
+	THEN (
+		(date_trunc('day', NOW() AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC'))
+		 + (COALESCE((extra->>'quota_daily_reset_hour')::int, 0) || ' hours')::interval)
+		AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC')
+	)
+	ELSE (
+		(date_trunc('day', NOW() AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC'))
+		 + (COALESCE((extra->>'quota_daily_reset_hour')::int, 0) || ' hours')::interval
+		 - '1 day'::interval)
+		AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC')
+	)
+	END
+)`
+
+// currentWeeklyWindowStartTsExpr computes the start timestamp of the current fixed weekly window.
+const currentWeeklyWindowStartTsExpr = `(
+	CASE
+	WHEN (
+		((EXTRACT(DOW FROM NOW() AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC'))::int
+		 - COALESCE((extra->>'quota_weekly_reset_day')::int, 1) + 7) % 7) = 0
+		AND NOW() < (
+			(date_trunc('day', NOW() AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC'))
+			 + (COALESCE((extra->>'quota_weekly_reset_hour')::int, 0) || ' hours')::interval)
+			AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC')
+		)
+	)
+	THEN (
+		(date_trunc('day', NOW() AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC'))
+		 + (COALESCE((extra->>'quota_weekly_reset_hour')::int, 0) || ' hours')::interval
+		 - '7 days'::interval)
+		AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC')
+	)
+	ELSE (
+		(date_trunc('day', NOW() AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC'))
+		 + (COALESCE((extra->>'quota_weekly_reset_hour')::int, 0) || ' hours')::interval
+		 - ((
+			(EXTRACT(DOW FROM NOW() AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC'))::int
+			 - COALESCE((extra->>'quota_weekly_reset_day')::int, 1) + 7) % 7
+		 ) || ' days')::interval)
+		AT TIME ZONE COALESCE(extra->>'quota_reset_timezone', 'UTC')
+	)
+	END
+)`
+
+// dailyResetNeededExpr resets fixed daily windows either when reset_at passed or when start is stale.
+const dailyResetNeededExpr = `(
+	CASE WHEN COALESCE(extra->>'quota_daily_reset_mode', 'rolling') = 'fixed'
+	THEN (
+		NOW() >= COALESCE((extra->>'quota_daily_reset_at')::timestamptz, '1970-01-01'::timestamptz)
+		OR COALESCE((extra->>'quota_daily_start')::timestamptz, '1970-01-01'::timestamptz) < ` + currentDailyWindowStartTsExpr + `
+	)
+	ELSE COALESCE((extra->>'quota_daily_start')::timestamptz, '1970-01-01'::timestamptz)
+		+ '24 hours'::interval <= NOW()
+	END
+)`
+
+// weeklyResetNeededExpr resets fixed weekly windows either when reset_at passed or when start is stale.
+const weeklyResetNeededExpr = `(
+	CASE WHEN COALESCE(extra->>'quota_weekly_reset_mode', 'rolling') = 'fixed'
+	THEN (
+		NOW() >= COALESCE((extra->>'quota_weekly_reset_at')::timestamptz, '1970-01-01'::timestamptz)
+		OR COALESCE((extra->>'quota_weekly_start')::timestamptz, '1970-01-01'::timestamptz) < ` + currentWeeklyWindowStartTsExpr + `
+	)
+	ELSE COALESCE((extra->>'quota_weekly_start')::timestamptz, '1970-01-01'::timestamptz)
+		+ '168 hours'::interval <= NOW()
+	END
+)`
+
+const currentDailyWindowStartStrExpr = `to_char((` + currentDailyWindowStartTsExpr + `) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"')`
+const currentWeeklyWindowStartStrExpr = `to_char((` + currentWeeklyWindowStartTsExpr + `) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"')`
+
 // nextDailyResetAtExpr is a SQL expression to compute the next daily reset_at when a reset occurs.
 // For fixed mode: computes the next future reset time based on NOW(), timezone, and configured hour.
 // This correctly handles long-inactive accounts by jumping directly to the next valid reset point.
@@ -1827,16 +1905,16 @@ func (r *accountRepository) IncrementQuotaUsed(ctx context.Context, id int64, am
 			|| CASE WHEN COALESCE((extra->>'quota_daily_limit')::numeric, 0) > 0 THEN
 				jsonb_build_object(
 					'quota_daily_used',
-					CASE WHEN `+dailyExpiredExpr+`
+					CASE WHEN `+dailyResetNeededExpr+`
 					THEN $1
 					ELSE COALESCE((extra->>'quota_daily_used')::numeric, 0) + $1 END,
 					'quota_daily_start',
-					CASE WHEN `+dailyExpiredExpr+`
-					THEN `+nowUTC+`
+					CASE WHEN `+dailyResetNeededExpr+`
+					THEN CASE WHEN COALESCE(extra->>'quota_daily_reset_mode', 'rolling') = 'fixed' THEN `+currentDailyWindowStartStrExpr+` ELSE `+nowUTC+` END
 					ELSE COALESCE(extra->>'quota_daily_start', `+nowUTC+`) END
 				)
 				-- 固定模式重置时更新下次重置时间
-				|| CASE WHEN `+dailyExpiredExpr+` AND `+nextDailyResetAtExpr+` IS NOT NULL
+				|| CASE WHEN `+dailyResetNeededExpr+` AND `+nextDailyResetAtExpr+` IS NOT NULL
 				   THEN jsonb_build_object('quota_daily_reset_at', `+nextDailyResetAtExpr+`)
 				   ELSE '{}'::jsonb END
 			ELSE '{}'::jsonb END
@@ -1844,16 +1922,16 @@ func (r *accountRepository) IncrementQuotaUsed(ctx context.Context, id int64, am
 			|| CASE WHEN COALESCE((extra->>'quota_weekly_limit')::numeric, 0) > 0 THEN
 				jsonb_build_object(
 					'quota_weekly_used',
-					CASE WHEN `+weeklyExpiredExpr+`
+					CASE WHEN `+weeklyResetNeededExpr+`
 					THEN $1
 					ELSE COALESCE((extra->>'quota_weekly_used')::numeric, 0) + $1 END,
 					'quota_weekly_start',
-					CASE WHEN `+weeklyExpiredExpr+`
-					THEN `+nowUTC+`
+					CASE WHEN `+weeklyResetNeededExpr+`
+					THEN CASE WHEN COALESCE(extra->>'quota_weekly_reset_mode', 'rolling') = 'fixed' THEN `+currentWeeklyWindowStartStrExpr+` ELSE `+nowUTC+` END
 					ELSE COALESCE(extra->>'quota_weekly_start', `+nowUTC+`) END
 				)
 				-- 固定模式重置时更新下次重置时间
-				|| CASE WHEN `+weeklyExpiredExpr+` AND `+nextWeeklyResetAtExpr+` IS NOT NULL
+				|| CASE WHEN `+weeklyResetNeededExpr+` AND `+nextWeeklyResetAtExpr+` IS NOT NULL
 				   THEN jsonb_build_object('quota_weekly_reset_at', `+nextWeeklyResetAtExpr+`)
 				   ELSE '{}'::jsonb END
 			ELSE '{}'::jsonb END
