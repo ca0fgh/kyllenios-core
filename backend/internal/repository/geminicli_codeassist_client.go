@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/geminicli"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/googleapi"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/geminicli"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/googleapi"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 
 	"github.com/imroc/req/v3"
 )

@@ -10,8 +10,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/account"
-	"github.com/ca0fgh/kyllenios-core/ent/proxy"
+	"github.com/ca0fgh/hermes-proxy/ent/account"
+	"github.com/ca0fgh/hermes-proxy/ent/proxy"
 )
 
 // Account is the model entity for the Account schema.

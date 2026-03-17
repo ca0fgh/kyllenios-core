@@ -10,7 +10,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/userattributedefinition"
+	"github.com/ca0fgh/hermes-proxy/ent/userattributedefinition"
 )
 
 // UserAttributeDefinition is the model entity for the UserAttributeDefinition schema.

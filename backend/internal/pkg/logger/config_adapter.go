@@ -1,6 +1,6 @@
 package logger
 
-import "github.com/ca0fgh/kyllenios-core/internal/config"
+import "github.com/ca0fgh/hermes-proxy/internal/config"
 
 func OptionsFromConfig(cfg config.LogConfig) InitOptions {
 	return InitOptions{

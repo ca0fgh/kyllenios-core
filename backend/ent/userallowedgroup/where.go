@@ -7,7 +7,7 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/hermes-proxy/ent/predicate"
 )
 
 // UserID applies equality check predicate on the "user_id" field. It's identical to UserIDEQ.

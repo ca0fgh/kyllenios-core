@@ -3,7 +3,7 @@ package service
 import (
 	"testing"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/antigravity"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/antigravity"
 )
 
 func TestShortHash(t *testing.T) {

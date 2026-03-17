@@ -4,12 +4,12 @@ import (
 	"log/slog"
 	"strings"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/handler/dto"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/ip"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
-	middleware2 "github.com/ca0fgh/kyllenios-core/internal/server/middleware"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/handler/dto"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/ip"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/response"
+	middleware2 "github.com/ca0fgh/hermes-proxy/internal/server/middleware"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

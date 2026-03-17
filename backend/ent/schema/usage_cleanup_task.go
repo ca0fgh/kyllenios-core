@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ca0fgh/kyllenios-core/ent/schema/mixins"
+	"github.com/ca0fgh/hermes-proxy/ent/schema/mixins"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/entsql"

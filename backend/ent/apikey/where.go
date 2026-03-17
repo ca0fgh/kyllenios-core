@@ -7,7 +7,7 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/hermes-proxy/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

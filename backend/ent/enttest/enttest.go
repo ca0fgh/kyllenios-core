@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"github.com/ca0fgh/kyllenios-core/ent"
+	"github.com/ca0fgh/hermes-proxy/ent"
 	// required by schema hooks.
-	_ "github.com/ca0fgh/kyllenios-core/ent/runtime"
+	_ "github.com/ca0fgh/hermes-proxy/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/ca0fgh/kyllenios-core/ent/migrate"
+	"github.com/ca0fgh/hermes-proxy/ent/migrate"
 )
 
 type (

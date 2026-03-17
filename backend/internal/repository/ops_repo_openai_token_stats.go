@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 func (r *opsRepository) GetOpenAITokenStats(ctx context.Context, filter *service.OpsOpenAITokenStatsFilter) (*service.OpsOpenAITokenStatsResponse, error) {

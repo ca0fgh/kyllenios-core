@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 func (r *opsRepository) InsertSystemMetrics(ctx context.Context, input *service.OpsInsertSystemMetricsInput) error {

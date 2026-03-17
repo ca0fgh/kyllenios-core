@@ -7,8 +7,8 @@ import (
 	"os"
 	"strings"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/response"
 	"github.com/gin-gonic/gin"
 )
 

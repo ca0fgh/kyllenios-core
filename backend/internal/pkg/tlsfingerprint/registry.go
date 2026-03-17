@@ -6,7 +6,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
 )
 
 // DefaultProfileName is the name of the built-in Claude CLI profile.

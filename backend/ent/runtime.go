@@ -2,4 +2,4 @@
 
 package ent
 
-// The schema-stitching logic is generated in github.com/ca0fgh/kyllenios-core/ent/runtime/runtime.go
+// The schema-stitching logic is generated in github.com/ca0fgh/hermes-proxy/ent/runtime/runtime.go

@@ -9,11 +9,11 @@ import (
 	"testing"
 	"time"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	"github.com/ca0fgh/kyllenios-core/ent/apikey"
-	"github.com/ca0fgh/kyllenios-core/ent/schema/mixins"
-	"github.com/ca0fgh/kyllenios-core/ent/usersubscription"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/ent/apikey"
+	"github.com/ca0fgh/hermes-proxy/ent/schema/mixins"
+	"github.com/ca0fgh/hermes-proxy/ent/usersubscription"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/stretchr/testify/require"
 )
 

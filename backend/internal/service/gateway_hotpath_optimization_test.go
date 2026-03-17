@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/usagestats"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/ctxkey"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/usagestats"
 	gocache "github.com/patrickmn/go-cache"
 	"github.com/stretchr/testify/require"
 )

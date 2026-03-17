@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/antigravity"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/antigravity"
 	"github.com/stretchr/testify/require"
 )
 

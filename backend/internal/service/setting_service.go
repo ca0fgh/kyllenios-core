@@ -14,8 +14,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
 	"golang.org/x/sync/singleflight"
 )
 
@@ -182,7 +182,7 @@ func (s *SettingService) GetPublicSettings(ctx context.Context) (*PublicSettings
 		TotpEnabled:                      settings[SettingKeyTotpEnabled] == "true",
 		TurnstileEnabled:                 settings[SettingKeyTurnstileEnabled] == "true",
 		TurnstileSiteKey:                 settings[SettingKeyTurnstileSiteKey],
-		SiteName:                         normalizeSiteName(settings[SettingKeySiteName], "kyllenios-core"),
+		SiteName:                         normalizeSiteName(settings[SettingKeySiteName], "hermes-proxy"),
 		SiteLogo:                         settings[SettingKeySiteLogo],
 		SiteSubtitle:                     s.getStringOrDefault(settings, SettingKeySiteSubtitle, "Subscription to API Conversion Platform"),
 		APIBaseURL:                       settings[SettingKeyAPIBaseURL],
@@ -675,9 +675,9 @@ func (s *SettingService) IsTotpEncryptionKeyConfigured() bool {
 func (s *SettingService) GetSiteName(ctx context.Context) string {
 	value, err := s.settingRepo.GetValue(ctx, SettingKeySiteName)
 	if err != nil {
-		return "kyllenios-core"
+		return "hermes-proxy"
 	}
-	return normalizeSiteName(value, "kyllenios-core")
+	return normalizeSiteName(value, "hermes-proxy")
 }
 
 // GetDefaultConcurrency 获取默认并发量
@@ -731,7 +731,7 @@ func (s *SettingService) InitializeDefaultSettings(ctx context.Context) error {
 		SettingKeyEmailVerifyEnabled:               "false",
 		SettingKeyRegistrationEmailSuffixWhitelist: "[]",
 		SettingKeyPromoCodeEnabled:                 "true", // 默认启用优惠码功能
-		SettingKeySiteName:                         "kyllenios-core",
+		SettingKeySiteName:                         "hermes-proxy",
 		SettingKeySiteLogo:                         "",
 		SettingKeyPurchaseSubscriptionEnabled:      "false",
 		SettingKeyPurchaseSubscriptionURL:          "",
@@ -789,7 +789,7 @@ func (s *SettingService) parseSettings(settings map[string]string) *SystemSettin
 		TurnstileEnabled:                 settings[SettingKeyTurnstileEnabled] == "true",
 		TurnstileSiteKey:                 settings[SettingKeyTurnstileSiteKey],
 		TurnstileSecretKeyConfigured:     settings[SettingKeyTurnstileSecretKey] != "",
-		SiteName:                         normalizeSiteName(settings[SettingKeySiteName], "kyllenios-core"),
+		SiteName:                         normalizeSiteName(settings[SettingKeySiteName], "hermes-proxy"),
 		SiteLogo:                         settings[SettingKeySiteLogo],
 		SiteSubtitle:                     s.getStringOrDefault(settings, SettingKeySiteSubtitle, "Subscription to API Conversion Platform"),
 		APIBaseURL:                       settings[SettingKeyAPIBaseURL],

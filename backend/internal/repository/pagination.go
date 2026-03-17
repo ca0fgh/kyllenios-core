@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+import "github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
 
 func paginationResultFromTotal(total int64, params pagination.PaginationParams) *pagination.PaginationResult {
 	pages := int(total) / params.Limit()

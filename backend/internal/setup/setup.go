@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
-	"github.com/ca0fgh/kyllenios-core/internal/repository"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/repository"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 
 	_ "github.com/lib/pq"
 	"github.com/redis/go-redis/v9"
@@ -550,7 +550,7 @@ func AutoSetupFromEnv() error {
 			Port:     getEnvIntOrDefault("DATABASE_PORT", 5432),
 			User:     getEnvOrDefault("DATABASE_USER", "postgres"),
 			Password: getEnvOrDefault("DATABASE_PASSWORD", ""),
-			DBName:   getEnvOrDefault("DATABASE_DBNAME", "kyllenios-core"),
+			DBName:   getEnvOrDefault("DATABASE_DBNAME", "hermes-proxy"),
 			SSLMode:  getEnvOrDefault("DATABASE_SSLMODE", "disable"),
 		},
 		Redis: RedisConfig{
@@ -561,7 +561,7 @@ func AutoSetupFromEnv() error {
 			EnableTLS: getEnvOrDefault("REDIS_ENABLE_TLS", "false") == "true",
 		},
 		Admin: AdminConfig{
-			Email:    getEnvOrDefault("ADMIN_EMAIL", "admin@kyllenios-core.local"),
+			Email:    getEnvOrDefault("ADMIN_EMAIL", "admin@hermes-proxy.local"),
 			Password: getEnvOrDefault("ADMIN_PASSWORD", ""),
 		},
 		Server: ServerConfig{

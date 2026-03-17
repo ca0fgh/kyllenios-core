@@ -11,10 +11,10 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/kyllenios-core/ent/apikey"
-	"github.com/ca0fgh/kyllenios-core/ent/group"
-	"github.com/ca0fgh/kyllenios-core/ent/usagelog"
-	"github.com/ca0fgh/kyllenios-core/ent/user"
+	"github.com/ca0fgh/hermes-proxy/ent/apikey"
+	"github.com/ca0fgh/hermes-proxy/ent/group"
+	"github.com/ca0fgh/hermes-proxy/ent/usagelog"
+	"github.com/ca0fgh/hermes-proxy/ent/user"
 )
 
 // APIKeyCreate is the builder for creating a APIKey entity.

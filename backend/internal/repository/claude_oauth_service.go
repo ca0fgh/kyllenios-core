@@ -9,11 +9,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/oauth"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/proxyurl"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
-	"github.com/ca0fgh/kyllenios-core/internal/util/logredact"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/oauth"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/proxyurl"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/util/logredact"
 
 	"github.com/imroc/req/v3"
 )

@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/httpclient"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/httpclient"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 type pricingRemoteClient struct {

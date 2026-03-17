@@ -19,12 +19,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/claude"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/geminicli"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/openai"
-	"github.com/ca0fgh/kyllenios-core/internal/util/soraerror"
-	"github.com/ca0fgh/kyllenios-core/internal/util/urlvalidator"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/claude"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/geminicli"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/openai"
+	"github.com/ca0fgh/hermes-proxy/internal/util/soraerror"
+	"github.com/ca0fgh/hermes-proxy/internal/util/urlvalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )

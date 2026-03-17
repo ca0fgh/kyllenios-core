@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/httpclient"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/httpclient"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 type githubReleaseClient struct {
@@ -83,7 +83,7 @@ func (c *githubReleaseClient) FetchLatestRelease(ctx context.Context, repo strin
 		return nil, err
 	}
 	req.Header.Set("Accept", "application/vnd.github.v3+json")
-	req.Header.Set("User-Agent", "kyllenios-core-Updater")
+	req.Header.Set("User-Agent", "hermes-proxy-Updater")
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {

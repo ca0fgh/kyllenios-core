@@ -10,8 +10,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/announcement"
-	"github.com/ca0fgh/kyllenios-core/internal/domain"
+	"github.com/ca0fgh/hermes-proxy/ent/announcement"
+	"github.com/ca0fgh/hermes-proxy/internal/domain"
 )
 
 // Announcement is the model entity for the Announcement schema.

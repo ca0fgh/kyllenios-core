@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/openai"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/openai"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/imroc/req/v3"
 )
 

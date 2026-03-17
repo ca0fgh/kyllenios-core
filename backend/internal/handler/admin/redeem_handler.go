@@ -9,10 +9,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ca0fgh/kyllenios-core/internal/handler/dto"
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/handler/dto"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/response"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 
 	"github.com/gin-gonic/gin"
 )
@@ -139,7 +139,7 @@ func (h *RedeemHandler) CreateAndRedeem(c *gin.Context) {
 		return
 	}
 	req.Code = strings.TrimSpace(req.Code)
-	// 向后兼容：旧版调用方（如 kyllenios-corePay）不传 type 字段，默认当作 balance 充值处理。
+	// 向后兼容：旧版调用方（如 hermes-proxyPay）不传 type 字段，默认当作 balance 充值处理。
 	// 请勿删除此默认值逻辑，否则会导致旧版调用方 400 报错。
 	if req.Type == "" {
 		req.Type = "balance"

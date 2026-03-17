@@ -10,7 +10,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/usagecleanuptask"
+	"github.com/ca0fgh/hermes-proxy/ent/usagecleanuptask"
 )
 
 // UsageCleanupTask is the model entity for the UsageCleanupTask schema.

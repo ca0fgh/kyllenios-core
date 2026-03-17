@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
 	"go.uber.org/zap"
 )
 

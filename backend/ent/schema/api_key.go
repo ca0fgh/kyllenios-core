@@ -1,8 +1,8 @@
 package schema
 
 import (
-	"github.com/ca0fgh/kyllenios-core/ent/schema/mixins"
-	"github.com/ca0fgh/kyllenios-core/internal/domain"
+	"github.com/ca0fgh/hermes-proxy/ent/schema/mixins"
+	"github.com/ca0fgh/hermes-proxy/internal/domain"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"

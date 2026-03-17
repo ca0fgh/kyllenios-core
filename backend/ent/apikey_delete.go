@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/kyllenios-core/ent/apikey"
-	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/hermes-proxy/ent/apikey"
+	"github.com/ca0fgh/hermes-proxy/ent/predicate"
 )
 
 // APIKeyDelete is the builder for deleting a APIKey entity.

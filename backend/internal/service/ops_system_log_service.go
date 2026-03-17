@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
 )
 
 func (s *OpsService) ListSystemLogs(ctx context.Context, filter *OpsSystemLogFilter) (*OpsSystemLogList, error) {

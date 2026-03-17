@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/user"
-	"github.com/ca0fgh/kyllenios-core/ent/userattributedefinition"
-	"github.com/ca0fgh/kyllenios-core/ent/userattributevalue"
+	"github.com/ca0fgh/hermes-proxy/ent/user"
+	"github.com/ca0fgh/hermes-proxy/ent/userattributedefinition"
+	"github.com/ca0fgh/hermes-proxy/ent/userattributevalue"
 )
 
 // UserAttributeValue is the model entity for the UserAttributeValue schema.

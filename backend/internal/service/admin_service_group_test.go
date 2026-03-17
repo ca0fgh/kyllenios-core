@@ -6,7 +6,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
 	"github.com/stretchr/testify/require"
 )
 

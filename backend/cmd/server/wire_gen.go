@@ -8,14 +8,14 @@ package main
 
 import (
 	"context"
-	"github.com/ca0fgh/kyllenios-core/ent"
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/handler"
-	"github.com/ca0fgh/kyllenios-core/internal/handler/admin"
-	"github.com/ca0fgh/kyllenios-core/internal/repository"
-	"github.com/ca0fgh/kyllenios-core/internal/server"
-	"github.com/ca0fgh/kyllenios-core/internal/server/middleware"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/handler"
+	"github.com/ca0fgh/hermes-proxy/internal/handler/admin"
+	"github.com/ca0fgh/hermes-proxy/internal/repository"
+	"github.com/ca0fgh/hermes-proxy/internal/server"
+	"github.com/ca0fgh/hermes-proxy/internal/server/middleware"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/redis/go-redis/v9"
 	"log"
 	"net/http"
@@ -25,7 +25,7 @@ import (
 
 import (
 	_ "embed"
-	_ "github.com/ca0fgh/kyllenios-core/ent/runtime"
+	_ "github.com/ca0fgh/hermes-proxy/ent/runtime"
 )
 
 // Injectors from wire.go:

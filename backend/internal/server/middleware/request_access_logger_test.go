@@ -8,8 +8,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/ctxkey"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
 	"github.com/gin-gonic/gin"
 )
 
@@ -45,7 +45,7 @@ func initMiddlewareTestLoggerWithLevel(t *testing.T, level string) *testLogSink 
 	if err := logger.Init(logger.InitOptions{
 		Level:       level,
 		Format:      "json",
-		ServiceName: "kyllenios-core",
+		ServiceName: "hermes-proxy",
 		Environment: "test",
 		Output: logger.OutputOptions{
 			ToStdout: false,

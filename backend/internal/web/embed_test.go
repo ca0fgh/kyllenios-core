@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ca0fgh/kyllenios-core/internal/server/middleware"
+	"github.com/ca0fgh/hermes-proxy/internal/server/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

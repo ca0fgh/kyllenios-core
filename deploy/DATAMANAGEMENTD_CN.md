@@ -4,44 +4,44 @@
 
 ## 1. 关键约束
 
-- 主进程固定探测路径：`/tmp/kyllenios-core-datamanagement.sock`
+- 主进程固定探测路径：`/tmp/hermes-proxy-datamanagement.sock`
 - 仅当该 Unix Socket 可连通且 `Health` 成功时，后台“数据管理”才会启用
 - `datamanagementd` 使用 SQLite 持久化元数据，不依赖主库
 
 ## 2. 宿主机构建与运行
 
 ```bash
-cd /opt/kyllenios-core-src/datamanagement
-go build -o /opt/kyllenios-core/datamanagementd ./cmd/datamanagementd
+cd /opt/hermes-proxy-src/datamanagement
+go build -o /opt/hermes-proxy/datamanagementd ./cmd/datamanagementd
 
-mkdir -p /var/lib/kyllenios-core/datamanagement
-chown -R kyllenios-core:kyllenios-core /var/lib/kyllenios-core/datamanagement
+mkdir -p /var/lib/hermes-proxy/datamanagement
+chown -R hermes-proxy:hermes-proxy /var/lib/hermes-proxy/datamanagement
 ```
 
 手动启动示例：
 
 ```bash
-/opt/kyllenios-core/datamanagementd \
-  -socket-path /tmp/kyllenios-core-datamanagement.sock \
-  -sqlite-path /var/lib/kyllenios-core/datamanagement/datamanagementd.db \
+/opt/hermes-proxy/datamanagementd \
+  -socket-path /tmp/hermes-proxy-datamanagement.sock \
+  -sqlite-path /var/lib/hermes-proxy/datamanagement/datamanagementd.db \
   -version 1.0.0
 ```
 
 ## 3. systemd 托管（推荐）
 
-仓库已提供示例服务文件：`deploy/kyllenios-core-datamanagementd.service`
+仓库已提供示例服务文件：`deploy/hermes-proxy-datamanagementd.service`
 
 ```bash
-sudo cp deploy/kyllenios-core-datamanagementd.service /etc/systemd/system/
+sudo cp deploy/hermes-proxy-datamanagementd.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now kyllenios-core-datamanagementd
-sudo systemctl status kyllenios-core-datamanagementd
+sudo systemctl enable --now hermes-proxy-datamanagementd
+sudo systemctl status hermes-proxy-datamanagementd
 ```
 
 查看日志：
 
 ```bash
-sudo journalctl -u kyllenios-core-datamanagementd -f
+sudo journalctl -u hermes-proxy-datamanagementd -f
 ```
 
 也可以使用一键安装脚本（自动安装二进制 + 注册 systemd）：
@@ -51,18 +51,18 @@ sudo journalctl -u kyllenios-core-datamanagementd -f
 sudo ./deploy/install-datamanagementd.sh --binary /path/to/datamanagementd
 
 # 方式二：从源码构建后安装
-sudo ./deploy/install-datamanagementd.sh --source /path/to/kyllenios-core
+sudo ./deploy/install-datamanagementd.sh --source /path/to/hermes-proxy
 ```
 
 ## 4. Docker 部署联动
 
-若 `kyllenios-core` 运行在 Docker 容器中，需要将宿主机 Socket 挂载到容器同路径：
+若 `hermes-proxy` 运行在 Docker 容器中，需要将宿主机 Socket 挂载到容器同路径：
 
 ```yaml
 services:
-  kyllenios-core:
+  hermes-proxy:
     volumes:
-      - /tmp/kyllenios-core-datamanagement.sock:/tmp/kyllenios-core-datamanagement.sock
+      - /tmp/hermes-proxy-datamanagement.sock:/tmp/hermes-proxy-datamanagement.sock
 ```
 
 建议在 `docker-compose.override.yml` 中维护该挂载，避免覆盖主 compose 文件。

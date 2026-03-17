@@ -13,12 +13,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/proxyurl"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/proxyutil"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/tlsfingerprint"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
-	"github.com/ca0fgh/kyllenios-core/internal/util/urlvalidator"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/proxyurl"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/proxyutil"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/tlsfingerprint"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/util/urlvalidator"
 )
 
 // 默认配置常量

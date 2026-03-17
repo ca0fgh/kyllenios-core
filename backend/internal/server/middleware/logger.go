@@ -3,8 +3,8 @@ package middleware
 import (
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/ctxkey"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

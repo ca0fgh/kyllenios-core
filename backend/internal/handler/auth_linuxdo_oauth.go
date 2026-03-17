@@ -13,11 +13,11 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/oauth"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/oauth"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/response"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 
 	"github.com/gin-gonic/gin"
 	"github.com/imroc/req/v3"

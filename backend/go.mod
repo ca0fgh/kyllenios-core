@@ -1,4 +1,4 @@
-module github.com/ca0fgh/kyllenios-core
+module github.com/ca0fgh/hermes-proxy
 
 go 1.26.1
 

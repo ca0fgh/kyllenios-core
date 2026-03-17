@@ -12,8 +12,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/dialect/sql/sqljson"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/kyllenios-core/ent/errorpassthroughrule"
-	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/hermes-proxy/ent/errorpassthroughrule"
+	"github.com/ca0fgh/hermes-proxy/ent/predicate"
 )
 
 // ErrorPassthroughRuleUpdate is the builder for updating ErrorPassthroughRule entities.

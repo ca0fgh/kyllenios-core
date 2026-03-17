@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/usagestats"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/usagestats"
 	"github.com/stretchr/testify/require"
 )
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 # =============================================================================
-# kyllenios-core Docker Deployment Preparation Script
+# hermes-proxy Docker Deployment Preparation Script
 # =============================================================================
-# This script prepares deployment files for kyllenios-core:
+# This script prepares deployment files for hermes-proxy:
 #   - Downloads docker-compose.local.yml and .env.example
 #   - Generates secure secrets (JWT_SECRET, TOTP_ENCRYPTION_KEY, POSTGRES_PASSWORD)
 #   - Creates necessary data directories
@@ -21,7 +21,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # GitHub raw content base URL
-GITHUB_RAW_URL="https://raw.githubusercontent.com/ca0fgh/kyllenios-core/main/deploy"
+GITHUB_RAW_URL="https://raw.githubusercontent.com/ca0fgh/hermes-proxy/main/deploy"
 
 # Print colored message
 print_info() {
@@ -54,7 +54,7 @@ command_exists() {
 main() {
     echo ""
     echo "=========================================="
-    echo "  kyllenios-core Deployment Preparation"
+    echo "  hermes-proxy Deployment Preparation"
     echo "=========================================="
     echo ""
 
@@ -157,7 +157,7 @@ main() {
     echo "     docker-compose up -d"
     echo ""
     echo "  3. View logs:"
-    echo "     docker-compose logs -f kyllenios-core"
+    echo "     docker-compose logs -f hermes-proxy"
     echo ""
     echo "  4. Access Web UI:"
     echo "     http://localhost:8080"

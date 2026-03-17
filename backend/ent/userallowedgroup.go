@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/group"
-	"github.com/ca0fgh/kyllenios-core/ent/user"
-	"github.com/ca0fgh/kyllenios-core/ent/userallowedgroup"
+	"github.com/ca0fgh/hermes-proxy/ent/group"
+	"github.com/ca0fgh/hermes-proxy/ent/user"
+	"github.com/ca0fgh/hermes-proxy/ent/userallowedgroup"
 )
 
 // UserAllowedGroup is the model entity for the UserAllowedGroup schema.

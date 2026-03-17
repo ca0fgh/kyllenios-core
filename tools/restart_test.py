@@ -30,7 +30,7 @@ class CollectMissingDependenciesTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             app_dir = Path(tmpdir)
-            binary_path = app_dir / "kyllenios-core"
+            binary_path = app_dir / "hermes-proxy"
             config_path = app_dir / "config.yaml"
 
             with mock.patch.object(restart, "find_tool", return_value="") as find_tool:
@@ -53,7 +53,7 @@ class CollectMissingDependenciesTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             app_dir = Path(tmpdir)
-            binary_path = app_dir / "kyllenios-core"
+            binary_path = app_dir / "hermes-proxy"
             config_path = app_dir / "config.yaml"
 
             with mock.patch.object(restart, "find_tool") as find_tool:
@@ -62,7 +62,7 @@ class CollectMissingDependenciesTest(unittest.TestCase):
                         issues = restart.collect_preflight_issues(args, binary_path, config_path)
 
         joined = "\n".join(issues)
-        self.assertIn("kyllenios-core`: not found", joined)
+        self.assertIn("hermes-proxy`: not found", joined)
         self.assertIn("config.yaml", joined)
         self.assertIn("PostgreSQL", joined)
         self.assertIn("Redis", joined)
@@ -74,7 +74,7 @@ class CollectMissingDependenciesTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             app_dir = Path(tmpdir)
-            binary_path = app_dir / "kyllenios-core"
+            binary_path = app_dir / "hermes-proxy"
             binary_path.write_text("", encoding="utf-8")
             config_path = app_dir / "config.yaml"
             config_path.write_text(
@@ -103,7 +103,7 @@ class CollectMissingDependenciesTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             app_dir = Path(tmpdir)
-            binary_path = app_dir / "kyllenios-core"
+            binary_path = app_dir / "hermes-proxy"
             binary_path.write_text("", encoding="utf-8")
             config_path = app_dir / "config.yaml"
             config_path.write_text("server:\n    port: 8080\n", encoding="utf-8")
@@ -119,7 +119,7 @@ class CollectMissingDependenciesTest(unittest.TestCase):
 class BootstrapRuntimeFilesTest(unittest.TestCase):
     def test_bootstrap_runtime_files_creates_app_dir_without_forcing_config(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            app_dir = Path(tmpdir) / ".kyllenios-core-runtime"
+            app_dir = Path(tmpdir) / ".hermes-proxy-runtime"
             config_path = app_dir / "config.yaml"
 
             restart.bootstrap_runtime_files(app_dir)
@@ -131,8 +131,8 @@ class BootstrapRuntimeFilesTest(unittest.TestCase):
         args = make_args()
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            app_dir = Path(tmpdir) / ".kyllenios-core-runtime"
-            binary_path = app_dir / "kyllenios-core"
+            app_dir = Path(tmpdir) / ".hermes-proxy-runtime"
+            binary_path = app_dir / "hermes-proxy"
             config_path = app_dir / "config.yaml"
 
             restart.bootstrap_runtime_files(app_dir)
@@ -155,7 +155,7 @@ class EnsurePreflightReadyTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             app_dir = Path(tmpdir)
-            binary_path = app_dir / "kyllenios-core"
+            binary_path = app_dir / "hermes-proxy"
             config_path = app_dir / "config.yaml"
 
             with mock.patch.object(

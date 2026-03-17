@@ -14,10 +14,10 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/ctxkey"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/ip"
-	middleware2 "github.com/ca0fgh/kyllenios-core/internal/server/middleware"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/ctxkey"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/ip"
+	middleware2 "github.com/ca0fgh/hermes-proxy/internal/server/middleware"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/gin-gonic/gin"
 )
 

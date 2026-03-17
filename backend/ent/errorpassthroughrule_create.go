@@ -11,7 +11,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/kyllenios-core/ent/errorpassthroughrule"
+	"github.com/ca0fgh/hermes-proxy/ent/errorpassthroughrule"
 )
 
 // ErrorPassthroughRuleCreate is the builder for creating a ErrorPassthroughRule entity.

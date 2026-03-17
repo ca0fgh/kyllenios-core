@@ -992,7 +992,7 @@ func load(allowMissingJWTSecret bool) (*Config, error) {
 	// 4. Config subdirectory
 	viper.AddConfigPath("./config")
 	// 5. System config directory
-	viper.AddConfigPath("/etc/kyllenios-core")
+	viper.AddConfigPath("/etc/hermes-proxy")
 
 	// 环境变量支持
 	viper.AutomaticEnv()
@@ -1129,7 +1129,7 @@ func setDefaults() {
 	// Log
 	viper.SetDefault("log.level", "info")
 	viper.SetDefault("log.format", "console")
-	viper.SetDefault("log.service_name", "kyllenios-core")
+	viper.SetDefault("log.service_name", "hermes-proxy")
 	viper.SetDefault("log.env", "production")
 	viper.SetDefault("log.caller", true)
 	viper.SetDefault("log.stacktrace_level", "error")
@@ -1207,7 +1207,7 @@ func setDefaults() {
 	viper.SetDefault("database.port", 5432)
 	viper.SetDefault("database.user", "postgres")
 	viper.SetDefault("database.password", "postgres")
-	viper.SetDefault("database.dbname", "kyllenios-core")
+	viper.SetDefault("database.dbname", "hermes-proxy")
 	viper.SetDefault("database.sslmode", "prefer")
 	viper.SetDefault("database.max_open_conns", 256)
 	viper.SetDefault("database.max_idle_conns", 128)
@@ -1290,7 +1290,7 @@ func setDefaults() {
 
 	// Dashboard cache
 	viper.SetDefault("dashboard_cache.enabled", true)
-	viper.SetDefault("dashboard_cache.key_prefix", "kyllenios-core:")
+	viper.SetDefault("dashboard_cache.key_prefix", "hermes-proxy:")
 	viper.SetDefault("dashboard_cache.stats_fresh_ttl_seconds", 15)
 	viper.SetDefault("dashboard_cache.stats_ttl_seconds", 30)
 	viper.SetDefault("dashboard_cache.stats_refresh_timeout_seconds", 30)
@@ -2293,7 +2293,7 @@ func GetServerAddress() string {
 	v.SetConfigType("yaml")
 	v.AddConfigPath(".")
 	v.AddConfigPath("./config")
-	v.AddConfigPath("/etc/kyllenios-core")
+	v.AddConfigPath("/etc/hermes-proxy")
 
 	// Support SERVER_HOST and SERVER_PORT environment variables
 	v.AutomaticEnv()

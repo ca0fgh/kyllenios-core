@@ -11,8 +11,8 @@ describe('resolveDocumentTitle', () => {
   })
 
   it('站点名为空时，回退默认站点名', () => {
-    expect(resolveDocumentTitle('Dashboard', '')).toBe('Dashboard - kyllenios-core')
-    expect(resolveDocumentTitle(undefined, '   ')).toBe('kyllenios-core')
+    expect(resolveDocumentTitle('Dashboard', '')).toBe('Dashboard - hermes-proxy')
+    expect(resolveDocumentTitle(undefined, '   ')).toBe('hermes-proxy')
   })
 
   it('站点名变更时仅影响后续路由标题计算', () => {

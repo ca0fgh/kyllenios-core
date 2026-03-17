@@ -16,7 +16,7 @@ import (
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
 )
 
 // handleBedrockStreamingResponse 处理 Bedrock InvokeModelWithResponseStream 的 EventStream 响应

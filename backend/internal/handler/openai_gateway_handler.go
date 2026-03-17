@@ -11,12 +11,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	pkghttputil "github.com/ca0fgh/kyllenios-core/internal/pkg/httputil"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/ip"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
-	middleware2 "github.com/ca0fgh/kyllenios-core/internal/server/middleware"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	pkghttputil "github.com/ca0fgh/hermes-proxy/internal/pkg/httputil"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/ip"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
+	middleware2 "github.com/ca0fgh/hermes-proxy/internal/server/middleware"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 
 	coderws "github.com/coder/websocket"
 	"github.com/gin-gonic/gin"

@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	"github.com/ca0fgh/kyllenios-core/ent/enttest"
-	dbusagecleanuptask "github.com/ca0fgh/kyllenios-core/ent/usagecleanuptask"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/ent/enttest"
+	dbusagecleanuptask "github.com/ca0fgh/hermes-proxy/ent/usagecleanuptask"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/stretchr/testify/require"
 
 	"entgo.io/ent/dialect"

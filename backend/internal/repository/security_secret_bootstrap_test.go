@@ -10,10 +10,10 @@ import (
 	"sync"
 	"testing"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	"github.com/ca0fgh/kyllenios-core/ent/enttest"
-	"github.com/ca0fgh/kyllenios-core/ent/securitysecret"
-	"github.com/ca0fgh/kyllenios-core/internal/config"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/ent/enttest"
+	"github.com/ca0fgh/hermes-proxy/ent/securitysecret"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
 	"github.com/stretchr/testify/require"
 
 	"entgo.io/ent/dialect"

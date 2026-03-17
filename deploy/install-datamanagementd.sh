@@ -5,13 +5,13 @@ set -euo pipefail
 # 用法：
 #   sudo ./install-datamanagementd.sh --binary /path/to/datamanagementd
 # 或：
-#   sudo ./install-datamanagementd.sh --source /path/to/kyllenios-core/repo
+#   sudo ./install-datamanagementd.sh --source /path/to/hermes-proxy/repo
 
 BIN_PATH=""
 SOURCE_PATH=""
-INSTALL_DIR="/opt/kyllenios-core"
-DATA_DIR="/var/lib/kyllenios-core/datamanagement"
-SERVICE_FILE_NAME="kyllenios-core-datamanagementd.service"
+INSTALL_DIR="/opt/hermes-proxy"
+DATA_DIR="/var/lib/hermes-proxy/datamanagement"
+SERVICE_FILE_NAME="hermes-proxy-datamanagementd.service"
 
 function print_help() {
   cat <<'EOF'
@@ -20,12 +20,12 @@ function print_help() {
 
 参数:
   --binary  指定已构建的 datamanagementd 二进制路径
-  --source  指定 kyllenios-core 仓库路径（脚本会执行 go build）
+  --source  指定 hermes-proxy 仓库路径（脚本会执行 go build）
   -h, --help 显示帮助
 
 示例:
   sudo ./install-datamanagementd.sh --binary ./datamanagement/datamanagementd
-  sudo ./install-datamanagementd.sh --source /opt/kyllenios-core-src
+  sudo ./install-datamanagementd.sh --source /opt/hermes-proxy-src
 EOF
 }
 
@@ -81,11 +81,11 @@ if [[ ! -f "$BIN_PATH" ]]; then
   exit 1
 fi
 
-if ! id kyllenios-core >/dev/null 2>&1; then
-  echo "[2/6] 创建系统用户 kyllenios-core..."
-  useradd --system --no-create-home --shell /usr/sbin/nologin kyllenios-core
+if ! id hermes-proxy >/dev/null 2>&1; then
+  echo "[2/6] 创建系统用户 hermes-proxy..."
+  useradd --system --no-create-home --shell /usr/sbin/nologin hermes-proxy
 else
-  echo "[2/6] 系统用户 kyllenios-core 已存在，跳过创建"
+  echo "[2/6] 系统用户 hermes-proxy 已存在，跳过创建"
 fi
 
 echo "[3/6] 安装 datamanagementd 二进制..."
@@ -94,7 +94,7 @@ install -m 0755 "$BIN_PATH" "$INSTALL_DIR/datamanagementd"
 
 echo "[4/6] 准备数据目录..."
 mkdir -p "$DATA_DIR"
-chown -R kyllenios-core:kyllenios-core /var/lib/kyllenios-core
+chown -R hermes-proxy:hermes-proxy /var/lib/hermes-proxy
 chmod 0750 "$DATA_DIR"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -107,17 +107,17 @@ fi
 echo "[5/6] 安装 systemd 服务..."
 cp "$SERVICE_TEMPLATE" "/etc/systemd/system/$SERVICE_FILE_NAME"
 systemctl daemon-reload
-systemctl enable --now kyllenios-core-datamanagementd
+systemctl enable --now hermes-proxy-datamanagementd
 
 echo "[6/6] 完成，当前状态："
-systemctl --no-pager --full status kyllenios-core-datamanagementd || true
+systemctl --no-pager --full status hermes-proxy-datamanagementd || true
 
 cat <<'EOF'
 
 下一步建议：
-1. 查看日志：sudo journalctl -u kyllenios-core-datamanagementd -f
-2. 在 kyllenios-core（容器部署时）挂载 socket:
-   /tmp/kyllenios-core-datamanagement.sock:/tmp/kyllenios-core-datamanagement.sock
+1. 查看日志：sudo journalctl -u hermes-proxy-datamanagementd -f
+2. 在 hermes-proxy（容器部署时）挂载 socket:
+   /tmp/hermes-proxy-datamanagement.sock:/tmp/hermes-proxy-datamanagement.sock
 3. 进入管理后台“数据管理”页面确认 agent=enabled
 
 EOF

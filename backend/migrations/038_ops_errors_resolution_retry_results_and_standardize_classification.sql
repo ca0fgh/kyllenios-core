@@ -71,10 +71,10 @@ WHERE upstream_request_id IS NULL AND result_request_id IS NOT NULL;
 --   error_source: client_request|upstream_http|gateway
 -- ============================================
 
--- Owner: legacy kyllenios-core => platform.
+-- Owner: legacy hermes-proxy => platform.
 UPDATE ops_error_logs
 SET error_owner = 'platform'
-WHERE LOWER(COALESCE(error_owner, '')) = 'kyllenios-core';
+WHERE LOWER(COALESCE(error_owner, '')) = 'hermes-proxy';
 
 -- Owner: normalize empty/null to platform (best-effort).
 UPDATE ops_error_logs

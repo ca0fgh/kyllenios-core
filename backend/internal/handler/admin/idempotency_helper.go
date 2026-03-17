@@ -5,11 +5,11 @@ import (
 	"strconv"
 	"time"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
-	middleware2 "github.com/ca0fgh/kyllenios-core/internal/server/middleware"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/response"
+	middleware2 "github.com/ca0fgh/hermes-proxy/internal/server/middleware"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

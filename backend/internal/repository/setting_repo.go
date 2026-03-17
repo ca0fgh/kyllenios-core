@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/ent"
-	"github.com/ca0fgh/kyllenios-core/ent/setting"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/ent/setting"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 type settingRepository struct {

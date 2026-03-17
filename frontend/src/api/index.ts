@@ -1,5 +1,5 @@
 /**
- * API Client for kyllenios-core Backend
+ * API Client for hermes-proxy Backend
  * Central export point for all API modules
  */
 

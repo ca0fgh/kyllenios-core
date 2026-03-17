@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
 )
 
 // Task type constants

@@ -1,6 +1,6 @@
 # Authentication Views
 
-This directory contains Vue 3 authentication views for the kyllenios-core frontend application.
+This directory contains Vue 3 authentication views for the hermes-proxy frontend application.
 
 ## Components
 

@@ -1,4 +1,4 @@
-# kyllenios-core 重命名与上游同步总结
+# hermes-proxy 重命名与上游同步总结
 
 日期：2026-03-15
 
@@ -10,11 +10,11 @@
 
 ### 2.1 项目重命名
 
-项目已从旧名重命名为 `kyllenios-core`。
+项目已从旧名重命名为 `hermes-proxy`。
 
 已完成的内容：
 
-- 将项目内容中的旧名替换为 `kyllenios-core`
+- 将项目内容中的旧名替换为 `hermes-proxy`
 - 重命名项目目录
 - 重命名相关 service 文件和 runtime 路径
 - 更新 Go module 路径
@@ -23,7 +23,7 @@
 本地路径变化：
 
 - 旧路径：`/Users/money/project/subproject/<old-name>`
-- 新路径：`/Users/money/project/subproject/kyllenios-core`
+- 新路径：`/Users/money/project/subproject/hermes-proxy`
 
 子项目重命名提交：
 
@@ -37,24 +37,24 @@ GitHub 仓库已从：
 
 改为：
 
-- `https://github.com/ca0fgh/kyllenios-core`
+- `https://github.com/ca0fgh/hermes-proxy`
 
 当前子项目远端：
 
 ```bash
-origin   https://github.com/ca0fgh/kyllenios-core.git
+origin   https://github.com/ca0fgh/hermes-proxy.git
 upstream <已配置的原始上游仓库地址>
 ```
 
 ### 2.3 上游关系已澄清
 
-当前仓库 `ca0fgh/kyllenios-core` 在 GitHub 上是一个 fork。
+当前仓库 `ca0fgh/hermes-proxy` 在 GitHub 上是一个 fork。
 
 真实上游关系已经接入为本地 `upstream` remote。
 
 因此，后续标准 remote 关系应保持为：
 
-- `origin` = 当前工作仓库：`ca0fgh/kyllenios-core`
+- `origin` = 当前工作仓库：`ca0fgh/hermes-proxy`
 - `upstream` = 原始上游仓库对应的本地 remote
 
 ### 2.4 上游 main 已合入
@@ -84,17 +84,17 @@ upstream <已配置的原始上游仓库地址>
 父仓库相关提交：
 
 - `9619576` 子模块重命名提交
-- `dc22c97` `Update kyllenios-core submodule`
+- `dc22c97` `Update hermes-proxy submodule`
 
 ## 3. 验证结果
 
 在子项目中已完成以下验证：
 
 ```bash
-cd /Users/money/project/subproject/kyllenios-core/backend
+cd /Users/money/project/subproject/hermes-proxy/backend
 go test ./...
 
-cd /Users/money/project/subproject/kyllenios-core/frontend
+cd /Users/money/project/subproject/hermes-proxy/frontend
 pnpm typecheck
 ```
 
@@ -114,7 +114,7 @@ pnpm typecheck
 
 路径：
 
-- `/Users/money/project/subproject/kyllenios-core`
+- `/Users/money/project/subproject/hermes-proxy`
 
 分支：
 
@@ -127,7 +127,7 @@ pnpm typecheck
 远端：
 
 ```bash
-origin   https://github.com/ca0fgh/kyllenios-core.git
+origin   https://github.com/ca0fgh/hermes-proxy.git
 upstream <已配置的原始上游仓库地址>
 ```
 
@@ -147,14 +147,14 @@ upstream <已配置的原始上游仓库地址>
 
 子模块路径：
 
-- `subproject/kyllenios-core`
+- `subproject/hermes-proxy`
 
 ## 5. 后续继续同步上游的标准流程
 
 在子项目里执行：
 
 ```bash
-cd /Users/money/project/subproject/kyllenios-core
+cd /Users/money/project/subproject/hermes-proxy
 
 git switch main
 git pull --ff-only origin main
@@ -162,7 +162,7 @@ git fetch upstream
 git merge upstream/main
 ```
 
-合并完成后，必须额外做一次命名回归检查，确认上游带回来的 `sub2api` 名称是否已经继续替换为 `kyllenios-core`。
+合并完成后，必须额外做一次命名回归检查，确认上游带回来的 `sub2api` 名称是否已经继续替换为 `hermes-proxy`。
 
 建议至少检查以下几类内容：
 
@@ -174,14 +174,14 @@ git merge upstream/main
 可直接执行：
 
 ```bash
-cd /Users/money/project/subproject/kyllenios-core
+cd /Users/money/project/subproject/hermes-proxy
 
 rg -n --hidden --glob '!.git' '([sS][uU][bB]2[aA][pP][iI])'
 ```
 
 规则直接固定为：
 
-- 与上游合并后，凡是回流进当前项目代码、文档、脚本、测试里的 `sub2api`，都替换为 `kyllenios-core`
+- 与上游合并后，凡是回流进当前项目代码、文档、脚本、测试里的 `sub2api`，都替换为 `hermes-proxy`
 
 如果 merge 成功且验证通过，再推送：
 
@@ -194,15 +194,15 @@ git push origin main
 ```bash
 cd /Users/money/project
 
-git add subproject/kyllenios-core
-git commit -m "Update kyllenios-core submodule"
+git add subproject/hermes-proxy
+git commit -m "Update hermes-proxy submodule"
 git push origin main
 ```
 
 ## 6. 备注
 
 - GitHub 上旧地址可能仍然可访问，这通常是仓库重命名后的重定向行为，不影响当前标准仓库名。
-- 由于本仓库已经做过一次完整的旧名到 `kyllenios-core` 的重命名，后续再合并上游时，命名敏感文件发生冲突的概率会更高。
+- 由于本仓库已经做过一次完整的旧名到 `hermes-proxy` 的重命名，后续再合并上游时，命名敏感文件发生冲突的概率会更高。
 - 如果以后再遇到 merge 冲突，优先检查这些位置：
   - `go.mod`
   - deployment 脚本

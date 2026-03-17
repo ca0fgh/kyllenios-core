@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/idempotencyrecord"
+	"github.com/ca0fgh/hermes-proxy/ent/idempotencyrecord"
 )
 
 // IdempotencyRecord is the model entity for the IdempotencyRecord schema.

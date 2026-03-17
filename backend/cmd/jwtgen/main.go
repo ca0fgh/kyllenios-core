@@ -7,10 +7,10 @@ import (
 	"log"
 	"time"
 
-	_ "github.com/ca0fgh/kyllenios-core/ent/runtime"
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/repository"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	_ "github.com/ca0fgh/hermes-proxy/ent/runtime"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/repository"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 func main() {

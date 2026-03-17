@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"time"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/usagestats"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/usagestats"
 )
 
 var (

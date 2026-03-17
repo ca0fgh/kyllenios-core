@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/antigravity"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/antigravity"
 	"github.com/cespare/xxhash/v2"
 )
 

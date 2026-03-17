@@ -28,7 +28,7 @@ async function bootstrap() {
   appStore.initFromInjectedConfig()
 
   // Set document title immediately after config is loaded
-  if (appStore.siteName && appStore.siteName !== 'kyllenios-core') {
+  if (appStore.siteName && appStore.siteName !== 'hermes-proxy') {
     document.title = `${appStore.siteName} - AI API Gateway`
   }
 

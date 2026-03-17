@@ -7,7 +7,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
 )
 
 // APIKeyRateLimitCacheData holds rate limit usage data cached in Redis.

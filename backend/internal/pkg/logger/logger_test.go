@@ -11,7 +11,7 @@ import (
 
 func TestInit_DualOutput(t *testing.T) {
 	tmpDir := t.TempDir()
-	logPath := filepath.Join(tmpDir, "logs", "kyllenios-core.log")
+	logPath := filepath.Join(tmpDir, "logs", "hermes-proxy.log")
 
 	origStdout := os.Stdout
 	origStderr := os.Stderr
@@ -37,7 +37,7 @@ func TestInit_DualOutput(t *testing.T) {
 	err = Init(InitOptions{
 		Level:       "debug",
 		Format:      "json",
-		ServiceName: "kyllenios-core",
+		ServiceName: "hermes-proxy",
 		Environment: "test",
 		Output: OutputOptions{
 			ToStdout: true,
@@ -110,7 +110,7 @@ func TestInit_FileOutputFailureDowngrade(t *testing.T) {
 		Output: OutputOptions{
 			ToStdout: true,
 			ToFile:   true,
-			FilePath: filepath.Join(os.DevNull, "logs", "kyllenios-core.log"),
+			FilePath: filepath.Join(os.DevNull, "logs", "hermes-proxy.log"),
 		},
 		Rotation: RotationOptions{
 			MaxSizeMB:  10,
@@ -153,7 +153,7 @@ func TestInit_CallerShouldPointToCallsite(t *testing.T) {
 	if err := Init(InitOptions{
 		Level:       "info",
 		Format:      "json",
-		ServiceName: "kyllenios-core",
+		ServiceName: "hermes-proxy",
 		Environment: "test",
 		Caller:      true,
 		Output: OutputOptions{

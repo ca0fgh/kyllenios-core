@@ -3,11 +3,11 @@ package repository
 import (
 	"context"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	"github.com/ca0fgh/kyllenios-core/ent/promocode"
-	"github.com/ca0fgh/kyllenios-core/ent/promocodeusage"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/ent/promocode"
+	"github.com/ca0fgh/hermes-proxy/ent/promocodeusage"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 type promoCodeRepository struct {

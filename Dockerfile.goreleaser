@@ -1,5 +1,5 @@
 # =============================================================================
-# kyllenios-core Dockerfile for GoReleaser
+# hermes-proxy Dockerfile for GoReleaser
 # =============================================================================
 # This Dockerfile is used by GoReleaser to build Docker images.
 # It only packages the pre-built binary, no compilation needed.
@@ -13,8 +13,8 @@ FROM ${POSTGRES_IMAGE} AS pg-client
 FROM ${ALPINE_IMAGE}
 
 LABEL maintainer="Wei-Shaw <github.com/Wei-Shaw>"
-LABEL description="kyllenios-core - AI API Gateway Platform"
-LABEL org.opencontainers.image.source="https://github.com/ca0fgh/kyllenios-core"
+LABEL description="hermes-proxy - AI API Gateway Platform"
+LABEL org.opencontainers.image.source="https://github.com/ca0fgh/hermes-proxy"
 
 # Install runtime dependencies
 RUN apk add --no-cache \
@@ -36,22 +36,22 @@ COPY --from=pg-client /usr/local/bin/psql /usr/local/bin/psql
 COPY --from=pg-client /usr/local/lib/libpq.so.5* /usr/local/lib/
 
 # Create non-root user
-RUN addgroup -g 1000 kyllenios-core && \
-    adduser -u 1000 -G kyllenios-core -s /bin/sh -D kyllenios-core
+RUN addgroup -g 1000 hermes-proxy && \
+    adduser -u 1000 -G hermes-proxy -s /bin/sh -D hermes-proxy
 
 WORKDIR /app
 
 # Copy pre-built binary from GoReleaser
-COPY kyllenios-core /app/kyllenios-core
+COPY hermes-proxy /app/hermes-proxy
 
 # Create data directory
-RUN mkdir -p /app/data && chown -R kyllenios-core:kyllenios-core /app
+RUN mkdir -p /app/data && chown -R hermes-proxy:hermes-proxy /app
 
-USER kyllenios-core
+USER hermes-proxy
 
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
     CMD curl -f http://localhost:${SERVER_PORT:-8080}/health || exit 1
 
-ENTRYPOINT ["/app/kyllenios-core"]
+ENTRYPOINT ["/app/hermes-proxy"]

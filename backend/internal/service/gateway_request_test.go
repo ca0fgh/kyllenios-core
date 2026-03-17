@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ca0fgh/kyllenios-core/internal/domain"
+	"github.com/ca0fgh/hermes-proxy/internal/domain"
 	"github.com/stretchr/testify/require"
 )
 

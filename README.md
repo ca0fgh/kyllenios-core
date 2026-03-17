@@ -1,4 +1,4 @@
-# kyllenios-core
+# hermes-proxy
 
 <div align="center">
 
@@ -18,17 +18,17 @@ English | [中文](README_CN.md)
 
 ## Demo
 
-Try kyllenios-core online: **https://demo.kyllenios-core.org/**
+Try hermes-proxy online: **https://demo.hermes-proxy.org/**
 
 Demo credentials (shared demo environment; **not** created automatically for self-hosted installs):
 
 | Email | Password |
 |-------|----------|
-| admin@kyllenios-core.com | admin123 |
+| admin@hermes-proxy.com | admin123 |
 
 ## Overview
 
-kyllenios-core is an AI API gateway platform designed to distribute and manage API quotas from AI product subscriptions (like Claude Code $200/month). Users can access upstream AI services through platform-generated API Keys, while the platform handles authentication, billing, load balancing, and request forwarding.
+hermes-proxy is an AI API gateway platform designed to distribute and manage API quotas from AI product subscriptions (like Claude Code $200/month). Users can access upstream AI services through platform-generated API Keys, while the platform handles authentication, billing, load balancing, and request forwarding.
 
 ## Features
 
@@ -43,12 +43,12 @@ kyllenios-core is an AI API gateway platform designed to distribute and manage A
 
 ## Ecosystem
 
-Community projects that extend or integrate with kyllenios-core:
+Community projects that extend or integrate with hermes-proxy:
 
 | Project | Description | Features |
 |---------|-------------|----------|
-| kyllenios-corePay | Self-service payment system | Self-service top-up and subscription purchase; supports YiPay protocol, WeChat Pay, Alipay, Stripe; embeddable via iframe |
-| [kyllenios-core-mobile](https://github.com/ckken/kyllenios-core-mobile) | Mobile admin console | Cross-platform app (iOS/Android/Web) for user management, account management, monitoring dashboard, and multi-backend switching; built with Expo + React Native |
+| hermes-proxyPay | Self-service payment system | Self-service top-up and subscription purchase; supports YiPay protocol, WeChat Pay, Alipay, Stripe; embeddable via iframe |
+| [hermes-proxy-mobile](https://github.com/ckken/hermes-proxy-mobile) | Mobile admin console | Cross-platform app (iOS/Android/Web) for user management, account management, monitoring dashboard, and multi-backend switching; built with Expo + React Native |
 
 ## Tech Stack
 
@@ -84,13 +84,13 @@ One-click installation script that downloads pre-built binaries from GitHub Rele
 #### Installation Steps
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/ca0fgh/kyllenios-core/main/deploy/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ca0fgh/hermes-proxy/main/deploy/install.sh | sudo bash
 ```
 
 The script will:
 1. Detect your system architecture
 2. Download the latest release
-3. Install binary to `/opt/kyllenios-core`
+3. Install binary to `/opt/hermes-proxy`
 4. Create systemd service
 5. Configure system user and permissions
 
@@ -98,10 +98,10 @@ The script will:
 
 ```bash
 # 1. Start the service
-sudo systemctl start kyllenios-core
+sudo systemctl start hermes-proxy
 
 # 2. Enable auto-start on boot
-sudo systemctl enable kyllenios-core
+sudo systemctl enable hermes-proxy
 
 # 3. Open Setup Wizard in browser
 # http://YOUR_SERVER_IP:8080
@@ -125,16 +125,16 @@ The web interface will:
 
 ```bash
 # Check status
-sudo systemctl status kyllenios-core
+sudo systemctl status hermes-proxy
 
 # View logs
-sudo journalctl -u kyllenios-core -f
+sudo journalctl -u hermes-proxy -f
 
 # Restart service
-sudo systemctl restart kyllenios-core
+sudo systemctl restart hermes-proxy
 
 # Uninstall
-curl -sSL https://raw.githubusercontent.com/ca0fgh/kyllenios-core/main/deploy/install.sh | sudo bash -s -- uninstall -y
+curl -sSL https://raw.githubusercontent.com/ca0fgh/hermes-proxy/main/deploy/install.sh | sudo bash -s -- uninstall -y
 ```
 
 ---
@@ -154,16 +154,16 @@ Use the automated deployment script for easy setup:
 
 ```bash
 # Create deployment directory
-mkdir -p kyllenios-core-deploy && cd kyllenios-core-deploy
+mkdir -p hermes-proxy-deploy && cd hermes-proxy-deploy
 
 # Download and run deployment preparation script
-curl -sSL https://raw.githubusercontent.com/ca0fgh/kyllenios-core/main/deploy/docker-deploy.sh | bash
+curl -sSL https://raw.githubusercontent.com/ca0fgh/hermes-proxy/main/deploy/docker-deploy.sh | bash
 
 # Start services
 docker-compose up -d
 
 # View logs
-docker-compose logs -f kyllenios-core
+docker-compose logs -f hermes-proxy
 ```
 
 **What the script does:**
@@ -179,8 +179,8 @@ If you prefer manual setup:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ca0fgh/kyllenios-core.git
-cd kyllenios-core/deploy
+git clone https://github.com/ca0fgh/hermes-proxy.git
+cd hermes-proxy/deploy
 
 # 2. Copy environment configuration
 cp .env.example .env
@@ -236,7 +236,7 @@ docker-compose up -d
 docker-compose -f docker-compose.local.yml ps
 
 # 7. View logs
-docker-compose -f docker-compose.local.yml logs -f kyllenios-core
+docker-compose -f docker-compose.local.yml logs -f hermes-proxy
 ```
 
 #### Deployment Versions
@@ -254,7 +254,7 @@ Open `http://YOUR_SERVER_IP:8080` in your browser.
 
 If admin password was auto-generated, find it in logs:
 ```bash
-docker-compose -f docker-compose.local.yml logs kyllenios-core | grep "admin password"
+docker-compose -f docker-compose.local.yml logs hermes-proxy | grep "admin password"
 ```
 
 #### Upgrade
@@ -273,14 +273,14 @@ When using `docker-compose.local.yml`, migrate to a new server easily:
 # On source server
 docker-compose -f docker-compose.local.yml down
 cd ..
-tar czf kyllenios-core-complete.tar.gz kyllenios-core-deploy/
+tar czf hermes-proxy-complete.tar.gz hermes-proxy-deploy/
 
 # Transfer to new server
-scp kyllenios-core-complete.tar.gz user@new-server:/path/
+scp hermes-proxy-complete.tar.gz user@new-server:/path/
 
 # On new server
-tar xzf kyllenios-core-complete.tar.gz
-cd kyllenios-core-deploy/
+tar xzf hermes-proxy-complete.tar.gz
+cd hermes-proxy-deploy/
 docker-compose -f docker-compose.local.yml up -d
 ```
 
@@ -318,8 +318,8 @@ Build and run from source code for development or customization.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ca0fgh/kyllenios-core.git
-cd kyllenios-core
+git clone https://github.com/ca0fgh/hermes-proxy.git
+cd hermes-proxy
 
 # 2. Install pnpm (if not already installed)
 npm install -g pnpm
@@ -332,7 +332,7 @@ pnpm run build
 
 # 4. Build backend with embedded frontend
 cd ../backend
-go build -tags embed -o kyllenios-core ./cmd/server
+go build -tags embed -o hermes-proxy ./cmd/server
 
 # 5. Create configuration file
 cp ../deploy/config.example.yaml ./config.yaml
@@ -356,7 +356,7 @@ database:
   port: 5432
   user: "postgres"
   password: "your_password"
-  dbname: "kyllenios-core"
+  dbname: "hermes-proxy"
 
 redis:
   host: "localhost"
@@ -435,7 +435,7 @@ If you disable URL validation or response header filtering, harden your network 
 
 ```bash
 # 6. Run the application
-./kyllenios-core
+./hermes-proxy
 ```
 
 #### Development Mode
@@ -474,7 +474,7 @@ Simple Mode is designed for individual developers or internal teams who want qui
 
 ## Antigravity Support
 
-kyllenios-core supports [Antigravity](https://antigravity.so/) accounts. After authorization, dedicated endpoints are available for Claude and Gemini models.
+hermes-proxy supports [Antigravity](https://antigravity.so/) accounts. After authorization, dedicated endpoints are available for Claude and Gemini models.
 
 ### Dedicated Endpoints
 
@@ -507,7 +507,7 @@ In Claude Code, Plan Mode cannot exit automatically. (Normally when using the na
 ## Project Structure
 
 ```
-kyllenios-core/
+hermes-proxy/
 ├── backend/                  # Go backend service
 │   ├── cmd/server/           # Application entry
 │   ├── internal/             # Internal modules
@@ -544,11 +544,11 @@ kyllenios-core/
 
 ## Star History
 
-<a href="https://star-history.com/#ca0fgh/kyllenios-core&Date">
+<a href="https://star-history.com/#ca0fgh/hermes-proxy&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ca0fgh/kyllenios-core&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ca0fgh/kyllenios-core&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ca0fgh/kyllenios-core&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ca0fgh/hermes-proxy&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ca0fgh/hermes-proxy&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ca0fgh/hermes-proxy&type=Date" />
  </picture>
 </a>
 

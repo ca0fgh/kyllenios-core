@@ -10,15 +10,15 @@ import (
 
 	"log/slog"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/openai"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/openai"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/response"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/gin-gonic/gin"
 )
 
 const (
-	dataType       = "kyllenios-core-data"
-	legacyDataType = "kyllenios-core-bundle"
+	dataType       = "hermes-proxy-data"
+	legacyDataType = "hermes-proxy-bundle"
 	dataVersion    = 1
 	dataPageCap    = 1000
 )

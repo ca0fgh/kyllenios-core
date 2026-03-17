@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/kyllenios-core/ent/predicate"
-	"github.com/ca0fgh/kyllenios-core/ent/usagelog"
+	"github.com/ca0fgh/hermes-proxy/ent/predicate"
+	"github.com/ca0fgh/hermes-proxy/ent/usagelog"
 )
 
 // UsageLogDelete is the builder for deleting a UsageLog entity.

@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/httpclient"
-	"github.com/ca0fgh/kyllenios-core/internal/util/urlvalidator"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/httpclient"
+	"github.com/ca0fgh/hermes-proxy/internal/util/urlvalidator"
 )
 
 type CRSSyncService struct {
@@ -255,7 +255,7 @@ func (s *CRSSyncService) SyncFromCRS(ctx context.Context, input SyncFromCRSInput
 		proxies, _ = s.proxyRepo.ListActive(ctx)
 	}
 
-	// Claude OAuth / Setup Token -> kyllenios-core anthropic oauth/setup-token
+	// Claude OAuth / Setup Token -> hermes-proxy anthropic oauth/setup-token
 	for _, src := range exported.Data.ClaudeAccounts {
 		item := SyncFromCRSItemResult{
 			CRSAccountID: src.ID,
@@ -412,7 +412,7 @@ func (s *CRSSyncService) SyncFromCRS(ctx context.Context, input SyncFromCRSInput
 		result.Items = append(result.Items, item)
 	}
 
-	// Claude Console API Key -> kyllenios-core anthropic apikey
+	// Claude Console API Key -> hermes-proxy anthropic apikey
 	for _, src := range exported.Data.ClaudeConsoleAccounts {
 		item := SyncFromCRSItemResult{
 			CRSAccountID: src.ID,
@@ -520,7 +520,7 @@ func (s *CRSSyncService) SyncFromCRS(ctx context.Context, input SyncFromCRSInput
 		result.Items = append(result.Items, item)
 	}
 
-	// OpenAI OAuth -> kyllenios-core openai oauth
+	// OpenAI OAuth -> hermes-proxy openai oauth
 	for _, src := range exported.Data.OpenAIOAuthAccounts {
 		item := SyncFromCRSItemResult{
 			CRSAccountID: src.ID,
@@ -661,7 +661,7 @@ func (s *CRSSyncService) SyncFromCRS(ctx context.Context, input SyncFromCRSInput
 		result.Items = append(result.Items, item)
 	}
 
-	// OpenAI Responses API Key -> kyllenios-core openai apikey
+	// OpenAI Responses API Key -> hermes-proxy openai apikey
 	for _, src := range exported.Data.OpenAIResponsesAccounts {
 		item := SyncFromCRSItemResult{
 			CRSAccountID: src.ID,
@@ -778,7 +778,7 @@ func (s *CRSSyncService) SyncFromCRS(ctx context.Context, input SyncFromCRSInput
 		result.Items = append(result.Items, item)
 	}
 
-	// Gemini OAuth -> kyllenios-core gemini oauth
+	// Gemini OAuth -> hermes-proxy gemini oauth
 	for _, src := range exported.Data.GeminiOAuthAccounts {
 		item := SyncFromCRSItemResult{
 			CRSAccountID: src.ID,
@@ -902,7 +902,7 @@ func (s *CRSSyncService) SyncFromCRS(ctx context.Context, input SyncFromCRSInput
 		result.Items = append(result.Items, item)
 	}
 
-	// Gemini API Key -> kyllenios-core gemini apikey
+	// Gemini API Key -> hermes-proxy gemini apikey
 	for _, src := range exported.Data.GeminiAPIKeyAccounts {
 		item := SyncFromCRSItemResult{
 			CRSAccountID: src.ID,

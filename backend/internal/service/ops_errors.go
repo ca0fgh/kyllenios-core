@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
 )
 
 func (s *OpsService) GetErrorTrend(ctx context.Context, filter *OpsDashboardFilter, bucketSeconds int) (*OpsErrorTrendResponse, error) {

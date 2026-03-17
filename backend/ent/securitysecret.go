@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/securitysecret"
+	"github.com/ca0fgh/hermes-proxy/ent/securitysecret"
 )
 
 // SecuritySecret is the model entity for the SecuritySecret schema.

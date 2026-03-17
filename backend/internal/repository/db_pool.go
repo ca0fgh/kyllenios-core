@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
 )
 
 type dbPoolSettings struct {

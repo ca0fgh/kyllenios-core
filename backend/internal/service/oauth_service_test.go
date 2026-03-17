@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/oauth"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/oauth"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
 )
 
 // --- mock: ClaudeOAuthClient ---

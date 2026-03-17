@@ -134,7 +134,7 @@ func ValidColumn(column string) bool {
 // package on the initialization of the application. Therefore,
 // it should be imported in the main as follows:
 //
-//	import _ "github.com/ca0fgh/kyllenios-core/ent/runtime"
+//	import _ "github.com/ca0fgh/hermes-proxy/ent/runtime"
 var (
 	Hooks        [1]ent.Hook
 	Interceptors [1]ent.Interceptor

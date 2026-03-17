@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
 

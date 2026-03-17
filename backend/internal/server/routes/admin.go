@@ -2,8 +2,8 @@
 package routes
 
 import (
-	"github.com/ca0fgh/kyllenios-core/internal/handler"
-	"github.com/ca0fgh/kyllenios-core/internal/server/middleware"
+	"github.com/ca0fgh/hermes-proxy/internal/handler"
+	"github.com/ca0fgh/hermes-proxy/internal/server/middleware"
 
 	"github.com/gin-gonic/gin"
 )

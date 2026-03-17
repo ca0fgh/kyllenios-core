@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/apicompat"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/claude"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/logger"
-	"github.com/ca0fgh/kyllenios-core/internal/util/responseheaders"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/apicompat"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/claude"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/util/responseheaders"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

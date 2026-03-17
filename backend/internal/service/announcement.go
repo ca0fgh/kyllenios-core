@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/domain"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	"github.com/ca0fgh/hermes-proxy/internal/domain"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
 )
 
 const (

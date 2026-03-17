@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/kyllenios-core/ent/announcement"
-	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/hermes-proxy/ent/announcement"
+	"github.com/ca0fgh/hermes-proxy/ent/predicate"
 )
 
 // AnnouncementDelete is the builder for deleting a Announcement entity.

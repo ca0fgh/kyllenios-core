@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/openai"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/openai"
 	"github.com/stretchr/testify/require"
 )
 

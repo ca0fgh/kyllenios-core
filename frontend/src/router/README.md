@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains the Vue Router configuration for the kyllenios-core frontend application. The router implements a comprehensive navigation system with authentication guards, role-based access control, and lazy loading.
+This directory contains the Vue Router configuration for the hermes-proxy frontend application. The router implements a comprehensive navigation system with authentication guards, role-based access control, and lazy loading.
 
 ## Files
 

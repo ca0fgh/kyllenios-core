@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/pagination"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
 	"github.com/stretchr/testify/require"
 )
 

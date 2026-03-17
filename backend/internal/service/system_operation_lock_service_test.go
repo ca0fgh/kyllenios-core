@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
 

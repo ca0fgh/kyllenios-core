@@ -178,7 +178,7 @@ See "If You Accidentally Modified an Applied Migration" above.
 ### Migration Failed
 ```bash
 # Check migration status
-psql -d kyllenios-core -c "SELECT * FROM schema_migrations ORDER BY applied_at DESC;"
+psql -d hermes-proxy -c "SELECT * FROM schema_migrations ORDER BY applied_at DESC;"
 
 # Manually rollback if needed (use with caution)
 # Better to fix the migration and create a new one

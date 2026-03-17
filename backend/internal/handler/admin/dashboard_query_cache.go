@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/usagestats"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/usagestats"
 )
 
 var (

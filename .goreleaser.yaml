@@ -1,16 +1,16 @@
 version: 2
 
-project_name: kyllenios-core
+project_name: hermes-proxy
 
 before:
   hooks:
     - go mod tidy -C backend
 
 builds:
-  - id: kyllenios-core
+  - id: hermes-proxy
     dir: backend
     main: ./cmd/server
-    binary: kyllenios-core
+    binary: hermes-proxy
     flags:
       - -tags=embed
     env:
@@ -60,7 +60,7 @@ dockers:
     goarch: amd64
     skip_push: '{{ if eq .Env.DOCKERHUB_USERNAME "skip" }}true{{ else }}false{{ end }}'
     image_templates:
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-amd64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-amd64"
     dockerfile: Dockerfile.goreleaser
     use: buildx
     build_flag_templates:
@@ -73,7 +73,7 @@ dockers:
     goarch: arm64
     skip_push: '{{ if eq .Env.DOCKERHUB_USERNAME "skip" }}true{{ else }}false{{ end }}'
     image_templates:
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-arm64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-arm64"
     dockerfile: Dockerfile.goreleaser
     use: buildx
     build_flag_templates:
@@ -86,7 +86,7 @@ dockers:
     goos: linux
     goarch: amd64
     image_templates:
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-amd64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-amd64"
     dockerfile: Dockerfile.goreleaser
     use: buildx
     build_flag_templates:
@@ -99,7 +99,7 @@ dockers:
     goos: linux
     goarch: arm64
     image_templates:
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-arm64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-arm64"
     dockerfile: Dockerfile.goreleaser
     use: buildx
     build_flag_templates:
@@ -111,50 +111,50 @@ dockers:
 # Docker manifests for multi-arch support
 docker_manifests:
   # DockerHub manifests (skipped if DOCKERHUB_USERNAME is 'skip')
-  - name_template: "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}"
+  - name_template: "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}"
     skip_push: '{{ if eq .Env.DOCKERHUB_USERNAME "skip" }}true{{ else }}false{{ end }}'
     image_templates:
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-amd64"
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-arm64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-amd64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-arm64"
 
-  - name_template: "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:latest"
+  - name_template: "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:latest"
     skip_push: '{{ if eq .Env.DOCKERHUB_USERNAME "skip" }}true{{ else }}false{{ end }}'
     image_templates:
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-amd64"
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-arm64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-amd64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-arm64"
 
-  - name_template: "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Major }}.{{ .Minor }}"
+  - name_template: "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Major }}.{{ .Minor }}"
     skip_push: '{{ if eq .Env.DOCKERHUB_USERNAME "skip" }}true{{ else }}false{{ end }}'
     image_templates:
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-amd64"
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-arm64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-amd64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-arm64"
 
-  - name_template: "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Major }}"
+  - name_template: "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Major }}"
     skip_push: '{{ if eq .Env.DOCKERHUB_USERNAME "skip" }}true{{ else }}false{{ end }}'
     image_templates:
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-amd64"
-      - "{{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}-arm64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-amd64"
+      - "{{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}-arm64"
 
   # GHCR manifests (owner must be lowercase)
-  - name_template: "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}"
+  - name_template: "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}"
     image_templates:
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-amd64"
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-arm64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-amd64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-arm64"
 
-  - name_template: "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:latest"
+  - name_template: "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:latest"
     image_templates:
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-amd64"
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-arm64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-amd64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-arm64"
 
-  - name_template: "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Major }}.{{ .Minor }}"
+  - name_template: "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Major }}.{{ .Minor }}"
     image_templates:
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-amd64"
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-arm64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-amd64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-arm64"
 
-  - name_template: "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Major }}"
+  - name_template: "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Major }}"
     image_templates:
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-amd64"
-      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}-arm64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-amd64"
+      - "ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}-arm64"
 
 release:
   github:
@@ -162,7 +162,7 @@ release:
     name: "{{ .Env.GITHUB_REPO_NAME }}"
   draft: false
   prerelease: auto
-  name_template: "kyllenios-core {{.Version}}"
+  name_template: "hermes-proxy {{.Version}}"
   # 完全使用 tag 消息作为 release 内容（通过环境变量传入）
   header: |
     > AI API Gateway Platform - 将 AI 订阅配额分发和管理
@@ -179,11 +179,11 @@ release:
     ```bash
     {{ if ne .Env.DOCKERHUB_USERNAME "skip" -}}
     # Docker Hub
-    docker pull {{ .Env.DOCKERHUB_USERNAME }}/kyllenios-core:{{ .Version }}
+    docker pull {{ .Env.DOCKERHUB_USERNAME }}/hermes-proxy:{{ .Version }}
 
     {{ end -}}
     # GitHub Container Registry
-    docker pull ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/kyllenios-core:{{ .Version }}
+    docker pull ghcr.io/{{ .Env.GITHUB_REPO_OWNER_LOWER }}/hermes-proxy:{{ .Version }}
     ```
 
     **One-line install (Linux):**

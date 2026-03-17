@@ -6,8 +6,8 @@ import (
 	"errors"
 	"strings"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
 	"github.com/lib/pq"
 )
 

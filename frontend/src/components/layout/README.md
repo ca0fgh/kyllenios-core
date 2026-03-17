@@ -1,6 +1,6 @@
 # Layout Components
 
-Vue 3 layout components for the kyllenios-core frontend, built with Composition API, TypeScript, and TailwindCSS.
+Vue 3 layout components for the hermes-proxy frontend, built with Composition API, TypeScript, and TailwindCSS.
 
 ## Components
 

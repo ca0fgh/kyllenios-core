@@ -1,10 +1,10 @@
 # =============================================================================
-# kyllenios-core Docker Compose Configuration
+# hermes-proxy Docker Compose Configuration
 # =============================================================================
 # Quick Start:
 #   1. Copy .env.example to .env and configure
 #   2. docker-compose up -d
-#   3. Check logs: docker-compose logs -f kyllenios-core
+#   3. Check logs: docker-compose logs -f hermes-proxy
 #   4. Access: http://localhost:8080
 #
 # All configuration is done via environment variables.
@@ -13,11 +13,11 @@
 
 services:
   # ===========================================================================
-  # kyllenios-core Application
+  # hermes-proxy Application
   # ===========================================================================
-  kyllenios-core:
-    image: ca0fgh/kyllenios-core:latest
-    container_name: kyllenios-core
+  hermes-proxy:
+    image: ca0fgh/hermes-proxy:latest
+    container_name: hermes-proxy
     restart: unless-stopped
     ulimits:
       nofile:
@@ -50,9 +50,9 @@ services:
       # =======================================================================
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
-      - DATABASE_USER=${POSTGRES_USER:-kyllenios-core}
+      - DATABASE_USER=${POSTGRES_USER:-hermes-proxy}
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
-      - DATABASE_DBNAME=${POSTGRES_DB:-kyllenios-core}
+      - DATABASE_DBNAME=${POSTGRES_DB:-hermes-proxy}
       - DATABASE_SSLMODE=disable
       - DATABASE_MAX_OPEN_CONNS=${DATABASE_MAX_OPEN_CONNS:-50}
       - DATABASE_MAX_IDLE_CONNS=${DATABASE_MAX_IDLE_CONNS:-10}
@@ -73,7 +73,7 @@ services:
       # =======================================================================
       # Admin Account (auto-created on first run)
       # =======================================================================
-      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@kyllenios-core.local}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@hermes-proxy.local}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
 
       # =======================================================================
@@ -144,7 +144,7 @@ services:
       redis:
         condition: service_healthy
     networks:
-      - kyllenios-core-network
+      - hermes-proxy-network
     healthcheck:
       test: ["CMD", "wget", "-q", "-T", "5", "-O", "/dev/null", "http://localhost:8080/health"]
       interval: 30s
@@ -157,7 +157,7 @@ services:
   # ===========================================================================
   postgres:
     image: postgres:18-alpine
-    container_name: kyllenios-core-postgres
+    container_name: hermes-proxy-postgres
     restart: unless-stopped
     ulimits:
       nofile:
@@ -170,14 +170,14 @@ services:
       # 若不显式设置 PGDATA，则即使挂载了 postgres_data 到 /var/lib/postgresql/data，数据也不会落盘到该命名卷，
       # docker compose down/up 后会触发 initdb 重新初始化，导致用户/密码等数据丢失。
       - PGDATA=/var/lib/postgresql/data
-      - POSTGRES_USER=${POSTGRES_USER:-kyllenios-core}
+      - POSTGRES_USER=${POSTGRES_USER:-hermes-proxy}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
-      - POSTGRES_DB=${POSTGRES_DB:-kyllenios-core}
+      - POSTGRES_DB=${POSTGRES_DB:-hermes-proxy}
       - TZ=${TZ:-Asia/Shanghai}
     networks:
-      - kyllenios-core-network
+      - hermes-proxy-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kyllenios-core} -d ${POSTGRES_DB:-kyllenios-core}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hermes-proxy} -d ${POSTGRES_DB:-hermes-proxy}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -190,7 +190,7 @@ services:
   # ===========================================================================
   redis:
     image: redis:8-alpine
-    container_name: kyllenios-core-redis
+    container_name: hermes-proxy-redis
     restart: unless-stopped
     ulimits:
       nofile:
@@ -210,7 +210,7 @@ services:
       # REDISCLI_AUTH is used by redis-cli for authentication (safer than -a flag)
       - REDISCLI_AUTH=${REDIS_PASSWORD:-}
     networks:
-      - kyllenios-core-network
+      - hermes-proxy-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -233,5 +233,5 @@ volumes:
 # Networks
 # =============================================================================
 networks:
-  kyllenios-core-network:
+  hermes-proxy-network:
     driver: bridge

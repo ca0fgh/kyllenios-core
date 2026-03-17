@@ -1,8 +1,8 @@
 package admin
 
 import (
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/response"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/gin-gonic/gin"
 )
 

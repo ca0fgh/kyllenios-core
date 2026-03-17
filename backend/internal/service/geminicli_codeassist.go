@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/geminicli"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/geminicli"
 )
 
 // GeminiCliCodeAssistClient calls GeminiCli internal Code Assist endpoints.

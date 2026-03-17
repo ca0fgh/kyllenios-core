@@ -3,10 +3,10 @@ package repository
 import (
 	"context"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	"github.com/ca0fgh/kyllenios-core/ent/userattributedefinition"
-	"github.com/ca0fgh/kyllenios-core/ent/userattributevalue"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/ent/userattributedefinition"
+	"github.com/ca0fgh/hermes-proxy/ent/userattributevalue"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 // UserAttributeDefinitionRepository implementation

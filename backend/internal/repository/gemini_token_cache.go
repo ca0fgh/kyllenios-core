@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 
 	"github.com/redis/go-redis/v9"
 )

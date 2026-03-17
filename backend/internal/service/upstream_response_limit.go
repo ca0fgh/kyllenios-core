@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ca0fgh/kyllenios-core/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
 )
 
 var ErrUpstreamResponseBodyTooLarge = errors.New("upstream response body too large")

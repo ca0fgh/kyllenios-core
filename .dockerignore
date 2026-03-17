@@ -1,5 +1,5 @@
 # =============================================================================
-# Docker Ignore File for kyllenios-core
+# Docker Ignore File for hermes-proxy
 # =============================================================================
 
 # Git
@@ -59,8 +59,8 @@ temp/
 
 # Deploy files (not needed in image)
 deploy/install.sh
-deploy/kyllenios-core.service
-deploy/kyllenios-core-sudoers
+deploy/hermes-proxy.service
+deploy/hermes-proxy-sudoers
 
 # GoReleaser
 .goreleaser.yaml

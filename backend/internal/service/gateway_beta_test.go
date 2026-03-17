@@ -3,7 +3,7 @@ package service
 import (
 	"testing"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/claude"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/claude"
 
 	"github.com/stretchr/testify/require"
 )

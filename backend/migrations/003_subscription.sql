@@ -1,4 +1,4 @@
--- kyllenios-core 订阅功能迁移脚本
+-- hermes-proxy 订阅功能迁移脚本
 -- 添加订阅分组和用户订阅功能
 
 -- 1. 扩展 groups 表添加订阅相关字段

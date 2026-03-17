@@ -12,8 +12,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/ca0fgh/kyllenios-core/ent/idempotencyrecord"
-	"github.com/ca0fgh/kyllenios-core/ent/predicate"
+	"github.com/ca0fgh/hermes-proxy/ent/idempotencyrecord"
+	"github.com/ca0fgh/hermes-proxy/ent/predicate"
 )
 
 // IdempotencyRecordQuery is the builder for querying IdempotencyRecord entities.

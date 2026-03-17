@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/util/responseheaders"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/util/responseheaders"
 )
 
 func compileResponseHeaderFilter(cfg *config.Config) *responseheaders.CompiledHeaderFilter {

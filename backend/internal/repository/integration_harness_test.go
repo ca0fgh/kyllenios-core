@@ -15,9 +15,9 @@ import (
 	"testing"
 	"time"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	_ "github.com/ca0fgh/kyllenios-core/ent/runtime"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/timezone"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	_ "github.com/ca0fgh/hermes-proxy/ent/runtime"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/timezone"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 

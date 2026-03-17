@@ -22,9 +22,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/proxyurl"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/proxyutil"
-	"github.com/ca0fgh/kyllenios-core/internal/util/urlvalidator"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/proxyurl"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/proxyutil"
+	"github.com/ca0fgh/hermes-proxy/internal/util/urlvalidator"
 )
 
 // Transport 连接池默认配置

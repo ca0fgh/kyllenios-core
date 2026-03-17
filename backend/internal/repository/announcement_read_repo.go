@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	dbent "github.com/ca0fgh/kyllenios-core/ent"
-	"github.com/ca0fgh/kyllenios-core/ent/announcementread"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/ent/announcementread"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 type announcementReadRepository struct {

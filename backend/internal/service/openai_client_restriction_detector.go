@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/ca0fgh/kyllenios-core/internal/config"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/openai"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/openai"
 	"github.com/gin-gonic/gin"
 )
 

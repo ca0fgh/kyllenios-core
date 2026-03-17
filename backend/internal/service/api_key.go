@@ -3,7 +3,7 @@ package service
 import (
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/ip"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/ip"
 )
 
 // API Key status constants

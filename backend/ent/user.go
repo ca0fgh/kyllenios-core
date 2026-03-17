@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/user"
+	"github.com/ca0fgh/hermes-proxy/ent/user"
 )
 
 // User is the model entity for the User schema.

@@ -16,7 +16,7 @@ SCRIPT_PATH = Path(__file__).resolve()
 REPO_ROOT = SCRIPT_PATH.parent.parent
 FRONTEND_DIR = REPO_ROOT / "frontend"
 BACKEND_DIR = REPO_ROOT / "backend"
-DEFAULT_APP_DIR = REPO_ROOT / ".kyllenios-core-runtime"
+DEFAULT_APP_DIR = REPO_ROOT / ".hermes-proxy-runtime"
 NODE_EXTRA_PATHS = ["/Users/money/.local/node/bin/node", "/opt/homebrew/bin/node", "/usr/local/bin/node"]
 PNPM_EXTRA_PATHS = ["/Users/money/.local/node/bin/pnpm", "/opt/homebrew/bin/pnpm", "/usr/local/bin/pnpm"]
 GO_EXTRA_PATHS = [
@@ -444,7 +444,7 @@ def build_backend(go_bin: str, binary_path: Path) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Rebuild and restart the local kyllenios-core runtime binary.")
+    parser = argparse.ArgumentParser(description="Rebuild and restart the local hermes-proxy runtime binary.")
     parser.add_argument(
         "--restart-only",
         action="store_true",
@@ -452,7 +452,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--app-dir",
-        help="runtime state directory for the built binary, config.yaml, and logs (default: .kyllenios-core-runtime)",
+        help="runtime state directory for the built binary, config.yaml, and logs (default: .hermes-proxy-runtime)",
     )
     parser.add_argument("--go-bin", help="path to the Go executable")
     parser.add_argument("--node-bin", help="path to the Node.js executable")
@@ -463,8 +463,8 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     app_dir = resolve_app_dir(args.app_dir)
-    binary_path = app_dir / "kyllenios-core"
-    log_path = app_dir / "data" / "kyllenios-core.stdout.log"
+    binary_path = app_dir / "hermes-proxy"
+    log_path = app_dir / "data" / "hermes-proxy.stdout.log"
     config_path = app_dir / "config.yaml"
 
     bootstrap_runtime_files(app_dir)

@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	pkghttputil "github.com/ca0fgh/kyllenios-core/internal/pkg/httputil"
-	"github.com/ca0fgh/kyllenios-core/internal/server/middleware"
-	"github.com/ca0fgh/kyllenios-core/internal/service"
+	pkghttputil "github.com/ca0fgh/hermes-proxy/internal/pkg/httputil"
+	"github.com/ca0fgh/hermes-proxy/internal/server/middleware"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	coderws "github.com/coder/websocket"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"

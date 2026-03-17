@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/httpclient"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/openai"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/httpclient"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/openai"
 )
 
 var openAISoraSessionAuthURL = "https://sora.chatgpt.com/api/auth/session"

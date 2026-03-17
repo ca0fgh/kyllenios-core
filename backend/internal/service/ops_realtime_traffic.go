@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	infraerrors "github.com/ca0fgh/kyllenios-core/internal/pkg/errors"
+	infraerrors "github.com/ca0fgh/hermes-proxy/internal/pkg/errors"
 )
 
 // GetRealtimeTrafficSummary returns QPS/TPS current/peak/avg for the provided window.

@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/response"
-	"github.com/ca0fgh/kyllenios-core/internal/pkg/sysutil"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/response"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/sysutil"
 
 	"github.com/gin-gonic/gin"
 )

@@ -10,7 +10,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/kyllenios-core/ent/group"
+	"github.com/ca0fgh/hermes-proxy/ent/group"
 )
 
 // Group is the model entity for the Group schema.
