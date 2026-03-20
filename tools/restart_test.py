@@ -221,11 +221,11 @@ class EnsureRuntimeServicesTest(unittest.TestCase):
 
             with mock.patch.object(restart, "is_tcp_port_open", return_value=False):
                 with mock.patch.object(restart, "resolve_redis_server_bin", return_value="/mock/redis-server"):
-                    with mock.patch.object(restart.subprocess, "Popen") as popen:
+                    with mock.patch.object(restart, "start_detached_process") as start_detached_process:
                         with mock.patch.object(restart, "wait_until_listening") as wait_until_listening:
                             restart.ensure_local_redis_running(app_dir, config_path)
 
-        command = popen.call_args.args[0]
+        command = start_detached_process.call_args.args[0]
         self.assertEqual("/mock/redis-server", command[0])
         self.assertIn("--port", command)
         self.assertIn("6379", command)
