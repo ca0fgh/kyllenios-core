@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"math"
+	"regexp"
+	"sort"
 	"strings"
 	"unsafe"
 
@@ -28,6 +30,15 @@ var (
 	patternEmptyContentSpaced = []byte(`"content": []`)
 	patternEmptyContentSp1    = []byte(`"content" : []`)
 	patternEmptyContentSp2    = []byte(`"content" :[]`)
+
+	// Fast-path patterns for empty text blocks: {"type":"text","text":""}
+	patternEmptyText       = []byte(`"text":""`)
+	patternEmptyTextSpaced = []byte(`"text": ""`)
+	patternEmptyTextSp1    = []byte(`"text" : ""`)
+	patternEmptyTextSp2    = []byte(`"text" :""`)
+
+	sessionUserAgentProductPattern = regexp.MustCompile(`([A-Za-z0-9._-]+)/[A-Za-z0-9._-]+`)
+	sessionUserAgentVersionPattern = regexp.MustCompile(`\bv?\d+(?:\.\d+){1,3}\b`)
 )
 
 // SessionContext 粘性会话上下文，用于区分不同来源的请求。
@@ -67,6 +78,49 @@ type ParsedRequest struct {
 	// OnUpstreamAccepted 上游接受请求后立即调用（用于提前释放串行锁）
 	// 流式请求在收到 2xx 响应头后调用，避免持锁等流完成
 	OnUpstreamAccepted func()
+}
+
+// NormalizeSessionUserAgent reduces UA noise for sticky-session and digest hashing.
+// It preserves the set of product names from Product/Version tokens while
+// discarding version-only changes and incidental comments.
+func NormalizeSessionUserAgent(raw string) string {
+	raw = strings.TrimSpace(raw)
+	if raw == "" {
+		return ""
+	}
+
+	matches := sessionUserAgentProductPattern.FindAllStringSubmatch(raw, -1)
+	if len(matches) == 0 {
+		return normalizeSessionUserAgentFallback(raw)
+	}
+
+	products := make([]string, 0, len(matches))
+	seen := make(map[string]struct{}, len(matches))
+	for _, match := range matches {
+		if len(match) < 2 {
+			continue
+		}
+		product := strings.ToLower(strings.TrimSpace(match[1]))
+		if product == "" {
+			continue
+		}
+		if _, exists := seen[product]; exists {
+			continue
+		}
+		seen[product] = struct{}{}
+		products = append(products, product)
+	}
+	if len(products) == 0 {
+		return normalizeSessionUserAgentFallback(raw)
+	}
+	sort.Strings(products)
+	return strings.Join(products, "+")
+}
+
+func normalizeSessionUserAgentFallback(raw string) string {
+	normalized := strings.ToLower(strings.Join(strings.Fields(raw), " "))
+	normalized = sessionUserAgentVersionPattern.ReplaceAllString(normalized, "")
+	return strings.Join(strings.Fields(normalized), " ")
 }
 
 // ParseGatewayRequest 解析网关请求体并返回结构化结果。
@@ -199,6 +253,118 @@ func sliceRawFromBody(body []byte, r gjson.Result) []byte {
 	return []byte(r.Raw)
 }
 
+// stripEmptyTextBlocksFromSlice removes empty text blocks from a content slice (including nested tool_result content).
+// Returns (cleaned slice, true) if any blocks were removed, or (original, false) if unchanged.
+func stripEmptyTextBlocksFromSlice(blocks []any) ([]any, bool) {
+	var result []any
+	changed := false
+	for i, block := range blocks {
+		blockMap, ok := block.(map[string]any)
+		if !ok {
+			if result != nil {
+				result = append(result, block)
+			}
+			continue
+		}
+		blockType, _ := blockMap["type"].(string)
+
+		// Strip empty text blocks
+		if blockType == "text" {
+			if txt, _ := blockMap["text"].(string); txt == "" {
+				if result == nil {
+					result = make([]any, 0, len(blocks))
+					result = append(result, blocks[:i]...)
+				}
+				changed = true
+				continue
+			}
+		}
+
+		// Recurse into tool_result nested content
+		if blockType == "tool_result" {
+			if nestedContent, ok := blockMap["content"].([]any); ok {
+				if cleaned, nestedChanged := stripEmptyTextBlocksFromSlice(nestedContent); nestedChanged {
+					if result == nil {
+						result = make([]any, 0, len(blocks))
+						result = append(result, blocks[:i]...)
+					}
+					changed = true
+					blockCopy := make(map[string]any, len(blockMap))
+					for k, v := range blockMap {
+						blockCopy[k] = v
+					}
+					blockCopy["content"] = cleaned
+					result = append(result, blockCopy)
+					continue
+				}
+			}
+		}
+
+		if result != nil {
+			result = append(result, block)
+		}
+	}
+	if !changed {
+		return blocks, false
+	}
+	return result, true
+}
+
+// StripEmptyTextBlocks removes empty text blocks from the request body (including nested tool_result content).
+// This is a lightweight pre-filter for the initial request path to prevent upstream 400 errors.
+// Returns the original body unchanged if no empty text blocks are found.
+func StripEmptyTextBlocks(body []byte) []byte {
+	// Fast path: check if body contains empty text patterns
+	hasEmptyTextBlock := bytes.Contains(body, patternEmptyText) ||
+		bytes.Contains(body, patternEmptyTextSpaced) ||
+		bytes.Contains(body, patternEmptyTextSp1) ||
+		bytes.Contains(body, patternEmptyTextSp2)
+	if !hasEmptyTextBlock {
+		return body
+	}
+
+	jsonStr := *(*string)(unsafe.Pointer(&body))
+	msgsRes := gjson.Get(jsonStr, "messages")
+	if !msgsRes.Exists() || !msgsRes.IsArray() {
+		return body
+	}
+
+	var messages []any
+	if err := json.Unmarshal(sliceRawFromBody(body, msgsRes), &messages); err != nil {
+		return body
+	}
+
+	modified := false
+	for _, msg := range messages {
+		msgMap, ok := msg.(map[string]any)
+		if !ok {
+			continue
+		}
+		content, ok := msgMap["content"].([]any)
+		if !ok {
+			continue
+		}
+		if cleaned, changed := stripEmptyTextBlocksFromSlice(content); changed {
+			modified = true
+			msgMap["content"] = cleaned
+		}
+	}
+
+	if !modified {
+		return body
+	}
+
+	msgsBytes, err := json.Marshal(messages)
+	if err != nil {
+		return body
+	}
+	out, err := sjson.SetRawBytes(body, "messages", msgsBytes)
+	if err != nil {
+		return body
+	}
+	return out
+}
+
 // FilterThinkingBlocks removes thinking blocks from request body
 // Returns filtered body or original body if filtering fails (fail-safe)
 // This prevents 400 errors from invalid thinking block signatures
@@ -233,15 +399,22 @@ func FilterThinkingBlocksForRetry(body []byte) []byte {
 		bytes.Contains(body, patternThinkingField) ||
 		bytes.Contains(body, patternThinkingFieldSpaced)
 
-	// Also check for empty content arrays that need fixing.
+	// Also check for empty content arrays and empty text blocks that need fixing.
 	// Note: This is a heuristic check; the actual empty content handling is done below.
 	hasEmptyContent := bytes.Contains(body, patternEmptyContent) ||
 		bytes.Contains(body, patternEmptyContentSpaced) ||
 		bytes.Contains(body, patternEmptyContentSp1) ||
 		bytes.Contains(body, patternEmptyContentSp2)
 
+	// Check for empty text blocks: {"type":"text","text":""}
+	// These cause upstream 400: "text content blocks must be non-empty"
+	hasEmptyTextBlock := bytes.Contains(body, patternEmptyText) ||
+		bytes.Contains(body, patternEmptyTextSpaced) ||
+		bytes.Contains(body, patternEmptyTextSp1) ||
+		bytes.Contains(body, patternEmptyTextSp2)
+
 	// Fast path: nothing to process
-	if !hasThinkingContent && !hasEmptyContent {
+	if !hasThinkingContent && !hasEmptyContent && !hasEmptyTextBlock {
 		return body
 	}
 
@@ -260,7 +433,7 @@ func FilterThinkingBlocksForRetry(body []byte) []byte {
 		bytes.Contains(body, patternTypeRedactedThinking) ||
 		bytes.Contains(body, patternTypeRedactedSpaced) ||
 		bytes.Contains(body, patternThinkingFieldSpaced)
-	if !hasEmptyContent && !containsThinkingBlocks {
+	if !hasEmptyContent && !hasEmptyTextBlock && !containsThinkingBlocks {
 		if topThinking := gjson.Get(jsonStr, "thinking"); topThinking.Exists() {
 			if out, err := sjson.DeleteBytes(body, "thinking"); err == nil {
 				out = removeThinkingDependentContextStrategies(out)
@@ -320,6 +493,16 @@ func FilterThinkingBlocksForRetry(body []byte) []byte {
 
 			blockType, _ := blockMap["type"].(string)
 
+			// Strip empty text blocks: {"type":"text","text":""}
+			// Upstream rejects these with 400: "text content blocks must be non-empty"
+			if blockType == "text" {
+				if txt, _ := blockMap["text"].(string); txt == "" {
+					modifiedThisMsg = true
+					ensureNewContent(bi)
+					continue
+				}
+			}
+
 			// Convert thinking blocks to text (preserve content) and drop redacted_thinking.
 			switch blockType {
 			case "thinking":
@@ -352,6 +535,23 @@ func FilterThinkingBlocksForRetry(body []byte) []byte {
 						}
 					}
 					continue
+				}
+			}
+
+			// Recursively strip empty text blocks from tool_result nested content.
+			if blockType == "tool_result" {
+				if nestedContent, ok := blockMap["content"].([]any); ok {
+					if cleaned, changed := stripEmptyTextBlocksFromSlice(nestedContent); changed {
+						modifiedThisMsg = true
+						ensureNewContent(bi)
+						blockCopy := make(map[string]any, len(blockMap))
+						for k, v := range blockMap {
+							blockCopy[k] = v
+						}
+						blockCopy["content"] = cleaned
+						newContent = append(newContent, blockCopy)
+						continue
+					}
 				}
 			}
 

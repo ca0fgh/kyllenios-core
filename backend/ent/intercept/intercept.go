@@ -7,29 +7,30 @@ import (
 	"fmt"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/ca0fgh/hermes-proxy/ent"
-	"github.com/ca0fgh/hermes-proxy/ent/account"
-	"github.com/ca0fgh/hermes-proxy/ent/accountgroup"
-	"github.com/ca0fgh/hermes-proxy/ent/announcement"
-	"github.com/ca0fgh/hermes-proxy/ent/announcementread"
-	"github.com/ca0fgh/hermes-proxy/ent/apikey"
-	"github.com/ca0fgh/hermes-proxy/ent/errorpassthroughrule"
-	"github.com/ca0fgh/hermes-proxy/ent/group"
-	"github.com/ca0fgh/hermes-proxy/ent/idempotencyrecord"
-	"github.com/ca0fgh/hermes-proxy/ent/predicate"
-	"github.com/ca0fgh/hermes-proxy/ent/promocode"
-	"github.com/ca0fgh/hermes-proxy/ent/promocodeusage"
-	"github.com/ca0fgh/hermes-proxy/ent/proxy"
-	"github.com/ca0fgh/hermes-proxy/ent/redeemcode"
-	"github.com/ca0fgh/hermes-proxy/ent/securitysecret"
-	"github.com/ca0fgh/hermes-proxy/ent/setting"
-	"github.com/ca0fgh/hermes-proxy/ent/usagecleanuptask"
-	"github.com/ca0fgh/hermes-proxy/ent/usagelog"
-	"github.com/ca0fgh/hermes-proxy/ent/user"
-	"github.com/ca0fgh/hermes-proxy/ent/userallowedgroup"
-	"github.com/ca0fgh/hermes-proxy/ent/userattributedefinition"
-	"github.com/ca0fgh/hermes-proxy/ent/userattributevalue"
-	"github.com/ca0fgh/hermes-proxy/ent/usersubscription"
+	"github.com/Wei-Shaw/sub2api/ent"
+	"github.com/Wei-Shaw/sub2api/ent/account"
+	"github.com/Wei-Shaw/sub2api/ent/accountgroup"
+	"github.com/Wei-Shaw/sub2api/ent/announcement"
+	"github.com/Wei-Shaw/sub2api/ent/announcementread"
+	"github.com/Wei-Shaw/sub2api/ent/apikey"
+	"github.com/Wei-Shaw/sub2api/ent/errorpassthroughrule"
+	"github.com/Wei-Shaw/sub2api/ent/group"
+	"github.com/Wei-Shaw/sub2api/ent/idempotencyrecord"
+	"github.com/Wei-Shaw/sub2api/ent/predicate"
+	"github.com/Wei-Shaw/sub2api/ent/promocode"
+	"github.com/Wei-Shaw/sub2api/ent/promocodeusage"
+	"github.com/Wei-Shaw/sub2api/ent/proxy"
+	"github.com/Wei-Shaw/sub2api/ent/redeemcode"
+	"github.com/Wei-Shaw/sub2api/ent/securitysecret"
+	"github.com/Wei-Shaw/sub2api/ent/setting"
+	"github.com/Wei-Shaw/sub2api/ent/tlsfingerprintprofile"
+	"github.com/Wei-Shaw/sub2api/ent/usagecleanuptask"
+	"github.com/Wei-Shaw/sub2api/ent/usagelog"
+	"github.com/Wei-Shaw/sub2api/ent/user"
+	"github.com/Wei-Shaw/sub2api/ent/userallowedgroup"
+	"github.com/Wei-Shaw/sub2api/ent/userattributedefinition"
+	"github.com/Wei-Shaw/sub2api/ent/userattributevalue"
+	"github.com/Wei-Shaw/sub2api/ent/usersubscription"
 )
 
 // The Query interface represents an operation that queries a graph.
@@ -466,6 +467,33 @@ func (f TraverseSetting) Traverse(ctx context.Context, q ent.Query) error {
 	return fmt.Errorf("unexpected query type %T. expect *ent.SettingQuery", q)
 }
 
+// The TLSFingerprintProfileFunc type is an adapter to allow the use of ordinary function as a Querier.
+type TLSFingerprintProfileFunc func(context.Context, *ent.TLSFingerprintProfileQuery) (ent.Value, error)
+
+// Query calls f(ctx, q).
+func (f TLSFingerprintProfileFunc) Query(ctx context.Context, q ent.Query) (ent.Value, error) {
+	if q, ok := q.(*ent.TLSFingerprintProfileQuery); ok {
+		return f(ctx, q)
+	}
+	return nil, fmt.Errorf("unexpected query type %T. expect *ent.TLSFingerprintProfileQuery", q)
+}
+
+// The TraverseTLSFingerprintProfile type is an adapter to allow the use of ordinary function as Traverser.
+type TraverseTLSFingerprintProfile func(context.Context, *ent.TLSFingerprintProfileQuery) error
+
+// Intercept is a dummy implementation of Intercept that returns the next Querier in the pipeline.
+func (f TraverseTLSFingerprintProfile) Intercept(next ent.Querier) ent.Querier {
+	return next
+}
+
+// Traverse calls f(ctx, q).
+func (f TraverseTLSFingerprintProfile) Traverse(ctx context.Context, q ent.Query) error {
+	if q, ok := q.(*ent.TLSFingerprintProfileQuery); ok {
+		return f(ctx, q)
+	}
+	return fmt.Errorf("unexpected query type %T. expect *ent.TLSFingerprintProfileQuery", q)
+}
+
 // The UsageCleanupTaskFunc type is an adapter to allow the use of ordinary function as a Querier.
 type UsageCleanupTaskFunc func(context.Context, *ent.UsageCleanupTaskQuery) (ent.Value, error)
 
@@ -686,6 +714,8 @@ func NewQuery(q ent.Query) (Query, error) {
 		return &query[*ent.SecuritySecretQuery, predicate.SecuritySecret, securitysecret.OrderOption]{typ: ent.TypeSecuritySecret, tq: q}, nil
 	case *ent.SettingQuery:
 		return &query[*ent.SettingQuery, predicate.Setting, setting.OrderOption]{typ: ent.TypeSetting, tq: q}, nil
+	case *ent.TLSFingerprintProfileQuery:
+		return &query[*ent.TLSFingerprintProfileQuery, predicate.TLSFingerprintProfile, tlsfingerprintprofile.OrderOption]{typ: ent.TypeTLSFingerprintProfile, tq: q}, nil
 	case *ent.UsageCleanupTaskQuery:
 		return &query[*ent.UsageCleanupTaskQuery, predicate.UsageCleanupTask, usagecleanuptask.OrderOption]{typ: ent.TypeUsageCleanupTask, tq: q}, nil
 	case *ent.UsageLogQuery:

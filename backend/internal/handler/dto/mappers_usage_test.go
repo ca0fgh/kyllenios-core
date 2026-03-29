@@ -1,6 +1,7 @@
 package dto
 
 import (
+	"encoding/json"
 	"testing"
 	"time"
 
@@ -107,44 +108,45 @@ func TestUsageLogFromService_IncludesServiceTierForUserAndAdmin(t *testing.T) {
 	require.InDelta(t, 1.5, *adminDTO.AccountRateMultiplier, 1e-12)
 }
 
-func TestAccountFromServiceShallow_UsesEffectiveQuotaWindowValues(t *testing.T) {
+func TestUsageLogFromService_UsesRequestedModelAndKeepsUpstreamAdminOnly(t *testing.T) {
 	t.Parallel()
 
-	now := time.Now().UTC()
-	account := &service.Account{
-		Type: service.AccountTypeAPIKey,
-		Extra: map[string]any{
-			"quota_daily_limit":       120.0,
-			"quota_daily_used":        3.97,
-			"quota_daily_start":       now.Add(-48 * time.Hour).Format(time.RFC3339),
-			"quota_daily_reset_mode":  "fixed",
-			"quota_daily_reset_hour":  0.0,
-			"quota_reset_timezone":    "UTC",
-			"quota_daily_reset_at":    now.Add(-1 * time.Hour).Format(time.RFC3339),
-			"quota_weekly_limit":      840.0,
-			"quota_weekly_used":       12.34,
-			"quota_weekly_start":      now.Add(-14 * 24 * time.Hour).Format(time.RFC3339),
-			"quota_weekly_reset_mode": "fixed",
-			"quota_weekly_reset_day":  1.0,
-			"quota_weekly_reset_hour": 0.0,
-			"quota_weekly_reset_at":   now.Add(-2 * time.Hour).Format(time.RFC3339),
-		},
+	upstreamModel := "claude-sonnet-4-20250514"
+	log := &service.UsageLog{
+		RequestID:      "req_4",
+		Model:          upstreamModel,
+		RequestedModel: "claude-sonnet-4",
+		UpstreamModel:  &upstreamModel,
 	}
 
-	dtoAccount := AccountFromServiceShallow(account)
-	require.NotNil(t, dtoAccount)
-	require.NotNil(t, dtoAccount.QuotaDailyUsed)
-	require.InDelta(t, 0.0, *dtoAccount.QuotaDailyUsed, 1e-12)
-	require.NotNil(t, dtoAccount.QuotaDailyResetAt)
-	dailyResetAt, err := time.Parse(time.RFC3339, *dtoAccount.QuotaDailyResetAt)
+	userDTO := UsageLogFromService(log)
+	adminDTO := UsageLogFromServiceAdmin(log)
+
+	require.Equal(t, "claude-sonnet-4", userDTO.Model)
+	require.Equal(t, "claude-sonnet-4", adminDTO.Model)
+
+	userJSON, err := json.Marshal(userDTO)
 	require.NoError(t, err)
-	require.True(t, dailyResetAt.After(now))
-	require.NotNil(t, dtoAccount.QuotaWeeklyUsed)
-	require.InDelta(t, 0.0, *dtoAccount.QuotaWeeklyUsed, 1e-12)
-	require.NotNil(t, dtoAccount.QuotaWeeklyResetAt)
-	weeklyResetAt, err := time.Parse(time.RFC3339, *dtoAccount.QuotaWeeklyResetAt)
+	require.NotContains(t, string(userJSON), "upstream_model")
+
+	adminJSON, err := json.Marshal(adminDTO)
 	require.NoError(t, err)
-	require.True(t, weeklyResetAt.After(now))
+	require.Contains(t, string(adminJSON), `"upstream_model":"claude-sonnet-4-20250514"`)
+}
+
+func TestUsageLogFromService_FallsBackToLegacyModelWhenRequestedModelMissing(t *testing.T) {
+	t.Parallel()
+
+	log := &service.UsageLog{
+		RequestID: "req_legacy",
+		Model:     "claude-3",
+	}
+
+	userDTO := UsageLogFromService(log)
+	adminDTO := UsageLogFromServiceAdmin(log)
+
+	require.Equal(t, "claude-3", userDTO.Model)
+	require.Equal(t, "claude-3", adminDTO.Model)
 }
 
 func f64Ptr(value float64) *float64 {

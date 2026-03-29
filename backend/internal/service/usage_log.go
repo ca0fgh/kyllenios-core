@@ -98,6 +98,12 @@ type UsageLog struct {
 	AccountID int64
 	RequestID string
 	Model     string
+	// RequestedModel is the client-requested model name recorded for stable user/admin display.
+	// Empty should be treated as Model for backward compatibility with historical rows.
+	RequestedModel string
+	// UpstreamModel is the actual model sent to the upstream provider after mapping.
+	// Nil means no mapping was applied (requested model was used as-is).
+	UpstreamModel *string
 	// ServiceTier records the OpenAI service tier used for billing, e.g. "priority" / "flex".
 	ServiceTier *string
 	// ReasoningEffort is the request's reasoning effort level.

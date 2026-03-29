@@ -9,13 +9,14 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/ca0fgh/hermes-proxy/ent"
-	"github.com/ca0fgh/hermes-proxy/ent/apikey"
-	dbuser "github.com/ca0fgh/hermes-proxy/ent/user"
-	"github.com/ca0fgh/hermes-proxy/ent/userallowedgroup"
-	"github.com/ca0fgh/hermes-proxy/ent/usersubscription"
-	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
-	"github.com/ca0fgh/hermes-proxy/internal/service"
+	dbent "github.com/Wei-Shaw/sub2api/ent"
+	"github.com/Wei-Shaw/sub2api/ent/apikey"
+	dbgroup "github.com/Wei-Shaw/sub2api/ent/group"
+	dbuser "github.com/Wei-Shaw/sub2api/ent/user"
+	"github.com/Wei-Shaw/sub2api/ent/userallowedgroup"
+	"github.com/Wei-Shaw/sub2api/ent/usersubscription"
+	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
+	"github.com/Wei-Shaw/sub2api/internal/service"
 )
 
 type userRepository struct {
@@ -198,6 +199,12 @@ func (r *userRepository) ListWithFilters(ctx context.Context, params pagination.
 				dbuser.HasAPIKeysWith(apikey.KeyContainsFold(filters.Search)),
 			),
 		)
+	}
+
+	if filters.GroupName != "" {
+		q = q.Where(dbuser.HasAllowedGroupsWith(
+			dbgroup.NameContainsFold(filters.GroupName),
+		))
 	}
 
 	// If attribute filters are specified, we need to filter by user IDs first
@@ -451,6 +458,15 @@ func (r *userRepository) RemoveGroupFromAllowedGroups(ctx context.Context, group
 		return 0, err
 	}
 	return int64(affected), nil
+}
+
+// RemoveGroupFromUserAllowedGroups 移除单个用户的指定分组权限
+func (r *userRepository) RemoveGroupFromUserAllowedGroups(ctx context.Context, userID int64, groupID int64) error {
+	client := clientFromContext(ctx, r.client)
+	_, err := client.UserAllowedGroup.Delete().
+		Where(userallowedgroup.UserIDEQ(userID), userallowedgroup.GroupIDEQ(groupID)).
+		Exec(ctx)
+	return err
 }
 
 func (r *userRepository) GetFirstAdmin(ctx context.Context) (*service.User, error) {

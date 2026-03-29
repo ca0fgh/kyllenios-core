@@ -12,27 +12,28 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/ca0fgh/hermes-proxy/ent/account"
-	"github.com/ca0fgh/hermes-proxy/ent/accountgroup"
-	"github.com/ca0fgh/hermes-proxy/ent/announcement"
-	"github.com/ca0fgh/hermes-proxy/ent/announcementread"
-	"github.com/ca0fgh/hermes-proxy/ent/apikey"
-	"github.com/ca0fgh/hermes-proxy/ent/errorpassthroughrule"
-	"github.com/ca0fgh/hermes-proxy/ent/group"
-	"github.com/ca0fgh/hermes-proxy/ent/idempotencyrecord"
-	"github.com/ca0fgh/hermes-proxy/ent/promocode"
-	"github.com/ca0fgh/hermes-proxy/ent/promocodeusage"
-	"github.com/ca0fgh/hermes-proxy/ent/proxy"
-	"github.com/ca0fgh/hermes-proxy/ent/redeemcode"
-	"github.com/ca0fgh/hermes-proxy/ent/securitysecret"
-	"github.com/ca0fgh/hermes-proxy/ent/setting"
-	"github.com/ca0fgh/hermes-proxy/ent/usagecleanuptask"
-	"github.com/ca0fgh/hermes-proxy/ent/usagelog"
-	"github.com/ca0fgh/hermes-proxy/ent/user"
-	"github.com/ca0fgh/hermes-proxy/ent/userallowedgroup"
-	"github.com/ca0fgh/hermes-proxy/ent/userattributedefinition"
-	"github.com/ca0fgh/hermes-proxy/ent/userattributevalue"
-	"github.com/ca0fgh/hermes-proxy/ent/usersubscription"
+	"github.com/Wei-Shaw/sub2api/ent/account"
+	"github.com/Wei-Shaw/sub2api/ent/accountgroup"
+	"github.com/Wei-Shaw/sub2api/ent/announcement"
+	"github.com/Wei-Shaw/sub2api/ent/announcementread"
+	"github.com/Wei-Shaw/sub2api/ent/apikey"
+	"github.com/Wei-Shaw/sub2api/ent/errorpassthroughrule"
+	"github.com/Wei-Shaw/sub2api/ent/group"
+	"github.com/Wei-Shaw/sub2api/ent/idempotencyrecord"
+	"github.com/Wei-Shaw/sub2api/ent/promocode"
+	"github.com/Wei-Shaw/sub2api/ent/promocodeusage"
+	"github.com/Wei-Shaw/sub2api/ent/proxy"
+	"github.com/Wei-Shaw/sub2api/ent/redeemcode"
+	"github.com/Wei-Shaw/sub2api/ent/securitysecret"
+	"github.com/Wei-Shaw/sub2api/ent/setting"
+	"github.com/Wei-Shaw/sub2api/ent/tlsfingerprintprofile"
+	"github.com/Wei-Shaw/sub2api/ent/usagecleanuptask"
+	"github.com/Wei-Shaw/sub2api/ent/usagelog"
+	"github.com/Wei-Shaw/sub2api/ent/user"
+	"github.com/Wei-Shaw/sub2api/ent/userallowedgroup"
+	"github.com/Wei-Shaw/sub2api/ent/userattributedefinition"
+	"github.com/Wei-Shaw/sub2api/ent/userattributevalue"
+	"github.com/Wei-Shaw/sub2api/ent/usersubscription"
 )
 
 // ent aliases to avoid import conflicts in user's code.
@@ -107,6 +108,7 @@ func checkColumn(t, c string) error {
 			redeemcode.Table:              redeemcode.ValidColumn,
 			securitysecret.Table:          securitysecret.ValidColumn,
 			setting.Table:                 setting.ValidColumn,
+			tlsfingerprintprofile.Table:   tlsfingerprintprofile.ValidColumn,
 			usagecleanuptask.Table:        usagecleanuptask.ValidColumn,
 			usagelog.Table:                usagelog.ValidColumn,
 			user.Table:                    user.ValidColumn,
