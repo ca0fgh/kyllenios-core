@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Wei-Shaw/sub2api/internal/model"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/logger"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/tlsfingerprint"
+	"github.com/ca0fgh/hermes-proxy/internal/model"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/logger"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/tlsfingerprint"
 )
 
 // TLSFingerprintProfileRepository 定义 TLS 指纹模板的数据访问接口

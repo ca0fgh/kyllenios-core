@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Wei-Shaw/sub2api/internal/model"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/model"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/redis/go-redis/v9"
 )
 

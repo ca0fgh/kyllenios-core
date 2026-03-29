@@ -63,7 +63,7 @@ import { Icon } from '@/components/icons'
 import type { Account } from '@/types'
 
 const props = defineProps<{ show: boolean; account: Account | null; position: { top: number; left: number } | null }>()
-const emit = defineEmits(['close', 'test', 'stats', 'schedule', 'reauth', 'refresh-token', 'recover-state', 'reset-quota', 'set-privacy'])
+const emit = defineEmits(['close', 'test', 'stats', 'schedule', 'reauth', 'refresh-token', 'recover-state', 'reset-quota', 'set-privacy', 'toggle-pin'])
 const { t } = useI18n()
 const isListPinned = computed(() => (props.account?.extra as Record<string, unknown> | undefined)?.list_pinned === true)
 const isRateLimited = computed(() => {

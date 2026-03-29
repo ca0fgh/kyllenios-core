@@ -9,14 +9,14 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/Wei-Shaw/sub2api/ent"
-	"github.com/Wei-Shaw/sub2api/ent/apikey"
-	dbgroup "github.com/Wei-Shaw/sub2api/ent/group"
-	dbuser "github.com/Wei-Shaw/sub2api/ent/user"
-	"github.com/Wei-Shaw/sub2api/ent/userallowedgroup"
-	"github.com/Wei-Shaw/sub2api/ent/usersubscription"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	dbent "github.com/ca0fgh/hermes-proxy/ent"
+	"github.com/ca0fgh/hermes-proxy/ent/apikey"
+	dbgroup "github.com/ca0fgh/hermes-proxy/ent/group"
+	dbuser "github.com/ca0fgh/hermes-proxy/ent/user"
+	"github.com/ca0fgh/hermes-proxy/ent/userallowedgroup"
+	"github.com/ca0fgh/hermes-proxy/ent/usersubscription"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/pagination"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
 )
 
 type userRepository struct {

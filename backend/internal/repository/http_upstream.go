@@ -17,12 +17,12 @@ import (
 
 	"github.com/andybalholm/brotli"
 
-	"github.com/Wei-Shaw/sub2api/internal/config"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/proxyurl"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/proxyutil"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/tlsfingerprint"
-	"github.com/Wei-Shaw/sub2api/internal/service"
-	"github.com/Wei-Shaw/sub2api/internal/util/urlvalidator"
+	"github.com/ca0fgh/hermes-proxy/internal/config"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/proxyurl"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/proxyutil"
+	"github.com/ca0fgh/hermes-proxy/internal/pkg/tlsfingerprint"
+	"github.com/ca0fgh/hermes-proxy/internal/service"
+	"github.com/ca0fgh/hermes-proxy/internal/util/urlvalidator"
 )
 
 // 默认配置常量
