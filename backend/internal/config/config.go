@@ -467,6 +467,29 @@ type GatewayConfig struct {
 	// UserMessageQueue: 用户消息串行队列配置
 	// 对 role:"user" 的真实用户消息实施账号级串行化 + RPM 自适应延迟
 	UserMessageQueue UserMessageQueueConfig `mapstructure:"user_message_queue"`
+
+	// Audit: 网关审计配置
+	Audit GatewayAuditConfig `mapstructure:"audit"`
+}
+
+// GatewayAuditConfig 网关审计配置
+type GatewayAuditConfig struct {
+	// Enabled: 是否启用网关审计
+	Enabled bool `mapstructure:"enabled"`
+	// RequestCaptureLimitBytes: 审计中间件保留的请求体最大字节数
+	RequestCaptureLimitBytes int `mapstructure:"request_capture_limit_bytes"`
+	// ResponseCaptureLimitBytes: 审计中间件保留的响应体最大字节数
+	ResponseCaptureLimitBytes int `mapstructure:"response_capture_limit_bytes"`
+	// CanaryHeaders: 统一注入到上游请求的 canary headers，value 属于敏感值，不应写入日志或审计表
+	CanaryHeaders map[string]string `mapstructure:"canary_headers"`
+	// CanaryLabels: 审计事件中记录的 canary 标签；为空时回退到 CanaryHeaders 的 key
+	CanaryLabels []string `mapstructure:"canary_labels"`
+	// AlertShellPatterns: 风险规则里要额外匹配的 shell 片段
+	AlertShellPatterns []string `mapstructure:"alert_shell_patterns"`
+	// AlertWebhookURL: 高风险事件的可选 webhook 地址
+	AlertWebhookURL string `mapstructure:"alert_webhook_url"`
+	// AlertWebhookTimeoutSeconds: webhook 发送超时
+	AlertWebhookTimeoutSeconds int `mapstructure:"alert_webhook_timeout_seconds"`
 }
 
 // UserMessageQueueConfig 用户消息串行队列配置

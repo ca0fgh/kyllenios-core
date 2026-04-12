@@ -69,6 +69,14 @@ func TestMigrationsRunner_IsIdempotent_AndSchemaIsUpToDate(t *testing.T) {
 	require.NoError(t, tx.QueryRowContext(context.Background(), "SELECT to_regclass('public.security_secrets')").Scan(&securitySecretsRegclass))
 	require.True(t, securitySecretsRegclass.Valid, "expected security_secrets table to exist")
 
+	// audit_events table should exist
+	var auditEventsRegclass sql.NullString
+	require.NoError(t, tx.QueryRowContext(context.Background(), "SELECT to_regclass('public.audit_events')").Scan(&auditEventsRegclass))
+	require.True(t, auditEventsRegclass.Valid, "expected audit_events table to exist")
+	requireColumn(t, tx, "audit_events", "request_id", "character varying", 128, false)
+	requireColumn(t, tx, "audit_events", "risk_level", "character varying", 16, false)
+	requireIndex(t, tx, "audit_events", "idx_audit_events_created_at")
+
 	// user_allowed_groups table should exist
 	var uagRegclass sql.NullString
 	require.NoError(t, tx.QueryRowContext(context.Background(), "SELECT to_regclass('public.user_allowed_groups')").Scan(&uagRegclass))

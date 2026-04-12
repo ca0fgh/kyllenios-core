@@ -131,6 +131,7 @@ func (s *httpUpstreamService) Do(req *http.Request, proxyURL string, accountID i
 	if err := s.validateRequestHost(req); err != nil {
 		return nil, err
 	}
+	applyGatewayAuditHeaders(req)
 
 	// 获取或创建对应的客户端，并标记请求占用
 	entry, err := s.acquireClient(proxyURL, accountID, accountConcurrency)
@@ -168,6 +169,7 @@ func (s *httpUpstreamService) DoWithTLS(req *http.Request, proxyURL string, acco
 	if profile == nil {
 		return s.Do(req, proxyURL, accountID, accountConcurrency)
 	}
+	applyGatewayAuditHeaders(req)
 
 	targetHost := ""
 	if req != nil && req.URL != nil {
@@ -205,6 +207,18 @@ func (s *httpUpstreamService) DoWithTLS(req *http.Request, proxyURL string, acco
 	})
 
 	return resp, nil
+}
+
+func applyGatewayAuditHeaders(req *http.Request) {
+	if req == nil {
+		return
+	}
+	for key, value := range service.GatewayAuditHeadersFromContext(req.Context()) {
+		if strings.TrimSpace(key) == "" || strings.TrimSpace(value) == "" {
+			continue
+		}
+		req.Header.Set(key, value)
+	}
 }
 
 // acquireClientWithTLS 获取或创建带 TLS 指纹的客户端

@@ -374,6 +374,17 @@ const routes: RouteRecordRaw[] = [
       descriptionKey: 'admin.usage.description'
     }
   },
+  {
+    path: '/admin/ops/audit',
+    name: 'AdminOpsAudit',
+    component: () => import('@/views/admin/ops/AuditEventsView.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      title: 'Gateway Audit',
+      descriptionKey: 'Gateway audit events'
+    }
+  },
 
   // ==================== 404 Not Found ====================
   {

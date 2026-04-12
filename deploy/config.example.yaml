@@ -283,6 +283,27 @@ gateway:
       queue: 0.7
       error_rate: 0.8
       ttft: 0.5
+  # Gateway audit configuration
+  # 网关审计配置
+  audit:
+    enabled: false
+    request_capture_limit_bytes: 16384
+    response_capture_limit_bytes: 262144
+    # Optional extra shell patterns for high-risk audit alerts
+    # 额外的高风险 shell 片段匹配
+    alert_shell_patterns:
+      - "curl"
+      - "wget"
+      - "pip install"
+      - "npm install"
+      - "cargo add"
+    # Optional outgoing canary headers injected into upstream requests.
+    # Values are sensitive and should come from private config, not committed defaults.
+    # 可选：注入到上游请求的 canary headers，值属于敏感信息，不应提交到公共配置。
+    canary_headers: {}
+    canary_labels: []
+    alert_webhook_url: ""
+    alert_webhook_timeout_seconds: 5
   # HTTP upstream connection pool settings (HTTP/2 + multi-proxy scenario defaults)
   # HTTP 上游连接池配置（HTTP/2 + 多代理场景默认值）
   # Max idle connections across all hosts

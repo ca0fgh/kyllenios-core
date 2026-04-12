@@ -931,6 +931,65 @@ export interface OpsSystemLogSinkHealth {
   last_error?: string
 }
 
+export interface AuditToolCall {
+  name: string
+  arguments?: Record<string, any> | string | null
+}
+
+export interface AuditEvent {
+  id: number
+  created_at: string
+  request_id: string
+  client_request_id?: string
+  user_id?: number | null
+  api_key_id?: number | null
+  account_id?: number | null
+  group_id?: number | null
+  platform: string
+  request_type: string | number
+  method: string
+  path: string
+  inbound_endpoint?: string
+  upstream_endpoint?: string
+  upstream_target?: string
+  status_code: number
+  requested_model?: string
+  effective_model?: string
+  upstream_model?: string
+  user_agent?: string
+  request_hash?: string
+  response_hash?: string
+  has_tool_calls: boolean
+  tool_count: number
+  tool_calls?: AuditToolCall[]
+  tool_hashes?: string[]
+  risk_flags?: string[]
+  risk_level: string
+  canary_injected: boolean
+  canary_labels?: string[]
+}
+
+export type AuditEventListResponse = PaginatedResponse<AuditEvent>
+
+export interface AuditEventQuery {
+  page?: number
+  page_size?: number
+  request_id?: string
+  client_request_id?: string
+  platform?: string
+  method?: string
+  path?: string
+  inbound_endpoint?: string
+  risk_level?: string
+  user_id?: number | null
+  api_key_id?: number | null
+  account_id?: number | null
+  group_id?: number | null
+  has_tool_calls?: boolean
+  canary_injected?: boolean
+  q?: string
+}
+
 export interface OpsErrorLog {
   id: number
   created_at: string
@@ -1341,6 +1400,16 @@ export async function getSystemLogSinkHealth(): Promise<OpsSystemLogSinkHealth> 
   return data
 }
 
+export async function listAuditEvents(params: AuditEventQuery): Promise<AuditEventListResponse> {
+  const { data } = await apiClient.get<AuditEventListResponse>('/admin/ops/audit-events', { params })
+  return data
+}
+
+export async function getAuditEvent(id: number): Promise<AuditEvent> {
+  const { data } = await apiClient.get<AuditEvent>(`/admin/ops/audit-events/${id}`)
+  return data
+}
+
 // Advanced settings (DB-backed)
 export async function getAdvancedSettings(): Promise<OpsAdvancedSettings> {
   const { data } = await apiClient.get<OpsAdvancedSettings>('/admin/ops/advanced-settings')
@@ -1418,7 +1487,9 @@ export const opsAPI = {
   updateMetricThresholds,
   listSystemLogs,
   cleanupSystemLogs,
-  getSystemLogSinkHealth
+  getSystemLogSinkHealth,
+  listAuditEvents,
+  getAuditEvent
 }
 
 export default opsAPI
