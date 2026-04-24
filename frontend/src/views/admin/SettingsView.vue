@@ -3915,7 +3915,7 @@
                       v-model="form.payment_product_name_prefix"
                       type="text"
                       class="input"
-                      placeholder="Sub2API"
+                      placeholder="hermes-proxy"
                     />
                   </div>
                   <div>
@@ -3937,7 +3937,7 @@
                       class="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-600 dark:border-dark-600 dark:bg-dark-800 dark:text-gray-300"
                     >
                       {{
-                        (form.payment_product_name_prefix || "Sub2API") +
+                        (form.payment_product_name_prefix || form.site_name || "hermes-proxy") +
                         " 100 " +
                         (form.payment_product_name_suffix || "CNY")
                       }}

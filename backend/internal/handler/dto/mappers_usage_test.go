@@ -3,7 +3,6 @@ package dto
 import (
 	"encoding/json"
 	"testing"
-	"time"
 
 	"github.com/ca0fgh/hermes-proxy/internal/service"
 	"github.com/stretchr/testify/require"
