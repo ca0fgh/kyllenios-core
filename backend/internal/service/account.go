@@ -1859,11 +1859,16 @@ func (a *Account) isFixedDailyPeriodExpired(periodStart time.Time) bool {
 	if periodStart.IsZero() {
 		return true
 	}
+	now := time.Now()
+	resetAt := a.getExtraTime("quota_daily_reset_at")
+	if !resetAt.IsZero() && !now.Before(resetAt) {
+		return true
+	}
 	tz, err := time.LoadLocation(a.GetQuotaResetTimezone())
 	if err != nil {
 		tz = time.UTC
 	}
-	lastReset := lastFixedDailyReset(a.GetQuotaDailyResetHour(), tz, time.Now())
+	lastReset := lastFixedDailyReset(a.GetQuotaDailyResetHour(), tz, now)
 	return periodStart.Before(lastReset)
 }
 
@@ -1872,11 +1877,16 @@ func (a *Account) isFixedWeeklyPeriodExpired(periodStart time.Time) bool {
 	if periodStart.IsZero() {
 		return true
 	}
+	now := time.Now()
+	resetAt := a.getExtraTime("quota_weekly_reset_at")
+	if !resetAt.IsZero() && !now.Before(resetAt) {
+		return true
+	}
 	tz, err := time.LoadLocation(a.GetQuotaResetTimezone())
 	if err != nil {
 		tz = time.UTC
 	}
-	lastReset := lastFixedWeeklyReset(a.GetQuotaWeeklyResetDay(), a.GetQuotaWeeklyResetHour(), tz, time.Now())
+	lastReset := lastFixedWeeklyReset(a.GetQuotaWeeklyResetDay(), a.GetQuotaWeeklyResetHour(), tz, now)
 	return periodStart.Before(lastReset)
 }
 
