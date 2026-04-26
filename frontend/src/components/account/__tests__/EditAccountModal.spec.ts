@@ -1,10 +1,19 @@
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { defineComponent } from 'vue'
 import { mount } from '@vue/test-utils'
 
-const { updateAccountMock, checkMixedChannelRiskMock } = vi.hoisted(() => ({
+const {
+  updateAccountMock,
+  checkMixedChannelRiskMock,
+  getWebSearchEmulationConfigMock,
+  getSettingsMock,
+  listTLSFingerprintProfilesMock
+} = vi.hoisted(() => ({
   updateAccountMock: vi.fn(),
-  checkMixedChannelRiskMock: vi.fn()
+  checkMixedChannelRiskMock: vi.fn(),
+  getWebSearchEmulationConfigMock: vi.fn(),
+  getSettingsMock: vi.fn(),
+  listTLSFingerprintProfilesMock: vi.fn()
 }))
 
 vi.mock('@/stores/app', () => ({
@@ -26,6 +35,13 @@ vi.mock('@/api/admin', () => ({
     accounts: {
       update: updateAccountMock,
       checkMixedChannelRisk: checkMixedChannelRiskMock
+    },
+    settings: {
+      getWebSearchEmulationConfig: getWebSearchEmulationConfigMock,
+      getSettings: getSettingsMock
+    },
+    tlsFingerprintProfiles: {
+      list: listTLSFingerprintProfilesMock
     }
   }
 }))
@@ -45,6 +61,7 @@ vi.mock('vue-i18n', async () => {
 })
 
 import EditAccountModal from '../EditAccountModal.vue'
+import QuotaLimitCard from '../QuotaLimitCard.vue'
 
 const BaseDialogStub = defineComponent({
   name: 'BaseDialog',
@@ -108,6 +125,19 @@ function buildAccount() {
   } as any
 }
 
+function buildAnthropicAPIKeyAccount() {
+  return {
+    ...buildAccount(),
+    name: 'Anthropic Key',
+    platform: 'anthropic',
+    credentials: {
+      api_key: 'sk-ant-test',
+      base_url: 'https://api.anthropic.com'
+    },
+    extra: {}
+  } as any
+}
+
 function mountModal(account = buildAccount()) {
   return mount(EditAccountModal, {
     props: {
@@ -130,11 +160,21 @@ function mountModal(account = buildAccount()) {
 }
 
 describe('EditAccountModal', () => {
-  it('reopening the same account rehydrates the OpenAI whitelist from props', async () => {
-    const account = buildAccount()
+  beforeEach(() => {
     updateAccountMock.mockReset()
     checkMixedChannelRiskMock.mockReset()
+    getWebSearchEmulationConfigMock.mockReset()
+    getSettingsMock.mockReset()
+    listTLSFingerprintProfilesMock.mockReset()
+
     checkMixedChannelRiskMock.mockResolvedValue({ has_risk: false })
+    getWebSearchEmulationConfigMock.mockResolvedValue({ enabled: false, providers: [] })
+    getSettingsMock.mockResolvedValue({ account_quota_notify_enabled: false })
+    listTLSFingerprintProfilesMock.mockResolvedValue([])
+  })
+
+  it('reopening the same account rehydrates the OpenAI whitelist from props', async () => {
+    const account = buildAccount()
     updateAccountMock.mockResolvedValue(account)
 
     const wrapper = mountModal(account)
@@ -154,6 +194,28 @@ describe('EditAccountModal', () => {
     expect(updateAccountMock).toHaveBeenCalledTimes(1)
     expect(updateAccountMock.mock.calls[0]?.[1]?.credentials?.model_mapping).toEqual({
       'gpt-5.2': 'gpt-5.2'
+    })
+  })
+
+  it('saves fixed daily quota with the default quota timezone for Anthropic API keys', async () => {
+    const account = buildAnthropicAPIKeyAccount()
+    updateAccountMock.mockResolvedValue(account)
+
+    const wrapper = mountModal(account)
+    const quotaCard = wrapper.getComponent(QuotaLimitCard)
+
+    await quotaCard.get('button').trigger('click')
+    await quotaCard.get('input[type="number"]').setValue('120')
+    await quotaCard.get('select').setValue('fixed')
+
+    await wrapper.get('form#edit-account-form').trigger('submit.prevent')
+
+    expect(updateAccountMock).toHaveBeenCalledTimes(1)
+    expect(updateAccountMock.mock.calls[0]?.[1]?.extra).toMatchObject({
+      quota_daily_limit: 120,
+      quota_daily_reset_mode: 'fixed',
+      quota_daily_reset_hour: 0,
+      quota_reset_timezone: 'Asia/Shanghai'
     })
   })
 })

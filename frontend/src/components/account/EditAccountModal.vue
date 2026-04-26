@@ -1861,6 +1861,7 @@ import QuotaLimitCard from '@/components/account/QuotaLimitCard.vue'
 import { applyInterceptWarmup } from '@/components/account/credentialsBuilder'
 import { formatDateTimeLocalInput, parseDateTimeLocalInput } from '@/utils/format'
 import { createStableObjectKeyResolver } from '@/utils/stableObjectKey'
+import { DEFAULT_QUOTA_RESET_TIMEZONE } from '@/constants/account'
 import {
   OPENAI_WS_MODE_CTX_POOL,
   OPENAI_WS_MODE_OFF,
@@ -2215,19 +2216,19 @@ const syncFormFromAccount = (newAccount: Account | null) => {
 
   // Load quota limit for apikey/bedrock accounts (bedrock quota is also loaded in its own branch above)
   if (newAccount.type === 'apikey' || newAccount.type === 'bedrock') {
-    const quotaVal = extra?.quota_limit as number | undefined
+    const quotaVal = typeof extra?.quota_limit === 'number' ? extra.quota_limit : newAccount.quota_limit
     editQuotaLimit.value = (quotaVal && quotaVal > 0) ? quotaVal : null
-    const dailyVal = extra?.quota_daily_limit as number | undefined
+    const dailyVal = typeof extra?.quota_daily_limit === 'number' ? extra.quota_daily_limit : newAccount.quota_daily_limit
     editQuotaDailyLimit.value = (dailyVal && dailyVal > 0) ? dailyVal : null
-    const weeklyVal = extra?.quota_weekly_limit as number | undefined
+    const weeklyVal = typeof extra?.quota_weekly_limit === 'number' ? extra.quota_weekly_limit : newAccount.quota_weekly_limit
     editQuotaWeeklyLimit.value = (weeklyVal && weeklyVal > 0) ? weeklyVal : null
     // Load quota reset mode config
-    editDailyResetMode.value = (extra?.quota_daily_reset_mode as 'rolling' | 'fixed') || null
-    editDailyResetHour.value = (extra?.quota_daily_reset_hour as number) ?? null
-    editWeeklyResetMode.value = (extra?.quota_weekly_reset_mode as 'rolling' | 'fixed') || null
-    editWeeklyResetDay.value = (extra?.quota_weekly_reset_day as number) ?? null
-    editWeeklyResetHour.value = (extra?.quota_weekly_reset_hour as number) ?? null
-    editResetTimezone.value = (extra?.quota_reset_timezone as string) || null
+    editDailyResetMode.value = (extra?.quota_daily_reset_mode as 'rolling' | 'fixed') || newAccount.quota_daily_reset_mode || null
+    editDailyResetHour.value = (extra?.quota_daily_reset_hour as number | undefined) ?? newAccount.quota_daily_reset_hour ?? null
+    editWeeklyResetMode.value = (extra?.quota_weekly_reset_mode as 'rolling' | 'fixed') || newAccount.quota_weekly_reset_mode || null
+    editWeeklyResetDay.value = (extra?.quota_weekly_reset_day as number | undefined) ?? newAccount.quota_weekly_reset_day ?? null
+    editWeeklyResetHour.value = (extra?.quota_weekly_reset_hour as number | undefined) ?? newAccount.quota_weekly_reset_hour ?? null
+    editResetTimezone.value = (extra?.quota_reset_timezone as string) || newAccount.quota_reset_timezone || null
     // Load quota notify config
     loadQuotaNotifyFromExtra(extra)
   } else {
@@ -2352,9 +2353,9 @@ const syncFormFromAccount = (newAccount: Account | null) => {
 
     // Load quota limits for bedrock
     const bedrockExtra = (newAccount.extra as Record<string, unknown>) || {}
-    editQuotaLimit.value = typeof bedrockExtra.quota_limit === 'number' ? bedrockExtra.quota_limit : null
-    editQuotaDailyLimit.value = typeof bedrockExtra.quota_daily_limit === 'number' ? bedrockExtra.quota_daily_limit : null
-    editQuotaWeeklyLimit.value = typeof bedrockExtra.quota_weekly_limit === 'number' ? bedrockExtra.quota_weekly_limit : null
+    editQuotaLimit.value = typeof bedrockExtra.quota_limit === 'number' ? bedrockExtra.quota_limit : newAccount.quota_limit ?? null
+    editQuotaDailyLimit.value = typeof bedrockExtra.quota_daily_limit === 'number' ? bedrockExtra.quota_daily_limit : newAccount.quota_daily_limit ?? null
+    editQuotaWeeklyLimit.value = typeof bedrockExtra.quota_weekly_limit === 'number' ? bedrockExtra.quota_weekly_limit : newAccount.quota_weekly_limit ?? null
     // Load quota notify for bedrock
     loadQuotaNotifyFromExtra(bedrockExtra)
 
@@ -2437,7 +2438,7 @@ watch(
   { immediate: true }
 )
 
-const loadTLSProfiles = async () => {
+async function loadTLSProfiles() {
   try {
     const profiles = await adminAPI.tlsFingerprintProfiles.list()
     tlsFingerprintProfiles.value = profiles.map(p => ({ id: p.id, name: p.name }))
@@ -3268,7 +3269,7 @@ const handleSubmit = async () => {
         delete newExtra.quota_weekly_reset_hour
       }
       if (editDailyResetMode.value === 'fixed' || editWeeklyResetMode.value === 'fixed') {
-        newExtra.quota_reset_timezone = editResetTimezone.value || 'Asia/Shanghai'
+        newExtra.quota_reset_timezone = editResetTimezone.value || DEFAULT_QUOTA_RESET_TIMEZONE
       } else {
         delete newExtra.quota_reset_timezone
       }

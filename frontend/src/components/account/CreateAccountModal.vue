@@ -2931,6 +2931,7 @@ import QuotaLimitCard from '@/components/account/QuotaLimitCard.vue'
 import { applyInterceptWarmup } from '@/components/account/credentialsBuilder'
 import { formatDateTimeLocalInput, parseDateTimeLocalInput } from '@/utils/format'
 import { createStableObjectKeyResolver } from '@/utils/stableObjectKey'
+import { DEFAULT_QUOTA_RESET_TIMEZONE } from '@/constants/account'
 import {
   OPENAI_WS_MODE_CTX_POOL,
   OPENAI_WS_MODE_OFF,
@@ -4190,7 +4191,7 @@ const createAccountAndFinish = async (
       quotaExtra.quota_weekly_reset_hour = editWeeklyResetHour.value ?? 0
     }
     if (editDailyResetMode.value === 'fixed' || editWeeklyResetMode.value === 'fixed') {
-      quotaExtra.quota_reset_timezone = editResetTimezone.value || 'Asia/Shanghai'
+      quotaExtra.quota_reset_timezone = editResetTimezone.value || DEFAULT_QUOTA_RESET_TIMEZONE
     }
     // Quota notify config
     writeQuotaNotifyToExtra(quotaExtra, 'create')

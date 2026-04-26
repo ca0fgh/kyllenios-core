@@ -13,3 +13,6 @@ export type QuotaThresholdType = typeof QUOTA_THRESHOLD_TYPE_FIXED | typeof QUOT
 export const QUOTA_RESET_MODE_ROLLING = 'rolling' as const
 export const QUOTA_RESET_MODE_FIXED = 'fixed' as const
 export type QuotaResetMode = typeof QUOTA_RESET_MODE_ROLLING | typeof QUOTA_RESET_MODE_FIXED
+
+/** Must match backend service.DefaultQuotaResetTimezone. */
+export const DEFAULT_QUOTA_RESET_TIMEZONE = 'Asia/Shanghai' as const

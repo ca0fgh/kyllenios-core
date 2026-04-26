@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import QuotaNotifyToggle from './QuotaNotifyToggle.vue'
-import type { QuotaThresholdType, QuotaResetMode } from '@/constants/account'
+import { DEFAULT_QUOTA_RESET_TIMEZONE, type QuotaThresholdType, type QuotaResetMode } from '@/constants/account'
 
 const { t } = useI18n()
 
@@ -50,7 +50,7 @@ const onModeChange = (e: Event) => {
   if (val === 'fixed') {
     if (props.resetHour == null) emit('update:resetHour', 0)
     if (props.dim === 'weekly' && props.resetDay == null) emit('update:resetDay', 1)
-    if (!props.resetTimezone) emit('update:resetTimezone', 'UTC')
+    if (!props.resetTimezone) emit('update:resetTimezone', DEFAULT_QUOTA_RESET_TIMEZONE)
   }
 }
 
@@ -109,7 +109,7 @@ function getTimezoneOffsetLabel(tz: string): string {
           <option v-for="h in hourOptions" :key="h" :value="h">{{ String(h).padStart(2, '0') }}:00</option>
         </select>
         <template v-if="timezoneOptions && timezoneOptions.length > 0">
-          <select :value="resetTimezone || 'UTC'" @change="emit('update:resetTimezone', ($event.target as HTMLSelectElement).value)" class="input py-1 text-xs w-auto">
+          <select :value="resetTimezone || DEFAULT_QUOTA_RESET_TIMEZONE" @change="emit('update:resetTimezone', ($event.target as HTMLSelectElement).value)" class="input py-1 text-xs w-auto">
             <option v-for="tz in timezoneOptions" :key="tz" :value="tz">{{ tz }} ({{ getTimezoneOffsetLabel(tz) }})</option>
           </select>
         </template>
